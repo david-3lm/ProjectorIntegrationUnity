@@ -1,5 +1,5 @@
-﻿using System;
-using OpenCvSharp.Util;
+﻿using OpenCvSharp.Util;
+using System;
 
 namespace OpenCvSharp
 {
@@ -23,20 +23,20 @@ namespace OpenCvSharp
             ptr = NativeMethods.vector_vector_Point_new1();
         }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public VectorOfVectorPoint(Point[][] source)
-		{
-			using (var srcPtr = new ArrayAddress2<Point>(source))
-			{
-				IntPtr[] sizes = new IntPtr[source.Length];
-				for (int i = 0; i < source.Length; ++i)
-					sizes[i] = new IntPtr(source[i].Length);
+        /// <summary>
+        /// 
+        /// </summary>
+        public VectorOfVectorPoint(Point[][] source)
+        {
+            using (var srcPtr = new ArrayAddress2<Point>(source))
+            {
+                IntPtr[] sizes = new IntPtr[source.Length];
+                for (int i = 0; i < source.Length; ++i)
+                    sizes[i] = new IntPtr(source[i].Length);
 
-				ptr = NativeMethods.vector_vector_Point_new3(new IntPtr(source.Length), sizes, srcPtr);
-			}
-		}
+                ptr = NativeMethods.vector_vector_Point_new3(new IntPtr(source.Length), sizes, srcPtr);
+            }
+        }
 
         /// <summary>
         /// 

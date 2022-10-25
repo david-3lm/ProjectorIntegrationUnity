@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     /// <summary>
     /// 
@@ -103,7 +101,7 @@ namespace OpenCvSharp
         /// <param name="value"></param>
         public virtual void Set(Range range, Mat value)
         {
-            this[range.Start, range.End] = value; 
+            this[range.Start, range.End] = value;
         }
     }
 }

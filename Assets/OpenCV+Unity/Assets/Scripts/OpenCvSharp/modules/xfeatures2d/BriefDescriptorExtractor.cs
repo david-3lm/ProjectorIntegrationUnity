@@ -10,10 +10,10 @@ namespace OpenCvSharp.XFeatures2D
     public class BriefDescriptorExtractor : DescriptorExtractor
     {
 #pragma warning disable 1591
-// ReSharper disable InconsistentNaming
+        // ReSharper disable InconsistentNaming
         public const int PATCH_SIZE = 48;
         public const int KERNEL_SIZE = 9;
-// ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
 #pragma warning restore 1591
 
         private bool disposed;
@@ -24,7 +24,7 @@ namespace OpenCvSharp.XFeatures2D
         /// </summary>
         /// <param name="ptr"></param>
         internal BriefDescriptorExtractor(Ptr<BriefDescriptorExtractor> p)
-			: base(p.Get())
+            : base(p.Get())
         {
             ptrObj = p;
         }
@@ -62,9 +62,9 @@ namespace OpenCvSharp.XFeatures2D
                         ptrObj = null;
                         ptr = IntPtr.Zero;
                     }
-                    
+
                     // releases unmanaged resources
-                    
+
                     disposed = true;
                 }
                 finally

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -54,7 +52,7 @@ namespace OpenCvSharp
         {
             if (self == null)
                 throw new ArgumentNullException("nameof(self)");
-            return (byte) self.Next();
+            return (byte)self.Next();
         }
 
         /// <summary>
@@ -126,7 +124,7 @@ namespace OpenCvSharp
         {
             if (self == null)
                 throw new ArgumentNullException("nameof(self)");
-            return self.Next() * 2.3283064365386962890625e-10f; 
+            return self.Next() * 2.3283064365386962890625e-10f;
         }
 
         /// <summary>
@@ -228,7 +226,7 @@ namespace OpenCvSharp
             mat.ThrowIfNotReady();
             a.ThrowIfDisposed();
             b.ThrowIfDisposed();
-            NativeMethods.core_RNG_fill(ref state, mat.CvPtr, (int) distType, a.CvPtr, b.CvPtr, saturateRange ? 1 : 0);
+            NativeMethods.core_RNG_fill(ref state, mat.CvPtr, (int)distType, a.CvPtr, b.CvPtr, saturateRange ? 1 : 0);
             mat.Fix();
         }
 

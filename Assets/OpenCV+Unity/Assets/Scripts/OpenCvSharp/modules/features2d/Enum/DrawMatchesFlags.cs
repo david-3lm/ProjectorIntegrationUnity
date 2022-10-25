@@ -16,7 +16,7 @@ namespace OpenCvSharp
         /// the circle around keypoint with keypoint size and orientation).
         /// </summary>
         Default = 0,
-        
+
         /// <summary>
         /// Output image matrix will not be created (Mat::create).
         /// Matches will be drawn on existing content of output image.
@@ -26,8 +26,8 @@ namespace OpenCvSharp
         /// <summary>
         /// Single keypoints will not be drawn.
         /// </summary>
-        NotDrawSinglePoints = 2,  
-        
+        NotDrawSinglePoints = 2,
+
         /// <summary>
         /// For each keypoint the circle around keypoint with keypoint size and
         /// orientation will be drawn.

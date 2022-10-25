@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace OpenCvSharp.Util
@@ -72,7 +71,7 @@ namespace OpenCvSharp.Util
                     .Append("(3) The target platform(x86/x64) of OpenCV's DLL files and OpenCvSharp is the same as your project's.\n")
                     .Append("\n")
                     .Append(ex.ToString());
-            }            
+            }
             return new OpenCvSharpException(message.ToString(), ex);
         }
     }

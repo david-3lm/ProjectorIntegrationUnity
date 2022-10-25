@@ -20,7 +20,7 @@ namespace OpenCvSharp
         public static extern void features2d_Feature2D_detect_Mat2(IntPtr detector, IntPtr[] images, int imageLength, IntPtr keypoints, IntPtr[] mask);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Feature2D_detect_InputArray(IntPtr detector, IntPtr image, IntPtr keypoints, IntPtr mask);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Feature2D_compute1(IntPtr obj, IntPtr image, IntPtr keypoints, IntPtr descriptors);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

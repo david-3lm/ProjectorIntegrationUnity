@@ -1,7 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-
-using OpenCvSharp.Util;
 
 // ReSharper disable InconsistentNaming
 
@@ -165,7 +164,7 @@ namespace OpenCvSharp
         /// respectively (see getGaussianKernel() for details); to fully control the result 
         /// regardless of possible future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and sigmaY.</param>
         /// <param name="borderType">pixel extrapolation method</param>
-        public static void GaussianBlur(InputArray src, OutputArray dst, Size ksize, double sigmaX, 
+        public static void GaussianBlur(InputArray src, OutputArray dst, Size ksize, double sigmaX,
             double sigmaY = 0, BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -256,7 +255,7 @@ namespace OpenCvSharp
         /// <param name="normalize">Indicates, whether the kernel is normalized by its area or not</param>
         /// <param name="borderType">The border mode used to extrapolate pixels outside of the image</param>
         public static void BoxFilter(
-            InputArray src, OutputArray dst, MatType ddepth, 
+            InputArray src, OutputArray dst, MatType ddepth,
             Size ksize, Point? anchor = null, bool normalize = true,
             BorderTypes borderType = BorderTypes.Default)
         {
@@ -282,7 +281,7 @@ namespace OpenCvSharp
         /// <param name="anchor">The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center</param>
         /// <param name="borderType">The border mode used to extrapolate pixels outside of the image</param>
         public static void Blur(
-            InputArray src, OutputArray dst, Size ksize, 
+            InputArray src, OutputArray dst, Size ksize,
             Point? anchor = null, BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -314,7 +313,7 @@ namespace OpenCvSharp
         /// <param name="borderType">The pixel extrapolation method</param>
         public static void Filter2D(
             InputArray src, OutputArray dst, MatType ddepth,
-	        InputArray kernel, Point? anchor = null, double delta = 0, 
+            InputArray kernel, Point? anchor = null, double delta = 0,
             BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -327,7 +326,7 @@ namespace OpenCvSharp
             dst.ThrowIfNotReady();
             kernel.ThrowIfDisposed();
             Point anchor0 = anchor.GetValueOrDefault(new Point(-1, -1));
-            NativeMethods.imgproc_filter2D(src.CvPtr, dst.CvPtr, ddepth, kernel.CvPtr, 
+            NativeMethods.imgproc_filter2D(src.CvPtr, dst.CvPtr, ddepth, kernel.CvPtr,
                 anchor0, delta, (int)borderType);
             GC.KeepAlive(src);
             dst.Fix();
@@ -347,7 +346,7 @@ namespace OpenCvSharp
         /// <param name="borderType">The pixel extrapolation method</param>
         public static void SepFilter2D(
             InputArray src, OutputArray dst, MatType ddepth, InputArray kernelX, InputArray kernelY,
-            Point? anchor = null, double delta = 0, 
+            Point? anchor = null, double delta = 0,
             BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -363,7 +362,7 @@ namespace OpenCvSharp
             kernelX.ThrowIfDisposed();
             kernelY.ThrowIfDisposed();
             Point anchor0 = anchor.GetValueOrDefault(new Point(-1, -1));
-            NativeMethods.imgproc_sepFilter2D(src.CvPtr, dst.CvPtr, ddepth, 
+            NativeMethods.imgproc_sepFilter2D(src.CvPtr, dst.CvPtr, ddepth,
                 kernelX.CvPtr, kernelY.CvPtr, anchor0, delta, (int)borderType);
             GC.KeepAlive(src);
             dst.Fix();
@@ -383,9 +382,9 @@ namespace OpenCvSharp
         /// <param name="delta">The optional delta value, added to the results prior to storing them in dst</param>
         /// <param name="borderType">The pixel extrapolation method</param>
         public static void Sobel(
-            InputArray src, OutputArray dst, MatType ddepth, int xorder, int yorder, 
-            int ksize = 3, double scale = 1, double delta = 0, 
-            BorderTypes borderType = BorderTypes.Default)        
+            InputArray src, OutputArray dst, MatType ddepth, int xorder, int yorder,
+            int ksize = 3, double scale = 1, double delta = 0,
+            BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
@@ -393,7 +392,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(dst)");
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
-            NativeMethods.imgproc_Sobel(src.CvPtr, dst.CvPtr, ddepth, xorder, yorder, 
+            NativeMethods.imgproc_Sobel(src.CvPtr, dst.CvPtr, ddepth, xorder, yorder,
                 ksize, scale, delta, (int)borderType);
             GC.KeepAlive(src);
             dst.Fix();
@@ -412,7 +411,7 @@ namespace OpenCvSharp
         /// <param name="delta">The optional delta value, added to the results prior to storing them in dst</param>
         /// <param name="borderType">The pixel extrapolation method</param>
         public static void Scharr(
-            InputArray src, OutputArray dst, MatType ddepth, int xorder, int yorder, 
+            InputArray src, OutputArray dst, MatType ddepth, int xorder, int yorder,
             double scale = 1, double delta = 0, BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -421,7 +420,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(dst)");
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
-            NativeMethods.imgproc_Scharr(src.CvPtr, dst.CvPtr, ddepth, xorder, yorder, 
+            NativeMethods.imgproc_Scharr(src.CvPtr, dst.CvPtr, ddepth, xorder, yorder,
                 scale, delta, (int)borderType);
             GC.KeepAlive(src);
             dst.Fix();
@@ -440,7 +439,7 @@ namespace OpenCvSharp
         /// <param name="borderType">The pixel extrapolation method</param>
         public static void Laplacian(
             InputArray src, OutputArray dst, MatType ddepth,
-            int ksize = 1, double scale = 1, double delta = 0, 
+            int ksize = 1, double scale = 1, double delta = 0,
             BorderTypes borderType = BorderTypes.Default)
         {
             if (src == null)
@@ -590,7 +589,7 @@ namespace OpenCvSharp
         /// <param name="useHarrisDetector">Parameter indicating whether to use a Harris detector</param>
         /// <param name="k">Free parameter of the Harris detector.</param>
         /// <returns>Output vector of detected corners.</returns>
-        public static Point2f[] GoodFeaturesToTrack(InputArray src, 
+        public static Point2f[] GoodFeaturesToTrack(InputArray src,
             int maxCorners, double qualityLevel, double minDistance,
             InputArray mask, int blockSize, bool useHarrisDetector, double k)
         {
@@ -601,7 +600,7 @@ namespace OpenCvSharp
             using (var vector = new VectorOfPoint2f())
             {
                 IntPtr maskPtr = ToPtr(mask);
-                NativeMethods.imgproc_goodFeaturesToTrack(src.CvPtr, vector.CvPtr, maxCorners, qualityLevel, 
+                NativeMethods.imgproc_goodFeaturesToTrack(src.CvPtr, vector.CvPtr, maxCorners, qualityLevel,
                     minDistance, maskPtr, blockSize, useHarrisDetector ? 0 : 1, k);
                 GC.KeepAlive(src);
                 return vector.ToArray();
@@ -635,7 +634,7 @@ namespace OpenCvSharp
         /// rho is the distance from the coordinate origin (0,0) (top-left corner of the image) and theta is the line rotation angle in radians</returns>
 #endif
         public static LineSegmentPolar[] HoughLines(
-            InputArray image, double rho, double theta, int threshold, 
+            InputArray image, double rho, double theta, int threshold,
             double srn = 0, double stn = 0)
         {
             if (image == null)
@@ -674,7 +673,7 @@ namespace OpenCvSharp
         /// <returns>The output lines. Each line is represented by a 4-element vector (x1, y1, x2, y2)</returns>
 #endif
         public static LineSegmentPoint[] HoughLinesP(
-            InputArray image, double rho, double theta, int threshold, 
+            InputArray image, double rho, double theta, int threshold,
             double minLineLength = 0, double maxLineGap = 0)
         {
             if (image == null)
@@ -717,7 +716,7 @@ namespace OpenCvSharp
         /// <returns>The output vector found circles. Each vector is encoded as 3-element floating-point vector (x, y, radius)</returns>
 #endif
         public static CircleSegment[] HoughCircles(
-            InputArray image, HoughMethods method, double dp, double minDist, 
+            InputArray image, HoughMethods method, double dp, double minDist,
             double param1 = 100, double param2 = 100, int minRadius = 0, int maxRadius = 0)
         {
             if (image == null)
@@ -767,7 +766,7 @@ namespace OpenCvSharp
 #endif
         public static void Dilate(
             InputArray src, OutputArray dst, InputArray element,
-            Point? anchor = null, int iterations = 1, 
+            Point? anchor = null, int iterations = 1,
             BorderTypes borderType = BorderTypes.Constant, Scalar? borderValue = null)
         {
             if (src == null)
@@ -811,7 +810,7 @@ namespace OpenCvSharp
 #endif
         public static void Erode(
             InputArray src, OutputArray dst, InputArray element,
-            Point? anchor = null, int iterations = 1, 
+            Point? anchor = null, int iterations = 1,
             BorderTypes borderType = BorderTypes.Constant, Scalar? borderValue = null)
         {
             if (src == null)
@@ -857,7 +856,7 @@ namespace OpenCvSharp
 #endif
         public static void MorphologyEx(
             InputArray src, OutputArray dst, MorphTypes op, InputArray element,
-            Point? anchor = null, int iterations = 1, 
+            Point? anchor = null, int iterations = 1,
             BorderTypes borderType = BorderTypes.Constant, Scalar? borderValue = null)
         {
             if (src == null)
@@ -920,7 +919,7 @@ namespace OpenCvSharp
         /// <param name="borderValue">value used in case of a constant border; by default, it is 0.</param>
         public static void WarpAffine(
             InputArray src, OutputArray dst, InputArray m, Size dsize,
-            InterpolationFlags flags = InterpolationFlags.Linear, 
+            InterpolationFlags flags = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant, Scalar? borderValue = null)
         {
             if (src == null)
@@ -967,8 +966,8 @@ namespace OpenCvSharp
 #endif
         public static void WarpPerspective(
             InputArray src, OutputArray dst, InputArray m, Size dsize,
-            InterpolationFlags flags = InterpolationFlags.Linear, 
-            BorderTypes borderMode = BorderTypes.Constant, 
+            InterpolationFlags flags = InterpolationFlags.Linear,
+            BorderTypes borderMode = BorderTypes.Constant,
             Scalar? borderValue = null)
         {
             if (src == null)
@@ -1015,7 +1014,7 @@ namespace OpenCvSharp
 #endif
         public static void WarpPerspective(
             InputArray src, OutputArray dst, float[,] m, Size dsize,
-            InterpolationFlags flags = InterpolationFlags.Linear, 
+            InterpolationFlags flags = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant,
             Scalar? borderValue = null)
         {
@@ -1051,7 +1050,7 @@ namespace OpenCvSharp
         /// <param name="borderValue">Value used in case of a constant border. By default, it is 0.</param>
         public static void Remap(
             InputArray src, OutputArray dst, InputArray map1, InputArray map2,
-            InterpolationFlags interpolation = InterpolationFlags.Linear, 
+            InterpolationFlags interpolation = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant, Scalar? borderValue = null)
         {
             if (src == null)
@@ -1226,7 +1225,7 @@ namespace OpenCvSharp
         /// within the source image. The center must be inside the image.</param>
         /// <param name="patch">Extracted patch that has the size patchSize and the same number of channels as src .</param>
         /// <param name="patchType">Depth of the extracted pixels. By default, they have the same depth as src.</param>
-        public static void GetRectSubPix(InputArray image, Size patchSize, Point2f center, 
+        public static void GetRectSubPix(InputArray image, Size patchSize, Point2f center,
             OutputArray patch, int patchType = -1)
         {
             if (image == null)
@@ -1236,7 +1235,7 @@ namespace OpenCvSharp
             image.ThrowIfDisposed();
             patch.ThrowIfNotReady();
             NativeMethods.imgproc_getRectSubPix(image.CvPtr, patchSize, center, patch.CvPtr, patchType);
-            GC.KeepAlive(image); 
+            GC.KeepAlive(image);
             patch.Fix();
         }
         #endregion
@@ -1730,7 +1729,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static float InitWideAngleProjMap(
             InputArray cameraMatrix, InputArray distCoeffs,
-            Size imageSize, int destImageWidth, MatType m1Type, 
+            Size imageSize, int destImageWidth, MatType m1Type,
             OutputArray map1, OutputArray map2,
             ProjectionType projType, double alpha = 0)
         {
@@ -1807,7 +1806,7 @@ namespace OpenCvSharp
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
             cameraMatrix.ThrowIfDisposed();
-            NativeMethods.imgproc_undistortPoints(src.CvPtr, dst.CvPtr, cameraMatrix.CvPtr, 
+            NativeMethods.imgproc_undistortPoints(src.CvPtr, dst.CvPtr, cameraMatrix.CvPtr,
                 ToPtr(distCoeffs), ToPtr(r), ToPtr(p));
             GC.KeepAlive(src);
             GC.KeepAlive(cameraMatrix);
@@ -1829,7 +1828,7 @@ namespace OpenCvSharp
         /// <param name="ranges"></param>
         /// <param name="uniform"></param>
         /// <param name="accumulate"></param>
-        public static void CalcHist(Mat[] images, 
+        public static void CalcHist(Mat[] images,
             int[] channels, InputArray mask,
             OutputArray hist, int dims, int[] histSize,
             Rangef[] ranges, bool uniform = true, bool accumulate = false)
@@ -1837,8 +1836,8 @@ namespace OpenCvSharp
             if (ranges == null)
                 throw new ArgumentNullException("nameof(ranges)");
             float[][] rangesFloat = EnumerableEx.SelectToArray(
-                ranges, r => new [] {r.Start, r.End});
-            CalcHist(images, channels, mask, hist, dims, 
+                ranges, r => new[] { r.Start, r.End });
+            CalcHist(images, channels, mask, hist, dims,
                 histSize, rangesFloat, uniform, accumulate);
         }
 
@@ -1893,7 +1892,7 @@ namespace OpenCvSharp
         /// <param name="ranges"></param>
         /// <param name="uniform"></param>
         public static void CalcBackProject(Mat[] images,
-            int[] channels, InputArray hist, OutputArray backProject, 
+            int[] channels, InputArray hist, OutputArray backProject,
             Rangef[] ranges, bool uniform = true)
         {
             if (images == null)
@@ -1911,7 +1910,7 @@ namespace OpenCvSharp
 
             IntPtr[] imagesPtr = EnumerableEx.SelectPtrs(images);
             float[][] rangesFloat = EnumerableEx.SelectToArray(
-                ranges, r => new [] {r.Start, r.End});
+                ranges, r => new[] { r.Start, r.End });
             using (var rangesPtr = new ArrayAddress2<float>(rangesFloat))
             {
                 NativeMethods.imgproc_calcBackProject(imagesPtr, images.Length, channels, hist.CvPtr,
@@ -1963,7 +1962,7 @@ namespace OpenCvSharp
             dst.Fix();
         }
         #endregion
-        
+
         #region CreateCLAHE
         /// <summary>
         /// Creates a predefined CLAHE object
@@ -2041,7 +2040,7 @@ namespace OpenCvSharp
             GC.KeepAlive(signature1);
             GC.KeepAlive(signature2);
             GC.KeepAlive(cost);
-            if(flow != null)
+            if (flow != null)
                 flow.Fix();
             return ret;
         }
@@ -2298,7 +2297,7 @@ namespace OpenCvSharp
             mask.ThrowIfNotReady();
             Scalar loDiff0 = loDiff.GetValueOrDefault(new Scalar());
             Scalar upDiff0 = upDiff.GetValueOrDefault(new Scalar());
-            int ret = NativeMethods.imgproc_floodFill(image.CvPtr, mask.CvPtr, seedPoint, 
+            int ret = NativeMethods.imgproc_floodFill(image.CvPtr, mask.CvPtr, seedPoint,
                 newVal, out rect, loDiff0, upDiff0, (int)flags);
             image.Fix();
             mask.Fix();
@@ -2331,7 +2330,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(dst)");
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
-            
+
             NativeMethods.imgproc_cvtColor(src.CvPtr, dst.CvPtr, (int)code, dstCn);
             GC.KeepAlive(src);
             dst.Fix();
@@ -2350,7 +2349,7 @@ namespace OpenCvSharp
         {
             return new Moments(array, binaryImage);
         }
-        
+
         /// <summary>
         /// Calculates all of the moments 
         /// up to the third order of a polygon or rasterized shape.
@@ -2411,10 +2410,10 @@ namespace OpenCvSharp
         /// <param name="method">Specifies the comparison method</param>
         /// <param name="mask">Mask of searched template. It must have the same datatype and size with templ. It is not set by default.</param>
         public static void MatchTemplate(
-            InputArray image, 
+            InputArray image,
             InputArray templ,
             OutputArray result,
-            TemplateMatchModes method, 
+            TemplateMatchModes method,
             InputArray mask = null)
         {
             if (image == null)
@@ -2469,9 +2468,9 @@ namespace OpenCvSharp
         public static int ConnectedComponents(InputArray image, OutputArray labels,
             PixelConnectivity connectivity, MatType ltype)
         {
-            if (image == null) 
+            if (image == null)
                 throw new ArgumentNullException("nameof(image)");
-            if (labels == null) 
+            if (labels == null)
                 throw new ArgumentNullException("nameof(labels)");
             image.ThrowIfDisposed();
             labels.ThrowIfNotReady();
@@ -2569,7 +2568,7 @@ namespace OpenCvSharp
             centroids.ThrowIfNotReady();
 
             int result = NativeMethods.imgproc_connectedComponentsWithStats(
-                image.CvPtr, labels.CvPtr, stats.CvPtr, centroids.CvPtr, (int) connectivity, ltype);
+                image.CvPtr, labels.CvPtr, stats.CvPtr, centroids.CvPtr, (int)connectivity, ltype);
 
             GC.KeepAlive(image);
             labels.Fix();
@@ -2673,9 +2672,9 @@ namespace OpenCvSharp
                 contours = contoursVec.ToArray();
                 Vec4i[] hierarchyOrg = hierarchyVec.ToArray();
 
-				//UFIX
+                //UFIX
                 //hierarchy = EnumerableEx.SelectToArray(hierarchyOrg, HierarchyIndex.FromVec4i);
-				hierarchy = EnumerableEx.SelectToArray<Vec4i, HierarchyIndex>(hierarchyOrg, HierarchyIndex.FromVec4i);
+                hierarchy = EnumerableEx.SelectToArray<Vec4i, HierarchyIndex>(hierarchyOrg, HierarchyIndex.FromVec4i);
 
             }
             image.Fix();
@@ -2852,7 +2851,7 @@ namespace OpenCvSharp
         /// The type should match the type of the input curve</returns>
         public static Point[] ApproxPolyDP(IEnumerable<Point> curve, double epsilon, bool closed)
         {
-            if(curve == null)
+            if (curve == null)
                 throw new ArgumentNullException("nameof(curve)");
             Point[] curveArray = EnumerableEx.ToArray(curve);
             IntPtr approxCurvePtr;
@@ -3136,7 +3135,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(contour2)");
             Point[] contour1Array = EnumerableEx.ToArray(contour1);
             Point[] contour2Array = EnumerableEx.ToArray(contour2);
-            return NativeMethods.imgproc_matchShapes_Point(contour1Array, contour1Array.Length, 
+            return NativeMethods.imgproc_matchShapes_Point(contour1Array, contour1Array.Length,
                 contour2Array, contour2Array.Length, (int)method, parameter);
         }
         #endregion
@@ -3445,7 +3444,7 @@ namespace OpenCvSharp
             Point[] p1Array = EnumerableEx.ToArray(p1);
             Point[] p2Array = EnumerableEx.ToArray(p2);
             IntPtr p12Ptr;
-            float ret = NativeMethods.imgproc_intersectConvexConvex_Point(p1Array, p1Array.Length, p2Array, p2Array.Length, 
+            float ret = NativeMethods.imgproc_intersectConvexConvex_Point(p1Array, p1Array.Length, p2Array, p2Array.Length,
                 out p12Ptr, handleNested ? 1 : 0);
 
             using (var p12Vec = new VectorOfPoint(p12Ptr))
@@ -3754,21 +3753,21 @@ namespace OpenCvSharp
                 int ret = NativeMethods.imgproc_rotatedRectangleIntersection_OutputArray(
                     rect1, rect2, intersectingRegionVec.CvPtr);
                 intersectingRegion = intersectingRegionVec.ToArray();
-                return (RectanglesIntersectTypes) ret;
+                return (RectanglesIntersectTypes)ret;
             }
         }
 
         #endregion
 
-		/// <summary>
-		/// Returns RotatedRectangle corner points
-		/// </summary>
-		/// <param name="box">RotatedRectangle to calculate points for</param>
-		/// <returns>Array or corner points for the RotatedBox</returns>
-		public static Point2f[] BoxPoints(RotatedRect box)
-		{
-			return box.Points();
-		}
+        /// <summary>
+        /// Returns RotatedRectangle corner points
+        /// </summary>
+        /// <param name="box">RotatedRectangle to calculate points for</param>
+        /// <returns>Array or corner points for the RotatedBox</returns>
+        public static Point2f[] BoxPoints(RotatedRect box)
+        {
+            return box.Points();
+        }
 
         /// <summary>
         /// Applies a GNU Octave/MATLAB equivalent colormap on a given image.
@@ -3848,7 +3847,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public static void Line(
-            InputOutputArray img, Point pt1, Point pt2, Scalar color, int thickness = 1, 
+            InputOutputArray img, Point pt1, Point pt2, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             if (img == null)
@@ -3873,12 +3872,12 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates.</param>
         /// <param name="tipLength">The length of the arrow tip in relation to the arrow length</param>
         public static void ArrowedLine(
-            InputOutputArray img, 
-            Point pt1, Point pt2, 
+            InputOutputArray img,
+            Point pt1, Point pt2,
             Scalar color,
-            int thickness = 1, 
+            int thickness = 1,
             LineTypes lineType = LineTypes.Link8,
-            int shift = 0, 
+            int shift = 0,
             double tipLength = 0.1)
         {
             if (img == null)
@@ -3916,7 +3915,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public static void Rectangle(
-            InputOutputArray img, Point pt1, Point pt2, Scalar color, int thickness = 1, 
+            InputOutputArray img, Point pt1, Point pt2, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             if (img == null)
@@ -3947,7 +3946,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public static void Rectangle(
-            InputOutputArray img, Rect rect, Scalar color, int thickness = 1, 
+            InputOutputArray img, Rect rect, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             if (img == null)
@@ -3980,7 +3979,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public static void Rectangle(
-            Mat img, Point pt1, Point pt2, Scalar color, int thickness = 1, 
+            Mat img, Point pt1, Point pt2, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             if (img == null)
@@ -4212,7 +4211,7 @@ namespace OpenCvSharp
         {
             if (img == null)
                 throw new ArgumentNullException("nameof(img)");
-            if (pts == null) 
+            if (pts == null)
                 throw new ArgumentNullException("nameof(pts)");
             img.ThrowIfDisposed();
             pts.ThrowIfDisposed();
@@ -4299,7 +4298,7 @@ namespace OpenCvSharp
         {
             if (img == null)
                 throw new ArgumentNullException("nameof(img)");
-            if (pts == null) 
+            if (pts == null)
                 throw new ArgumentNullException("nameof(pts)");
             img.ThrowIfDisposed();
             pts.ThrowIfDisposed();
@@ -4432,9 +4431,9 @@ namespace OpenCvSharp
             image.ThrowIfNotReady();
 
             Point offset0 = offset.GetValueOrDefault(new Point());
-			//UFIX
+            //UFIX
             //Point[][] contoursArray = EnumerableEx.SelectToArray(contours, EnumerableEx.ToArray);
-			Point[][] contoursArray = EnumerableEx.SelectToArray<IEnumerable<Point>, Point[]>(contours, EnumerableEx.ToArray);
+            Point[][] contoursArray = EnumerableEx.SelectToArray<IEnumerable<Point>, Point[]>(contours, EnumerableEx.ToArray);
 
 
             int[] contourSize2 = EnumerableEx.SelectToArray(contoursArray, pts => pts.Length);
@@ -4443,7 +4442,7 @@ namespace OpenCvSharp
                 if (hierarchy == null)
                 {
                     NativeMethods.imgproc_drawContours_vector_fix(image.CvPtr, contoursPtr.Pointer, contoursArray.Length, contourSize2,
-						color, contourIdx, thickness, (int)lineType, IntPtr.Zero, 0, maxLevel, offset0);
+                        color, contourIdx, thickness, (int)lineType, IntPtr.Zero, 0, maxLevel, offset0);
                 }
                 else
                 {

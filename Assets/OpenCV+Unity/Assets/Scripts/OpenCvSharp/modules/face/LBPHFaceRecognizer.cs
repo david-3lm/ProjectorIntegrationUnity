@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp.Face
 {
@@ -9,34 +7,34 @@ namespace OpenCvSharp.Face
     /// </summary>
     public class LBPHFaceRecognizer : FaceRecognizer
     {
-		/// <summary>
-		///
-		/// </summary>
-		public LBPHFaceRecognizer(IntPtr smartPtr)
-			: base(smartPtr)
-        {}
+        /// <summary>
+        ///
+        /// </summary>
+        public LBPHFaceRecognizer(IntPtr smartPtr)
+            : base(smartPtr)
+        { }
 
-		protected override void FreeNativeResources()
-		{
-			if (smartPointer != IntPtr.Zero)
-			{
-				NativeMethods.face_Ptr_LBPHFaceRecognizer_delete(smartPointer);
-				smartPointer = IntPtr.Zero;
-			}
-		}
+        protected override void FreeNativeResources()
+        {
+            if (smartPointer != IntPtr.Zero)
+            {
+                NativeMethods.face_Ptr_LBPHFaceRecognizer_delete(smartPointer);
+                smartPointer = IntPtr.Zero;
+            }
+        }
 
-		protected override IntPtr GetPureObjectPtr()
-		{
-			return NativeMethods.face_Ptr_LBPHFaceRecognizer_get(smartPointer);
-		}
+        protected override IntPtr GetPureObjectPtr()
+        {
+            return NativeMethods.face_Ptr_LBPHFaceRecognizer_get(smartPointer);
+        }
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public virtual int GetGridX()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetGridX()
         {
             ThrowIfDisposed();
             return NativeMethods.face_LBPHFaceRecognizer_getGridX(ptr);
@@ -158,6 +156,6 @@ namespace OpenCvSharp.Face
             return result;
         }
 
-		#endregion
+        #endregion
     }
 }

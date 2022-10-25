@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenCvSharp.Flann;
+﻿using OpenCvSharp.Flann;
 using OpenCvSharp.Util;
+using System;
+using System.Collections.Generic;
 
 namespace OpenCvSharp
 {
@@ -16,11 +16,12 @@ namespace OpenCvSharp
         private bool disposed;
         private Ptr<FlannBasedMatcher> detectorPtr;
 
-		//UFIX
+        //UFIX
         //internal override IntPtr PtrObj => detectorPtr.CvPtr;
-		internal override IntPtr PtrObj {
-			get { return detectorPtr.CvPtr; }  
-		}
+        internal override IntPtr PtrObj
+        {
+            get { return detectorPtr.CvPtr; }
+        }
 
         #region Init & Disposal
 

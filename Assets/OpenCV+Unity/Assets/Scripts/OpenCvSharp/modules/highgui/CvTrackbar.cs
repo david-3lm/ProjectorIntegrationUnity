@@ -28,10 +28,10 @@ namespace OpenCvSharp
         private CvTrackbarCallback2Native callbackNative;
         private GCHandle gchValue;
         private GCHandle gchCallback;
-		//UFIX Warning
-		#pragma warning disable 0414
-		private GCHandle gchCallbackNative;
-		#pragma warning restore 0414
+        //UFIX Warning
+#pragma warning disable 0414
+        private GCHandle gchCallbackNative;
+#pragma warning restore 0414
         private GCHandle gchUserdata;
 
         #region Init and Disposal
@@ -151,7 +151,7 @@ namespace OpenCvSharp
 
             this.callback = callback;
             // コールバックdelegateを、userdataをobjectとするように変換                
-            callbackNative = delegate(int pos, IntPtr ud)
+            callbackNative = delegate (int pos, IntPtr ud)
             {
                 if (ud == IntPtr.Zero)
                 {

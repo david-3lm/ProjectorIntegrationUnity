@@ -15,7 +15,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void calib3d_StereoMatcher_compute(
             IntPtr obj, IntPtr left, IntPtr right, IntPtr disparity);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr calib3d_Ptr_StereoMatcher_info(IntPtr obj);
 
@@ -65,7 +65,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr calib3d_StereoBM_create(int numDisparities, int blockSize);
 
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr calib3d_Ptr_StereoBM_info(IntPtr obj);
 
@@ -132,7 +132,7 @@ namespace OpenCvSharp
             int preFilterCap, int uniquenessRatio,
             int speckleWindowSize, int speckleRange, int mode);
 
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr calib3d_Ptr_StereoSGBM_info(IntPtr obj);
 

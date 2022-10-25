@@ -16,7 +16,7 @@ namespace OpenCvSharp
         public static extern int ml_KNearest_getIsClassifier(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ml_KNearest_setIsClassifier(IntPtr obj, int val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ml_KNearest_getEmax(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

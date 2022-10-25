@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
 #if false
     /// <summary>
@@ -12,7 +10,7 @@ namespace OpenCvSharp
         private bool disposed;
         private Ptr<DenseFeatureDetector> detectorPtr;
 
-        #region Init & Disposal
+    #region Init & Disposal
         /// <summary>
         /// The detector generates several levels (in the amount of featureScaleLevels) of features. 
         /// Features of each level are located in the nodes of a regular grid over the image 
@@ -114,7 +112,7 @@ namespace OpenCvSharp
                 }
             }
         }
-        #endregion
+    #endregion
 
         /// <summary>
         /// Pointer to algorithm information (cv::AlgorithmInfo*)

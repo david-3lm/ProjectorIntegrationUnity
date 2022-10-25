@@ -38,8 +38,8 @@ namespace OpenCvSharp
         /// <param name="height"></param>
         public Size2f(double width, double height)
         {
-            Width = (int) width;
-            Height = (int) height;
+            Width = (int)width;
+            Height = (int)height;
         }
 
         #region Operators

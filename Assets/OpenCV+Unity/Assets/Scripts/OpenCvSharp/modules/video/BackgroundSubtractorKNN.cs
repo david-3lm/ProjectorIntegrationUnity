@@ -28,7 +28,7 @@ namespace OpenCvSharp
         /// <param name="detectShadows"></param>
         /// <returns></returns>
         public static BackgroundSubtractorKNN Create(
-            int history=500, double dist2Threshold=400.0, bool detectShadows=true)
+            int history = 500, double dist2Threshold = 400.0, bool detectShadows = true)
         {
             IntPtr ptr = NativeMethods.video_createBackgroundSubtractorKNN(
                 history, dist2Threshold, detectShadows ? 1 : 0);
@@ -38,7 +38,7 @@ namespace OpenCvSharp
         internal BackgroundSubtractorKNN(IntPtr ptr)
         {
             this.objectPtr = new Ptr<BackgroundSubtractorKNN>(ptr);
-            this.ptr = objectPtr.Get(); 
+            this.ptr = objectPtr.Get();
         }
 
 #if LANG_JP
@@ -220,7 +220,7 @@ namespace OpenCvSharp
                 NativeMethods.video_BackgroundSubtractorKNN_setShadowThreshold(ptr, value);
             }
         }
-        
+
         #endregion
     }
 }

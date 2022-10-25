@@ -47,7 +47,7 @@ namespace OpenCvSharp
         /// <summary>
         /// flag, use Otsu algorithm to choose the optimal threshold value
         /// </summary>
-        Otsu = 8, 
+        Otsu = 8,
 
         /// <summary>
         /// flag, use Triangle algorithm to choose the optimal threshold value

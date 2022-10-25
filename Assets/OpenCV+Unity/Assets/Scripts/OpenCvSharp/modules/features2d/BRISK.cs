@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -28,7 +28,7 @@ namespace OpenCvSharp
         internal BRISK(Ptr<BRISK> p)
             : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>

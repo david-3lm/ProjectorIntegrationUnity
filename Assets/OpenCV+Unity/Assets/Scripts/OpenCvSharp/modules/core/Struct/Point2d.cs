@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -25,7 +23,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public const int SizeOf = sizeof (double) + sizeof (double);
+        public const int SizeOf = sizeof(double) + sizeof(double);
 
         /// <summary>
         /// 
@@ -47,7 +45,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static implicit operator Point(Point2d self)
         {
-            return new Point((int) self.X, (int) self.Y);
+            return new Point((int)self.X, (int)self.Y);
         }
 
         /// <summary>
@@ -241,7 +239,7 @@ namespace OpenCvSharp
 #endif
         public static Point2d operator *(Point2d pt, double scale)
         {
-            return new Point2d((float) (pt.X*scale), (float) (pt.Y*scale));
+            return new Point2d((float)(pt.X * scale), (float)(pt.Y * scale));
         }
 
         #endregion
@@ -359,7 +357,7 @@ namespace OpenCvSharp
 #endif
         public static double DotProduct(Point2d p1, Point2d p2)
         {
-            return p1.X*p2.X + p1.Y*p2.Y;
+            return p1.X * p2.X + p1.Y * p2.Y;
         }
 
 #if LANG_JP
@@ -397,7 +395,7 @@ namespace OpenCvSharp
 #endif
         public static double CrossProduct(Point2d p1, Point2d p2)
         {
-            return p1.X*p2.Y - p2.X*p1.Y;
+            return p1.X * p2.Y - p2.X * p1.Y;
         }
 
 #if LANG_JP

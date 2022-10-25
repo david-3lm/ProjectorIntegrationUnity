@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 // ReSharper disable InconsistentNaming
 
@@ -70,11 +70,11 @@ namespace OpenCvSharp
             if (image == null)
                 throw new ArgumentNullException("nameof(image)");
             image.ThrowIfDisposed();
-            
+
             using (var vector = new VectorOfKeyPoint())
             {
                 NativeMethods.features2d_AGAST(image.CvPtr, vector.CvPtr, threshold, nonmaxSuppression ? 1 : 0,
-                    (int) type);
+                    (int)type);
                 GC.KeepAlive(image);
                 return vector.ToArray();
             }
@@ -200,11 +200,11 @@ namespace OpenCvSharp
             KeyPoint[] keypoints1Array = EnumerableEx.ToArray(keypoints1);
             KeyPoint[] keypoints2Array = EnumerableEx.ToArray(keypoints2);
 
-			//UFIX
+            //UFIX
             //DMatch[][] matches1To2Array = EnumerableEx.SelectToArray(matches1To2, EnumerableEx.ToArray);
-			DMatch[][] matches1To2Array = EnumerableEx.SelectToArray<IEnumerable<DMatch>,DMatch[]>(matches1To2, EnumerableEx.ToArray);
+            DMatch[][] matches1To2Array = EnumerableEx.SelectToArray<IEnumerable<DMatch>, DMatch[]>(matches1To2, EnumerableEx.ToArray);
 
-			int matches1To2Size1 = matches1To2Array.Length;
+            int matches1To2Size1 = matches1To2Array.Length;
             int[] matches1To2Size2 = EnumerableEx.SelectToArray(matches1To2Array, dm => dm.Length);
             Scalar matchColor0 = matchColor.GetValueOrDefault(Scalar.All(-1));
             Scalar singlePointColor0 = singlePointColor.GetValueOrDefault(Scalar.All(-1));
@@ -216,16 +216,16 @@ namespace OpenCvSharp
                     NativeMethods.features2d_drawMatches2(img1.CvPtr, keypoints1Array, keypoints1Array.Length,
                         img2.CvPtr, keypoints2Array, keypoints2Array.Length,
                         matches1To2Ptr, matches1To2Size1, matches1To2Size2,
-                        outImg.CvPtr, matchColor0, singlePointColor0, 
+                        outImg.CvPtr, matchColor0, singlePointColor0,
                         null, 0, null, (int)flags);
                 }
                 else
                 {
-					//UFIX
+                    //UFIX
                     //byte[][] matchesMaskArray = EnumerableEx.SelectToArray(matchesMask, EnumerableEx.ToArray);
-					byte[][] matchesMaskArray = EnumerableEx.SelectToArray<IEnumerable<byte>,byte[]>(matchesMask, EnumerableEx.ToArray);
+                    byte[][] matchesMaskArray = EnumerableEx.SelectToArray<IEnumerable<byte>, byte[]>(matchesMask, EnumerableEx.ToArray);
 
-					int matchesMaskSize1 = matches1To2Array.Length;
+                    int matchesMaskSize1 = matches1To2Array.Length;
                     int[] matchesMaskSize2 = EnumerableEx.SelectToArray(matchesMaskArray, dm => dm.Length);
                     using (var matchesMaskPtr = new ArrayAddress2<byte>(matchesMaskArray))
                     {
@@ -254,15 +254,15 @@ namespace OpenCvSharp
             ref KeyPoint[] keypoints1, ref KeyPoint[] keypoints2,
             out float repeatability, out int correspCount)
         {
-            if (img1 == null) 
+            if (img1 == null)
                 throw new ArgumentNullException("nameof(img1)");
-            if (img2 == null) 
+            if (img2 == null)
                 throw new ArgumentNullException("nameof(img2)");
-            if (H1to2 == null) 
+            if (H1to2 == null)
                 throw new ArgumentNullException("nameof(H1to2)");
-            if (keypoints1 == null) 
+            if (keypoints1 == null)
                 throw new ArgumentNullException("nameof(keypoints1)");
-            if (keypoints2 == null) 
+            if (keypoints2 == null)
                 throw new ArgumentNullException("nameof(keypoints2)");
 
             using (var keypoints1Vec = new VectorOfKeyPoint(keypoints1))
@@ -270,7 +270,7 @@ namespace OpenCvSharp
             {
                 NativeMethods.features2d_evaluateFeatureDetector(
                     img1.CvPtr, img2.CvPtr, H1to2.CvPtr,
-                    keypoints1Vec.CvPtr, keypoints2Vec.CvPtr, 
+                    keypoints1Vec.CvPtr, keypoints2Vec.CvPtr,
                     out repeatability, out correspCount);
                 keypoints1 = keypoints1Vec.ToArray();
                 keypoints2 = keypoints2Vec.ToArray();

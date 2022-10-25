@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -104,7 +102,7 @@ namespace OpenCvSharp
         {
             get
             {
-                if(disposed)
+                if (disposed)
                     throw new ObjectDisposedException("PCA");
                 IntPtr ret = NativeMethods.core_PCA_eigenvalues(ptr);
                 return new Mat(ret);

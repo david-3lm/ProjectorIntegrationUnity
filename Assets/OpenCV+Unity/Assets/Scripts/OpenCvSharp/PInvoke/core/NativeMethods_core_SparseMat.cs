@@ -32,7 +32,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_SparseMat_copyTo_Mat(IntPtr obj, IntPtr m);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void core_SparseMat_convertTo_SparseMat(IntPtr obj, IntPtr m, 
+        public static extern void core_SparseMat_convertTo_SparseMat(IntPtr obj, IntPtr m,
             int rtype, double alpha);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_SparseMat_convertTo_Mat(IntPtr obj, IntPtr m, int rtype,

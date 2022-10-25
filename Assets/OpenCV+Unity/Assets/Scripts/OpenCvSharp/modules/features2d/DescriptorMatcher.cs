@@ -1,7 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -17,11 +16,12 @@ namespace OpenCvSharp
         /// </summary>
         private Ptr<DescriptorMatcher> detectorPtr;
 
-		//UFIX
+        //UFIX
         //internal virtual IntPtr PtrObj => detectorPtr.CvPtr;
-		internal virtual IntPtr PtrObj {
-			get { return detectorPtr.CvPtr; }
-		}
+        internal virtual IntPtr PtrObj
+        {
+            get { return detectorPtr.CvPtr; }
+        }
 
         #region Init & Disposal
 
@@ -405,7 +405,7 @@ namespace OpenCvSharp
             using (var matchesVec = new VectorOfVectorDMatch())
             {
                 NativeMethods.features2d_DescriptorMatcher_radiusMatch2(
-                    ptr, queryDescriptors.CvPtr, matchesVec.CvPtr, maxDistance, 
+                    ptr, queryDescriptors.CvPtr, matchesVec.CvPtr, maxDistance,
                     masksPtrs, masksPtrs.Length, compactResult ? 1 : 0);
                 return matchesVec.ToArray();
             }

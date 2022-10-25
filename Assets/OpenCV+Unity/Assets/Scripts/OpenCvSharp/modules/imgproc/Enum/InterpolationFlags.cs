@@ -35,7 +35,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         Linear = 1,
-        
+
 #if LANG_JP
 		/// <summary>
 		/// バイキュービック補間 
@@ -57,7 +57,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         Area = 3,
-        
+
         /// <summary>
         /// Lanczos interpolation over 8x8 neighborhood
         /// </summary>

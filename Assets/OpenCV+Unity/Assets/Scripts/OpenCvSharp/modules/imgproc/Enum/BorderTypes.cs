@@ -56,8 +56,8 @@ namespace OpenCvSharp
         /// <summary>
         /// `uvwxyz|absdefgh|ijklmno`
         /// </summary>
-        Transparent = 5, 
-        
+        Transparent = 5,
+
         /// <summary>
         /// same as BORDER_REFLECT_101
         /// </summary>

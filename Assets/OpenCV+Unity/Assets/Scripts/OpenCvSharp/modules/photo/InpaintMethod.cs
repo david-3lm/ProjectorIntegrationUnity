@@ -23,7 +23,7 @@ namespace OpenCvSharp
         /// [CV_INPAINT_NS]
         /// </summary>
 #endif
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
         NS = 0,
 
 

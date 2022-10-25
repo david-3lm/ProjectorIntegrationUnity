@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -732,12 +732,12 @@ namespace OpenCvSharp
             rvec = new double[3];
             tvec = new double[3];
 
-			Mat matCamera = new Mat(new Size(3, 3), MatType.CV_64FC1);
-			for (int i = 0; i < 3; ++i)
-				for (int j = 0; j < 3; ++j)
-					matCamera.Set<double>(i, j, cameraMatrix[i, j]);
+            Mat matCamera = new Mat(new Size(3, 3), MatType.CV_64FC1);
+            for (int i = 0; i < 3; ++i)
+                for (int j = 0; j < 3; ++j)
+                    matCamera.Set<double>(i, j, cameraMatrix[i, j]);
 
-			NativeMethods.calib3d_solvePnP_vector(
+            NativeMethods.calib3d_solvePnP_vector(
                     objectPointsArray, objectPointsArray.Length,
                     imagePointsArray, imagePointsArray.Length,
                     matCamera.CvPtr, distCoeffsArray, distCoeffsLength,
@@ -805,9 +805,10 @@ namespace OpenCvSharp
 
             rvec.Fix();
             tvec.Fix();
-			if (inliers != null) {
-				inliers.Fix ();
-			}
+            if (inliers != null)
+            {
+                inliers.Fix();
+            }
         }
 
         /// <summary>
@@ -885,12 +886,12 @@ namespace OpenCvSharp
             rvec = new double[3];
             tvec = new double[3];
 
-			Mat matCamera = new Mat(new Size(3, 3), MatType.CV_64FC1);
-			for (int i = 0; i < 3; ++i)
-				for (int j = 0; j < 3; ++j)
-					matCamera.Set<double>(i, j, cameraMatrix[i, j]);
+            Mat matCamera = new Mat(new Size(3, 3), MatType.CV_64FC1);
+            for (int i = 0; i < 3; ++i)
+                for (int j = 0; j < 3; ++j)
+                    matCamera.Set<double>(i, j, cameraMatrix[i, j]);
 
-			using (var inliersVec = new VectorOfInt32())
+            using (var inliersVec = new VectorOfInt32())
             {
                 NativeMethods.calib3d_solvePnPRansac_vector(
                     objectPointsArray, objectPointsArray.Length,

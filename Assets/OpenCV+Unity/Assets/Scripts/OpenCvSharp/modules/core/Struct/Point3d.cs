@@ -28,7 +28,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public const int SizeOf = sizeof (double) + sizeof (double) + sizeof (double);
+        public const int SizeOf = sizeof(double) + sizeof(double) + sizeof(double);
 
         /// <summary>
         /// 
@@ -226,7 +226,7 @@ namespace OpenCvSharp
 #endif
         public static Point3d operator *(Point3d pt, double scale)
         {
-            return new Point3d(pt.X*scale, pt.Y*scale, pt.Z*scale);
+            return new Point3d(pt.X * scale, pt.Y * scale, pt.Z * scale);
         }
 
         #endregion

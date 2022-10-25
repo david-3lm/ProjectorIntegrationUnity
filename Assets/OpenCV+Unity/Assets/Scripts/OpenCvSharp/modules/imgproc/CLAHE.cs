@@ -35,7 +35,7 @@ namespace OpenCvSharp
                 clipLimit, tileGridSize.GetValueOrDefault(new Size(8, 8)));
             return new CLAHE(ptr);
         }
-        
+
         /// <summary>
         /// Releases the resources
         /// </summary>

@@ -91,11 +91,11 @@ namespace OpenCvSharp
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// The number of angular bins in the shape context descriptor.
         /// </summary>
-        public int AngularBins 
+        public int AngularBins
         {
             get
             {
@@ -114,7 +114,7 @@ namespace OpenCvSharp
         /// <summary>
         /// The number of radial bins in the shape context descriptor.
         /// </summary>
-        public int RadialBins 
+        public int RadialBins
         {
             get
             {
@@ -133,7 +133,7 @@ namespace OpenCvSharp
         /// <summary>
         /// The value of the inner radius.
         /// </summary>
-        public float InnerRadius 
+        public float InnerRadius
         {
             get
             {
@@ -152,7 +152,7 @@ namespace OpenCvSharp
         /// <summary>
         /// The value of the outer radius.
         /// </summary>
-        public float OuterRadius 
+        public float OuterRadius
         {
             get
             {
@@ -167,11 +167,11 @@ namespace OpenCvSharp
                 NativeMethods.shape_ShapeContextDistanceExtractor_setOuterRadius(ptr, value);
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        public bool RotationInvariant 
+        public bool RotationInvariant
         {
             get
             {
@@ -190,7 +190,7 @@ namespace OpenCvSharp
         /// <summary>
         /// The weight of the shape context distance in the final distance value.
         /// </summary>
-        public float ShapeContextWeight 
+        public float ShapeContextWeight
         {
             get
             {
@@ -209,7 +209,7 @@ namespace OpenCvSharp
         /// <summary>
         /// The weight of the appearance cost in the final distance value.
         /// </summary>
-        public float ImageAppearanceWeight 
+        public float ImageAppearanceWeight
         {
             get
             {

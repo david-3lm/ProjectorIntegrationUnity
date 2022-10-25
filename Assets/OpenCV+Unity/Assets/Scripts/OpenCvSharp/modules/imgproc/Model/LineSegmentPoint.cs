@@ -211,7 +211,7 @@ namespace OpenCvSharp
             int f2 = line2.P2.X - line2.P1.X;
             int g2 = line2.P2.Y - line2.P1.Y;
 
-            double det = f2*g1 - f1*g2;
+            double det = f2 * g1 - f1 * g2;
             if (det == 0)
             {
                 return null;
@@ -219,14 +219,14 @@ namespace OpenCvSharp
 
             int dx = x2 - x1;
             int dy = y2 - y1;
-            double t1 = (f2*dy - g2*dx)/det;
-			//UFIX Warning
+            double t1 = (f2 * dy - g2 * dx) / det;
+            //UFIX Warning
             //double t2 = (f1*dy - g1*dx)/det;
 
             return new Point
             {
-                X = (int) Math.Round(x1 + (f1*t1)),
-                Y = (int) Math.Round(y1 + (g1*t1))
+                X = (int)Math.Round(x1 + (f1 * t1)),
+                Y = (int)Math.Round(y1 + (g1 * t1))
             };
         }
 
@@ -338,11 +338,11 @@ namespace OpenCvSharp
                         return false;
                 }
 
-                if (((long) (p1.X - p2.X)*(p3.Y - p1.Y) + (long) (p1.Y - p2.Y)*(p1.X - p3.X))*
-                    ((long) (p1.X - p2.X)*(p4.Y - p1.Y) + (long) (p1.Y - p2.Y)*(p1.X - p4.X)) > 0)
+                if (((long)(p1.X - p2.X) * (p3.Y - p1.Y) + (long)(p1.Y - p2.Y) * (p1.X - p3.X)) *
+                    ((long)(p1.X - p2.X) * (p4.Y - p1.Y) + (long)(p1.Y - p2.Y) * (p1.X - p4.X)) > 0)
                     return false;
-                if (((long) (p3.X - p4.X)*(p1.Y - p3.Y) + (long) (p3.Y - p4.Y)*(p3.X - p1.X))*
-                    ((long) (p3.X - p4.X)*(p2.Y - p3.Y) + (long) (p3.Y - p4.Y)*(p3.X - p2.X)) > 0)
+                if (((long)(p3.X - p4.X) * (p1.Y - p3.Y) + (long)(p3.Y - p4.Y) * (p3.X - p1.X)) *
+                    ((long)(p3.X - p4.X) * (p2.Y - p3.Y) + (long)(p3.Y - p4.Y) * (p3.X - p2.X)) > 0)
                     return false;
             }
             return true;
@@ -391,8 +391,8 @@ namespace OpenCvSharp
             Point p2 = line.P2;
             Point p3 = seg.P1;
             Point p4 = seg.P2;
-            if (((long) (p1.X - p2.X)*(p3.Y - p1.Y) + (long) (p1.Y - p2.Y)*(p1.X - p3.X))*
-                ((long) (p1.X - p2.X)*(p4.Y - p1.Y) + (long) (p1.Y - p2.Y)*(p1.X - p4.X)) > 0)
+            if (((long)(p1.X - p2.X) * (p3.Y - p1.Y) + (long)(p1.Y - p2.Y) * (p1.X - p3.X)) *
+                ((long)(p1.X - p2.X) * (p4.Y - p1.Y) + (long)(p1.Y - p2.Y) * (p1.X - p4.X)) > 0)
             {
                 return false;
             }

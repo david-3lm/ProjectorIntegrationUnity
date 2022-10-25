@@ -35,8 +35,8 @@ namespace OpenCvSharp
         /// <summary>
         /// sizeof(Rect)
         /// </summary>
-        public const int SizeOf = sizeof (int)*4;
-        
+        public const int SizeOf = sizeof(int) * 4;
+
         /// <summary>
         /// Represents a Rect structure with its properties left uninitialized. 
         /// </summary>
@@ -120,7 +120,7 @@ namespace OpenCvSharp
         }
 
         #region Operators
-        
+
         /// <summary>
         /// Specifies whether this object contains the same members as the specified Object.
         /// </summary>
@@ -130,7 +130,7 @@ namespace OpenCvSharp
         {
             return (X == obj.X && Y == obj.Y && Width == obj.Width && Height == obj.Height);
         }
-        
+
         /// <summary>
         /// Compares two Rect objects. The result specifies whether the members of each object are equal.
         /// </summary>
@@ -152,14 +152,14 @@ namespace OpenCvSharp
         {
             return !lhs.Equals(rhs);
         }
-        
+
         /// <summary>
         /// Shifts rectangle by a certain offset
         /// </summary>
         /// <param name="rect"></param>
         /// <param name="pt"></param>
         /// <returns></returns>
-        public static Rect operator + (Rect rect, Point pt)
+        public static Rect operator +(Rect rect, Point pt)
         {
             return new Rect(rect.X + pt.X, rect.Y + pt.Y, rect.Width, rect.Height);
         }
@@ -170,7 +170,7 @@ namespace OpenCvSharp
         /// <param name="rect1"></param>
         /// <param name="rect2"></param>
         /// <returns></returns>
-        public static Rect operator + (Rect rect1, Rect rect2)
+        public static Rect operator +(Rect rect1, Rect rect2)
         {
             return new Rect(rect1.X + rect2.X, rect1.Y + rect2.Y, rect1.Width + rect2.Width, rect1.Height + rect2.Height);
         }
@@ -185,7 +185,7 @@ namespace OpenCvSharp
         {
             return new Rect(rect.X - pt.X, rect.Y - pt.Y, rect.Width, rect.Height);
         }
-        
+
         /// <summary>
         /// Expands or shrinks rectangle by a certain amount
         /// </summary>
@@ -196,7 +196,7 @@ namespace OpenCvSharp
         {
             return new Rect(rect.X, rect.Y, rect.Width + size.Width, rect.Height + size.Height);
         }
-        
+
         /// <summary>
         /// Expands or shrinks rectangle by a certain amount
         /// </summary>
@@ -207,7 +207,7 @@ namespace OpenCvSharp
         {
             return new Rect(rect.X, rect.Y, rect.Width - size.Width, rect.Height - size.Height);
         }
-        
+
         /// <summary>
         /// Determines the Rect structure that represents the intersection of two rectangles. 
         /// </summary>
@@ -218,7 +218,7 @@ namespace OpenCvSharp
         {
             return Intersect(a, b);
         }
-        
+
         /// <summary>
         /// Gets a Rect structure that contains the union of two Rect structures. 
         /// </summary>
@@ -236,7 +236,7 @@ namespace OpenCvSharp
         /// <param name="a">A rectangle to scale</param>
         /// <param name="f">Scale factor</param>
         /// <returns></returns>
-        public static Rect operator * (Rect a, double f)
+        public static Rect operator *(Rect a, double f)
         {
             return new Rect((int)(a.X * f + 0.5), (int)(a.Y * f + 0.5), (int)(a.Width * f + 0.5), (int)(a.Height * f + 0.5));
         }
@@ -252,7 +252,7 @@ namespace OpenCvSharp
             get { return Y; }
             set { Y = value; }
         }
-        
+
         /// <summary>
         /// Gets the y-coordinate that is the sum of the Y and Height property values of this Rect structure.
         /// </summary>
@@ -260,7 +260,7 @@ namespace OpenCvSharp
         {
             get { return Y + Height - 1; }
         }
-        
+
         /// <summary>
         /// Gets the x-coordinate of the left edge of this Rect structure. 
         /// </summary>
@@ -269,7 +269,7 @@ namespace OpenCvSharp
             get { return X; }
             set { X = value; }
         }
-        
+
         /// <summary>
         /// Gets the x-coordinate that is the sum of X and Width property values of this Rect structure. 
         /// </summary>
@@ -277,7 +277,7 @@ namespace OpenCvSharp
         {
             get { return X + Width - 1; }
         }
-        
+
         /// <summary>
         /// Coordinate of the left-most rectangle corner [Point(X, Y)]
         /// </summary>
@@ -290,7 +290,7 @@ namespace OpenCvSharp
                 Y = value.Y;
             }
         }
-        
+
         /// <summary>
         /// Size of the rectangle [CvSize(Width, Height)]
         /// </summary>
@@ -367,7 +367,7 @@ namespace OpenCvSharp
         {
             return (X <= x && Y <= y && X + Width - 1 > x && Y + Height - 1 > y);
         }
-        
+
         /// <summary>
         /// Determines if the specified point is contained within the rectangular region defined by this Rectangle. 
         /// </summary>
@@ -390,7 +390,7 @@ namespace OpenCvSharp
                     return false;
             return true;
         }
-        
+
         /// <summary>
         /// Determines if the specified rectangle is contained within the rectangular region defined by this Rectangle. 
         /// </summary>
@@ -403,7 +403,7 @@ namespace OpenCvSharp
                    Y <= rect.Y &&
                    (rect.Y + rect.Height) <= (Y + Height);
         }
-        
+
         /// <summary>
         /// Inflates this Rect by the specified amount. 
         /// </summary>
@@ -413,10 +413,10 @@ namespace OpenCvSharp
         {
             X -= width;
             Y -= height;
-            Width += (2*width);
-            Height += (2*height);
+            Width += (2 * width);
+            Height += (2 * height);
         }
-        
+
         /// <summary>
         /// Inflates this Rect by the specified amount. 
         /// </summary>
@@ -426,7 +426,7 @@ namespace OpenCvSharp
 
             Inflate(size.Width, size.Height);
         }
-        
+
         /// <summary>
         /// Creates and returns an inflated copy of the specified Rect structure.
         /// </summary>
@@ -439,7 +439,7 @@ namespace OpenCvSharp
             rect.Inflate(x, y);
             return rect;
         }
-        
+
         /// <summary>
         /// Determines the Rect structure that represents the intersection of two rectangles. 
         /// </summary>
@@ -457,7 +457,7 @@ namespace OpenCvSharp
                 return new Rect(x1, y1, x2 - x1, y2 - y1);
             return Empty;
         }
-        
+
         /// <summary>
         /// Determines the Rect structure that represents the intersection of two rectangles. 
         /// </summary>
@@ -467,7 +467,7 @@ namespace OpenCvSharp
         {
             return Intersect(this, rect);
         }
-        
+
         /// <summary>
         /// Determines if this rectangle intersects with rect. 
         /// </summary>
@@ -482,7 +482,7 @@ namespace OpenCvSharp
                 (Y + Height > rect.Y)
                 );
         }
-        
+
         /// <summary>
         /// Gets a Rect structure that contains the union of two Rect structures. 
         /// </summary>
@@ -492,7 +492,7 @@ namespace OpenCvSharp
         {
             return Union(this, rect);
         }
-        
+
         /// <summary>
         /// Gets a Rect structure that contains the union of two Rect structures. 
         /// </summary>
@@ -508,7 +508,7 @@ namespace OpenCvSharp
 
             return new Rect(x1, y1, x2 - x1, y2 - y1);
         }
-        
+
         /// <summary>
         /// Specifies whether this object contains the same members as the specified Object.
         /// </summary>
@@ -518,7 +518,7 @@ namespace OpenCvSharp
         {
             return base.Equals(obj);
         }
-        
+
         /// <summary>
         /// Returns a hash code for this object.
         /// </summary>
@@ -527,7 +527,7 @@ namespace OpenCvSharp
         {
             return X.GetHashCode() ^ Y.GetHashCode() ^ Width.GetHashCode() ^ Height.GetHashCode();
         }
-        
+
         /// <summary>
         /// Converts this object to a human readable string.
         /// </summary>

@@ -23,9 +23,9 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(fgmask)");
             image.ThrowIfDisposed();
             fgmask.ThrowIfNotReady();
-            
+
             NativeMethods.video_BackgroundSubtractor_apply(ptr, image.CvPtr, fgmask.CvPtr, learningRate);
-            
+
             fgmask.Fix();
             GC.KeepAlive(image);
         }

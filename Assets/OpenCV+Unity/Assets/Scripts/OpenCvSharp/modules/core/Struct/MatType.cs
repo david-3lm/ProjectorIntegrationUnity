@@ -2,7 +2,7 @@
 
 namespace OpenCvSharp
 {
-// ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 #pragma warning disable 1591
 
     /// <summary>
@@ -82,9 +82,9 @@ namespace OpenCvSharp
         {
             if (other == null)
                 return false;
-            if (other.GetType() != typeof (MatType))
+            if (other.GetType() != typeof(MatType))
                 return false;
-            return Equals((MatType) other);
+            return Equals((MatType)other);
         }
 
         public static bool operator ==(MatType self, MatType other)

@@ -22,9 +22,9 @@ namespace OpenCvSharp
         /// Default constructor
         /// </summary>
         public CascadeClassifier()
-	    {
-            ptr = NativeMethods.objdetect_CascadeClassifier_new();               
-	    }
+        {
+            ptr = NativeMethods.objdetect_CascadeClassifier_new();
+        }
 
         /// <summary>
         /// Loads a classifier from a file.
@@ -35,8 +35,8 @@ namespace OpenCvSharp
             if (String.IsNullOrEmpty(fileName))
                 throw new ArgumentNullException("nameof(fileName)");
             if (!File.Exists(fileName))
-                throw new FileNotFoundException("\""+ fileName + "\"not found", fileName);
-            ptr = NativeMethods.objdetect_CascadeClassifier_newFromFile(fileName);  
+                throw new FileNotFoundException("\"" + fileName + "\"not found", fileName);
+            ptr = NativeMethods.objdetect_CascadeClassifier_newFromFile(fileName);
         }
 
 #if LANG_JP
@@ -158,7 +158,7 @@ namespace OpenCvSharp
             using (var objectsVec = new VectorOfRect())
             {
                 NativeMethods.objdetect_CascadeClassifier_detectMultiScale1(
-                    ptr, image.CvPtr, objectsVec.CvPtr, 
+                    ptr, image.CvPtr, objectsVec.CvPtr,
                     scaleFactor, minNeighbors, (int)flags, minSize0, maxSize0);
                 return objectsVec.ToArray();
             }

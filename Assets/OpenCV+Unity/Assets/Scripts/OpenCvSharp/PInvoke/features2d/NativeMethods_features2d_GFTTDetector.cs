@@ -10,12 +10,12 @@ namespace OpenCvSharp
         // ReSharper disable InconsistentNaming
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr features2d_GFTTDetector_create(int maxCorners, double qualityLevel, 
+        public static extern IntPtr features2d_GFTTDetector_create(int maxCorners, double qualityLevel,
             double minDistance, int blockSize, int useHarrisDetector, double k);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern void features2d_GFTTDetector_delete(IntPtr obj);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr features2d_GFTTDetector_info(IntPtr obj);
 

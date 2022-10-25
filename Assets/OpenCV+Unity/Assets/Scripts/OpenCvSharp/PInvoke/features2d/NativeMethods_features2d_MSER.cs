@@ -15,10 +15,10 @@ namespace OpenCvSharp
                                                         double areaThreshold, double minMargin, int edgeBlurSize);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Ptr_MSER_delete(IntPtr ptr);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern void features2d_MSER_detect(IntPtr obj, IntPtr image, out IntPtr msers, IntPtr mask);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr features2d_MSER_info(IntPtr obj);
 

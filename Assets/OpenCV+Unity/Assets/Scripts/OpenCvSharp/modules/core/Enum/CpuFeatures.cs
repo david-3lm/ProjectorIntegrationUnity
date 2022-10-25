@@ -6,7 +6,7 @@
     public enum CpuFeatures : int
     {
 #pragma warning disable 1591
-// ReSharper disable InconsistentNaming
+        // ReSharper disable InconsistentNaming
         MMX = 1,
         SSE = 2,
         SSE2 = 3,

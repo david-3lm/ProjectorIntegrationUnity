@@ -13,7 +13,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int video_meanShift(
             IntPtr probImage, ref Rect window, TermCriteria criteria);
-        
+
         // Kalman filter
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr video_KalmanFilter_new1();
@@ -85,14 +85,14 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr video_estimateRigidTransform(
             IntPtr src, IntPtr dst, int fullAffine);
-        
+
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void video_DenseOpticalFlow_calc(
             IntPtr obj, IntPtr i0, IntPtr i1, IntPtr flow);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void video_DenseOpticalFlow_collectGarbage(IntPtr obj);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr video_DenseOpticalFlow_info(IntPtr obj);
 

@@ -25,7 +25,7 @@ namespace OpenCvSharp
             : this(true)
         {
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,7 +34,7 @@ namespace OpenCvSharp
             : this(ptr, true)
         {
         }
-        
+
         /// <summary>
         ///  
         /// </summary>
@@ -43,7 +43,7 @@ namespace OpenCvSharp
             : this(IntPtr.Zero, isEnabledDispose)
         {
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -54,7 +54,7 @@ namespace OpenCvSharp
         {
             this.ptr = ptr;
         }
-        
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -68,8 +68,8 @@ namespace OpenCvSharp
             {
                 try
                 {
-					DisposeUnmanaged();
-                    
+                    DisposeUnmanaged();
+
                     ptr = IntPtr.Zero;
                     disposed = true;
                 }
@@ -80,17 +80,17 @@ namespace OpenCvSharp
             }
         }
 
-		/// <summary>
-		/// Default finalizator for unmanaged resources
-		/// </summary>
-		protected virtual void DisposeUnmanaged()
-		{}
-		#endregion
+        /// <summary>
+        /// Default finalizator for unmanaged resources
+        /// </summary>
+        protected virtual void DisposeUnmanaged()
+        { }
+        #endregion
 
-		/// <summary>
-		/// Native pointer of OpenCV structure
-		/// </summary>
-		public IntPtr CvPtr
+        /// <summary>
+        /// Native pointer of OpenCV structure
+        /// </summary>
+        public IntPtr CvPtr
         {
             get
             {

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -121,7 +121,7 @@ namespace OpenCvSharp
             DMatch[] dst = new DMatch[size];
             using (ArrayAddress1<DMatch> dstPtr = new ArrayAddress1<DMatch>(dst))
             {
-                Util.Utility.CopyMemory(dstPtr, ElemPtr, Marshal.SizeOf(typeof (DMatch))*dst.Length);
+                Util.Utility.CopyMemory(dstPtr, ElemPtr, Marshal.SizeOf(typeof(DMatch)) * dst.Length);
             }
             return dst;
         }

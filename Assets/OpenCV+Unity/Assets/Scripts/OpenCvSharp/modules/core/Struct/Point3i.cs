@@ -28,7 +28,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public const int SizeOf = sizeof (int) + sizeof (int) + sizeof (int);
+        public const int SizeOf = sizeof(int) + sizeof(int) + sizeof(int);
 
         /// <summary>
         /// 
@@ -226,7 +226,7 @@ namespace OpenCvSharp
 #endif
         public static Point3i operator *(Point3i pt, double scale)
         {
-            return new Point3i((int) (pt.X*scale), (int) (pt.Y*scale), (int) (pt.Z*scale));
+            return new Point3i((int)(pt.X * scale), (int)(pt.Y * scale), (int)(pt.Z * scale));
         }
 
         #endregion

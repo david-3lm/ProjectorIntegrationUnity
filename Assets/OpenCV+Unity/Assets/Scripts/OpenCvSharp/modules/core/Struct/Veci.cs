@@ -290,7 +290,7 @@ namespace OpenCvSharp
                     case 5: Item5 = value; break;
                     default:
                         throw new ArgumentOutOfRangeException("nameof(i)");
-                } 
+                }
             }
         }
     }

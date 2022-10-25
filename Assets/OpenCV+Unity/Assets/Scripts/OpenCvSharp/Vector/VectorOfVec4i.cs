@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -123,8 +123,8 @@ namespace OpenCvSharp
         /// <returns></returns>
         public T[] ToArray<T>() where T : struct
         {
-            int typeSize = Marshal.SizeOf(typeof (T));
-            if (typeSize != sizeof (int)*4)
+            int typeSize = Marshal.SizeOf(typeof(T));
+            if (typeSize != sizeof(int) * 4)
             {
                 throw new OpenCvSharpException();
             }
@@ -137,7 +137,7 @@ namespace OpenCvSharp
             T[] dst = new T[arySize];
             using (ArrayAddress1<T> dstPtr = new ArrayAddress1<T>(dst))
             {
-                Util.Utility.CopyMemory(dstPtr, ElemPtr, typeSize*dst.Length);
+                Util.Utility.CopyMemory(dstPtr, ElemPtr, typeSize * dst.Length);
             }
             return dst;
         }

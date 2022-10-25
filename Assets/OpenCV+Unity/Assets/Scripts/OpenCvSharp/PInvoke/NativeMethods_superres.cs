@@ -38,7 +38,7 @@ namespace OpenCvSharp
         public static extern void superres_SuperResolution_reset(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void superres_SuperResolution_collectGarbage(IntPtr obj);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr superres_SuperResolution_info(IntPtr obj);
 
@@ -53,14 +53,14 @@ namespace OpenCvSharp
         public static extern IntPtr superres_Ptr_SuperResolution_get(IntPtr ptr);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void superres_Ptr_SuperResolution_delete(IntPtr ptr);
-        
+
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void superres_DenseOpticalFlowExt_calc(
             IntPtr obj, IntPtr frame0, IntPtr frame1, IntPtr flow1, IntPtr flow2);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void superres_DenseOpticalFlowExt_collectGarbage(IntPtr obj);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr superres_DenseOpticalFlowExt_info(IntPtr obj);
 

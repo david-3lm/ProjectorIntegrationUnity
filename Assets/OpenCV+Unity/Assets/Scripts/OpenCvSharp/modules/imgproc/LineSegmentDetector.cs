@@ -76,11 +76,12 @@ namespace OpenCvSharp
                     // releases unmanaged resources
                     if (IsEnabledDispose)
                     {
-						//UFIX
-						//ptrObj?.Dispose();
-						if (ptrObj != null) {
-							ptrObj.Dispose();
-						}
+                        //UFIX
+                        //ptrObj?.Dispose();
+                        if (ptrObj != null)
+                        {
+                            ptrObj.Dispose();
+                        }
                         ptrObj = null;
                         ptr = IntPtr.Zero;
                     }
@@ -107,32 +108,32 @@ namespace OpenCvSharp
         public virtual void Detect(InputArray image, OutputArray lines,
             OutputArray width = null, OutputArray prec = null, OutputArray nfa = null)
         {
-            if (image == null) 
+            if (image == null)
                 throw new ArgumentNullException("nameof(image)");
             if (lines == null)
                 throw new ArgumentNullException("nameof(lines)");
             image.ThrowIfDisposed();
             lines.ThrowIfNotReady();
             //UFIX
-			//width?.ThrowIfNotReady();
+            //width?.ThrowIfNotReady();
             //prec?.ThrowIfNotReady();
             //nfa?.ThrowIfNotReady();
-			if (width != null) { width.ThrowIfNotReady(); }
-			if (prec != null) { prec.ThrowIfNotReady(); }
-			if (nfa != null) { nfa.ThrowIfNotReady(); }
+            if (width != null) { width.ThrowIfNotReady(); }
+            if (prec != null) { prec.ThrowIfNotReady(); }
+            if (nfa != null) { nfa.ThrowIfNotReady(); }
 
             NativeMethods.imgproc_LineSegmentDetector_detect_OutputArray(ptr, image.CvPtr, lines.CvPtr,
                 Cv2.ToPtr(width), Cv2.ToPtr(prec), Cv2.ToPtr(nfa));
 
             GC.KeepAlive(image);
             lines.Fix();
-			//UFIX
+            //UFIX
             //width?.Fix();
             //prec?.Fix();
             //nfa?.Fix();
-			if (width != null) { width.Fix(); }
-			if (prec != null) { prec.Fix(); }
-			if (nfa != null) { nfa.Fix(); }
+            if (width != null) { width.Fix(); }
+            if (prec != null) { prec.Fix(); }
+            if (nfa != null) { nfa.Fix(); }
 
         }
 
@@ -205,15 +206,15 @@ namespace OpenCvSharp
         public virtual int CompareSegments(
             Size size, InputArray lines1, InputArray lines2, InputOutputArray image = null)
         {
-            if (lines1 == null) 
+            if (lines1 == null)
                 throw new ArgumentNullException("nameof(lines1)");
             if (lines2 == null)
                 throw new ArgumentNullException("nameof(lines2)");
             lines1.ThrowIfDisposed();
             lines2.ThrowIfDisposed();
-			//UFIX
+            //UFIX
             //image?.ThrowIfNotReady();
-			if (image != null) { image.ThrowIfNotReady(); }
+            if (image != null) { image.ThrowIfNotReady(); }
 
             var ret = NativeMethods.imgproc_LineSegmentDetector_compareSegments(
                 ptr, size, lines1.CvPtr, lines2.CvPtr, Cv2.ToPtr(image));
@@ -221,8 +222,8 @@ namespace OpenCvSharp
             GC.KeepAlive(lines1);
             GC.KeepAlive(lines2);
             //UFIX
-			//image?.Fix();
-			if (image != null) { image.Fix(); }
+            //image?.Fix();
+            if (image != null) { image.Fix(); }
 
             return ret;
         }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {

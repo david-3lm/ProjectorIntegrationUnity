@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -359,7 +359,7 @@ namespace OpenCvSharp
         /// Gets a type-specific indexer. The indexer has getters/setters to access each matrix element.
         /// </summary>
         /// <returns></returns>
-        public override MatIndexer<DMatch> GetIndexer() 
+        public override MatIndexer<DMatch> GetIndexer()
         {
             return new Indexer(this);
         }

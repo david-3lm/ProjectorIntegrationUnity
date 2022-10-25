@@ -1,17 +1,17 @@
 ﻿namespace OpenCvSharp.Tracking
 {
-	using System;
+    using System;
 
-	/// <summary>
-	/// Base abstract class for the long-term tracker
-	/// </summary>
-	public class Tracker : Algorithm
+    /// <summary>
+    /// Base abstract class for the long-term tracker
+    /// </summary>
+    public class Tracker : Algorithm
     {
         /// <summary>
         /// cv::Ptr&lt;T&gt;
         /// </summary>
         private Ptr ptrObj;
-		
+
         /// <summary>
         /// 
         /// </summary>
@@ -60,11 +60,11 @@
         /// </summary>
         protected override void DisposeUnmanaged()
         {
-			if (null != ptrObj)
-				ptrObj.Dispose();
+            if (null != ptrObj)
+                ptrObj.Dispose();
             ptrObj = null;
         }
-		
+
         /// <summary>
         /// Initialize the tracker with a know bounding box that surrounding the target
         /// </summary>
@@ -106,20 +106,20 @@
 
             return ret;
         }
-		
-		/// <summary>
-		/// cv::ptr<> wrapper specialization for the Tracker
-		/// </summary>
+
+        /// <summary>
+        /// cv::ptr<> wrapper specialization for the Tracker
+        /// </summary>
         internal class Ptr : OpenCvSharp.Ptr<Tracker>
         {
             public Ptr(IntPtr ptr)
-				: base(ptr)
-            {}
+                : base(ptr)
+            { }
 
-			/// <summary>
-			/// Override
-			/// </summary>
-			/// <returns></returns>
+            /// <summary>
+            /// Override
+            /// </summary>
+            /// <returns></returns>
             public override IntPtr Get()
             {
                 return NativeMethods.tracking_Ptr_Tracker_get(ptr);

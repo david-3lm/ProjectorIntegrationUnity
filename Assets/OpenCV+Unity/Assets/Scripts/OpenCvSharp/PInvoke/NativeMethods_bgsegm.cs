@@ -53,7 +53,7 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void bgsegm_Ptr_BackgroundSubtractorGMG_delete(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr bgsegm_Ptr_BackgroundSubtractorGMG_get(IntPtr ptr);
 

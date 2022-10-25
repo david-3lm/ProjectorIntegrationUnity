@@ -38,7 +38,7 @@ namespace OpenCvSharp
         internal BackgroundSubtractorGMG(IntPtr ptr)
         {
             this.objectPtr = new Ptr<BackgroundSubtractorGMG>(ptr);
-            this.ptr = objectPtr.Get(); 
+            this.ptr = objectPtr.Get();
         }
 
 #if LANG_JP
@@ -277,7 +277,7 @@ namespace OpenCvSharp
                 NativeMethods.bgsegm_BackgroundSubtractorGMG_setMaxVal(ptr, value);
             }
         }
-        
+
         #endregion
 
     }

@@ -25,7 +25,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Ptr_DenseFeatureDetector_delete(IntPtr ptr);
         */
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_drawKeypoints(IntPtr image, KeyPoint[] keypoints, int keypointsLength,
             IntPtr outImage, Scalar color, int flags);

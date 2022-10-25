@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     /// <summary>
     /// types of intersection between rectangles
@@ -12,16 +8,16 @@ namespace OpenCvSharp
         /// <summary>
         /// No intersection
         /// </summary>
-        None = 0,  
+        None = 0,
 
         /// <summary>
         /// There is a partial intersection
         /// </summary>
-        Partial = 1, 
+        Partial = 1,
 
         /// <summary>
         /// One of the rectangle is fully enclosed in the other
         /// </summary>
-        Full = 2 
+        Full = 2
     }
 }

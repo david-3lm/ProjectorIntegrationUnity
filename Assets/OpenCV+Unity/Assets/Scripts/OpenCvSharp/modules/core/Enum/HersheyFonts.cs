@@ -19,46 +19,46 @@ namespace OpenCvSharp
         /// <summary>
         /// normal size sans-serif font
         /// </summary>
-        HersheySimplex = 0, 
+        HersheySimplex = 0,
 
         /// <summary>
         /// small size sans-serif font
         /// </summary>
-        HersheyPlain = 1,  
+        HersheyPlain = 1,
 
         /// <summary>
         /// normal size sans-serif font (more complex than HERSHEY_SIMPLEX)
         /// </summary>
-        HersheyDuplex = 2,  
+        HersheyDuplex = 2,
 
         /// <summary>
         /// normal size serif font
         /// </summary>
-        HersheyComplex = 3,  
+        HersheyComplex = 3,
 
         /// <summary>
         /// normal size serif font (more complex than HERSHEY_COMPLEX)
         /// </summary>
-        HersheyTriplex = 4, 
+        HersheyTriplex = 4,
 
         /// <summary>
         /// smaller version of HERSHEY_COMPLEX
         /// </summary>
-        HersheyComplexSmall = 5, 
+        HersheyComplexSmall = 5,
 
         /// <summary>
         /// hand-writing style font
         /// </summary>
-        HersheyScriptSimplex = 6, 
+        HersheyScriptSimplex = 6,
 
         /// <summary>
         /// more complex variant of HERSHEY_SCRIPT_SIMPLEX
         /// </summary>
-        HersheyScriptComplex = 7, 
+        HersheyScriptComplex = 7,
 
         /// <summary>
         /// flag for italic font
         /// </summary>
-        Italic = 16 
+        Italic = 16
     }
 }

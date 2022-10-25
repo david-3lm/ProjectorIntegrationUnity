@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace OpenCvSharp
 {
@@ -23,9 +22,9 @@ namespace OpenCvSharp
         /// 
         /// </summary>
         internal FastFeatureDetector(Ptr<FastFeatureDetector> ptrObj)
-			: base(ptrObj.Get())
+            : base(ptrObj.Get())
         {
-			this.ptrObj = ptrObj;
+            this.ptrObj = ptrObj;
         }
 
         /// <summary>
@@ -36,9 +35,9 @@ namespace OpenCvSharp
         public static FastFeatureDetector Create(int threshold = 10, bool nonmaxSuppression = true)
         {
             IntPtr ptr = NativeMethods.features2d_FastFeatureDetector_create(threshold, nonmaxSuppression ? 1 : 0);
-			return new FastFeatureDetector(new Ptr<FastFeatureDetector>(ptr));
+            return new FastFeatureDetector(new Ptr<FastFeatureDetector>(ptr));
         }
-		
+
         /// <summary>
         /// Releases the resources
         /// </summary>
@@ -62,7 +61,7 @@ namespace OpenCvSharp
                         }
                     }
                     // releases unmanaged resources
-                    
+
                     disposed = true;
                 }
                 finally

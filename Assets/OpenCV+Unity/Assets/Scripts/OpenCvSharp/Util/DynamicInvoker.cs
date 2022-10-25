@@ -14,7 +14,7 @@ namespace OpenCvSharp.Util
     /// </summary>
     /// <typeparam name="T"></typeparam>
 #endif
-    public class DynamicInvoker<T> : DisposableObject 
+    public class DynamicInvoker<T> : DisposableObject
     {
 #if LANG_JP
         /// <summary>

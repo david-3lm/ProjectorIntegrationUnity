@@ -46,10 +46,10 @@ namespace OpenCvSharp
             if (ptr == IntPtr.Zero)
                 throw new OpenCvSharpException("Invalid FrameSource pointer");
             var obj = new FrameSourceImpl
-                {
-                    ptrObj = null,
-                    ptr = ptr
-                };
+            {
+                ptrObj = null,
+                ptr = ptr
+            };
             return obj;
         }
 

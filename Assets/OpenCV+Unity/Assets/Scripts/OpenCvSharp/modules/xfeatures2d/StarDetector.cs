@@ -23,9 +23,9 @@ namespace OpenCvSharp.XFeatures2D
         /// 
         /// </summary>
         internal StarDetector(Ptr<StarDetector> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
 #if LANG_JP
@@ -48,14 +48,14 @@ namespace OpenCvSharp.XFeatures2D
         /// <param name="suppressNonmaxSize"></param>
 #endif
         public static StarDetector Create(
-            int maxSize = 45, 
-            int responseThreshold = 30, 
-            int lineThresholdProjected = 10, 
+            int maxSize = 45,
+            int responseThreshold = 30,
+            int lineThresholdProjected = 10,
             int lineThresholdBinarized = 8,
             int suppressNonmaxSize = 5)
         {
             IntPtr ptr = NativeMethods.xfeatures2d_StarDetector_create(
-                maxSize, responseThreshold, lineThresholdProjected, 
+                maxSize, responseThreshold, lineThresholdProjected,
                 lineThresholdBinarized, suppressNonmaxSize);
             return new StarDetector(new Ptr<StarDetector>(ptr));
         }

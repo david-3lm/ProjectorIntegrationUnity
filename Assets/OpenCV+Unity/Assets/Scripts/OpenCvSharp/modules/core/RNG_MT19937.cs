@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -106,7 +104,7 @@ namespace OpenCvSharp
             for (mti = 1; mti < PeriodParameters.N; mti++)
             {
                 /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
-                state[mti] = (uint) (1812433253U * (state[mti - 1] ^ (state[mti - 1] >> 30)) + mti);
+                state[mti] = (uint)(1812433253U * (state[mti - 1] ^ (state[mti - 1] >> 30)) + mti);
             }
         }
 

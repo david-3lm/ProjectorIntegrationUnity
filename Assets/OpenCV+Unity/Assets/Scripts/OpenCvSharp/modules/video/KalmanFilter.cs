@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -220,7 +218,7 @@ namespace OpenCvSharp
         {
             if (disposed)
                 throw new ObjectDisposedException("KalmanFilter");
-            NativeMethods.video_KalmanFilter_init(ptr, 
+            NativeMethods.video_KalmanFilter_init(ptr,
                 dynamParams, measureParams, controlParams, type);
         }
 

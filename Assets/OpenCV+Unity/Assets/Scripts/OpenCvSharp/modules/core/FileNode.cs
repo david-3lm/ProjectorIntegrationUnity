@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace OpenCvSharp
@@ -111,7 +109,7 @@ namespace OpenCvSharp
             NativeMethods.core_FileNode_toString(node.CvPtr, buf, buf.Capacity);
             return buf.ToString();
         }
-        
+
         /// <summary>
         /// Returns the node content as OpenCV Mat
         /// </summary>
@@ -119,9 +117,9 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static explicit operator Mat(FileNode node)
         {
-        	if (node == null)
-        		throw new ArgumentNullException("nameof(node)");
-        	node.ThrowIfDisposed();
+            if (node == null)
+                throw new ArgumentNullException("nameof(node)");
+            node.ThrowIfDisposed();
 
             var matrix = new Mat();
             NativeMethods.core_FileNode_toMat(node.CvPtr, matrix.CvPtr);

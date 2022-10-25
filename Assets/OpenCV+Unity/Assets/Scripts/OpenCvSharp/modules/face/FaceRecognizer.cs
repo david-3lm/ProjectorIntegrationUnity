@@ -1,7 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp.Face
 {
@@ -12,16 +11,16 @@ namespace OpenCvSharp.Face
     /// </summary>
     public abstract class FaceRecognizer : Algorithm
     {
-		protected IntPtr smartPointer;
-		protected bool disposed;
+        protected IntPtr smartPointer;
+        protected bool disposed;
 
         /// <summary>
         ///
         /// </summary>
         protected FaceRecognizer(IntPtr smartPtr)
         {
-			smartPointer = smartPtr;
-			ptr = GetPureObjectPtr();
+            smartPointer = smartPtr;
+            ptr = GetPureObjectPtr();
         }
 
         /// <summary>
@@ -79,40 +78,40 @@ namespace OpenCvSharp.Face
         /// Releases managed resources
         /// </summary>
 		protected override void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				try
-				{
-					FreeNativeResources();
-					ptr = IntPtr.Zero;
-					disposed = true;
-				}
-				finally
-				{
-					base.Dispose(disposing);
-				}
-			}
-		}
+        {
+            if (!disposed)
+            {
+                try
+                {
+                    FreeNativeResources();
+                    ptr = IntPtr.Zero;
+                    disposed = true;
+                }
+                finally
+                {
+                    base.Dispose(disposing);
+                }
+            }
+        }
 
-		/// <summary>
-		/// Releases all native resources
-		/// </summary>
-		protected abstract void FreeNativeResources();
+        /// <summary>
+        /// Releases all native resources
+        /// </summary>
+        protected abstract void FreeNativeResources();
 
-		/// <summary>
-		/// Gets native objetc pointer from cv::Ptr<>
-		/// </summary>
-		protected abstract IntPtr GetPureObjectPtr();
+        /// <summary>
+        /// Gets native objetc pointer from cv::Ptr<>
+        /// </summary>
+        protected abstract IntPtr GetPureObjectPtr();
 
-		#region Methods
+        #region Methods
 
-		/// <summary>
-		/// Trains a FaceRecognizer with given data and associated labels.
-		/// </summary>
-		/// <param name="src"></param>
-		/// <param name="labels"></param>
-		public virtual void Train(IEnumerable<Mat> src, IEnumerable<int> labels)
+        /// <summary>
+        /// Trains a FaceRecognizer with given data and associated labels.
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="labels"></param>
+        public virtual void Train(IEnumerable<Mat> src, IEnumerable<int> labels)
         {
             ThrowIfDisposed();
             if (src == null)
@@ -290,5 +289,5 @@ namespace OpenCvSharp.Face
         }
 
         #endregion
-	}
+    }
 }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -111,7 +111,7 @@ namespace OpenCvSharp
             Point3f[] dst = new Point3f[size];
             using (ArrayAddress1<Point3f> dstPtr = new ArrayAddress1<Point3f>(dst))
             {
-                Util.Utility.CopyMemory(dstPtr, ElemPtr, Point3f.SizeOf*dst.Length);
+                Util.Utility.CopyMemory(dstPtr, ElemPtr, Point3f.SizeOf * dst.Length);
             }
             return dst;
         }

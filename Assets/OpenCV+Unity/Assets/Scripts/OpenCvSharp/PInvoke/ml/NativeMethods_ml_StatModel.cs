@@ -21,7 +21,7 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ml_StatModel_isClassifier(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ml_StatModel_train1(
             IntPtr obj, IntPtr trainData, int flags);
@@ -29,7 +29,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ml_StatModel_train2(
             IntPtr obj, IntPtr samples, int layout, IntPtr responses);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float ml_StatModel_calcError(
             IntPtr obj, IntPtr data, int test, IntPtr resp);

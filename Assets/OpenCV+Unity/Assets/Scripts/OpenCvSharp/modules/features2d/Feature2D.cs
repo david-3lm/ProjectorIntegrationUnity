@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -10,35 +10,35 @@ namespace OpenCvSharp
     public class Feature2D : Algorithm
     {
         private bool disposed;
-		
+
         /// <summary>
         /// 
         /// </summary>
         private Feature2D()
             : base()
-        {}
+        { }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		internal Feature2D(IntPtr ptr)
-			: base()
-		{
-			if (ptr == IntPtr.Zero)
-				throw new OpenCvSharpException("Invalid cv::Ptr<Feature2D> pointer");
-			this.ptr = ptr;
-		}
+        /// <summary>
+        /// 
+        /// </summary>
+        internal Feature2D(IntPtr ptr)
+            : base()
+        {
+            if (ptr == IntPtr.Zero)
+                throw new OpenCvSharpException("Invalid cv::Ptr<Feature2D> pointer");
+            this.ptr = ptr;
+        }
 
-		/// <summary>
-		/// Creates instance from cv::Ptr&lt;T&gt; .
-		/// ptr is disposed when the wrapper disposes. 
-		/// </summary>
-		/// <param name="ptr"></param>
-		internal static Feature2D FromPtr(IntPtr ptr)
+        /// <summary>
+        /// Creates instance from cv::Ptr&lt;T&gt; .
+        /// ptr is disposed when the wrapper disposes. 
+        /// </summary>
+        /// <param name="ptr"></param>
+        internal static Feature2D FromPtr(IntPtr ptr)
         {
             return new Feature2D(ptr);
         }
-		
+
         /// <summary>
         /// Releases the resources
         /// </summary>
@@ -67,7 +67,7 @@ namespace OpenCvSharp
                 }
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -117,7 +117,7 @@ namespace OpenCvSharp
             dst.ThrowIfNotReady();
             IntPtr[] srcImgPtrs = EnumerableEx.SelectPtrs(srcImgs);
 
-            NativeMethods.photo_fastNlMeansDenoisingMulti(srcImgPtrs, srcImgPtrs.Length, dst.CvPtr, imgToDenoiseIndex, 
+            NativeMethods.photo_fastNlMeansDenoisingMulti(srcImgPtrs, srcImgPtrs.Length, dst.CvPtr, imgToDenoiseIndex,
                 templateWindowSize, h, templateWindowSize, searchWindowSize);
             dst.Fix();
         }
@@ -141,7 +141,7 @@ namespace OpenCvSharp
             float h = 3, int templateWindowSize = 7, int searchWindowSize = 21)
         {
             IEnumerable<InputArray> srcImgsAsArrays = EnumerableEx.Select(srcImgs, m => new InputArray(m));
-            FastNlMeansDenoisingMulti(srcImgsAsArrays, dst, imgToDenoiseIndex, templateWindowSize, 
+            FastNlMeansDenoisingMulti(srcImgsAsArrays, dst, imgToDenoiseIndex, templateWindowSize,
                 h, templateWindowSize, searchWindowSize);
         }
         #endregion
@@ -224,7 +224,7 @@ namespace OpenCvSharp
         {
             if (observations == null)
                 throw new ArgumentNullException("nameof(observations)");
-            if (result == null) 
+            if (result == null)
                 throw new ArgumentNullException("nameof(result)");
 
             IntPtr[] observationsPtrs = EnumerableEx.SelectPtrs(observations);
@@ -246,7 +246,7 @@ namespace OpenCvSharp
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
-            if (grayscale == null) 
+            if (grayscale == null)
                 throw new ArgumentNullException("nameof(grayscale)");
             if (colorBoost == null)
                 throw new ArgumentNullException("nameof(colorBoost)");
@@ -277,7 +277,7 @@ namespace OpenCvSharp
             InputArray src, InputArray dst, InputArray mask, Point p,
             OutputArray blend, SeamlessCloneMethods flags)
         {
-            if (src == null) 
+            if (src == null)
                 throw new ArgumentNullException("nameof(src)");
             if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
@@ -309,10 +309,10 @@ namespace OpenCvSharp
         /// <param name="greenMul">G-channel multiply factor.</param>
         /// <param name="blueMul">B-channel multiply factor.</param>
         public static void ColorChange(
-            InputArray src, InputArray mask, OutputArray dst, 
+            InputArray src, InputArray mask, OutputArray dst,
             float redMul = 1.0f, float greenMul = 1.0f, float blueMul = 1.0f)
         {
-            if (src == null) 
+            if (src == null)
                 throw new ArgumentNullException("nameof(src)");
             if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
@@ -382,7 +382,7 @@ namespace OpenCvSharp
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
-            if (dst == null) 
+            if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
 
             src.ThrowIfDisposed();
@@ -408,13 +408,13 @@ namespace OpenCvSharp
         /// <param name="sigmaS">Range between 0 to 200.</param>
         /// <param name="sigmaR">Range between 0 to 1.</param>
         public static void EdgePreservingFilter(
-            InputArray src, OutputArray dst, 
+            InputArray src, OutputArray dst,
             EdgePreservingMethods flags = EdgePreservingMethods.RecursFilter,
             float sigmaS = 60, float sigmaR = 0.4f)
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
-            if (dst == null) 
+            if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
 
             src.ThrowIfDisposed();
@@ -435,12 +435,12 @@ namespace OpenCvSharp
         /// <param name="sigmaS">Range between 0 to 200.</param>
         /// <param name="sigmaR">Range between 0 to 1.</param>
         public static void DetailEnhance(
-            InputArray src, OutputArray dst, 
+            InputArray src, OutputArray dst,
             float sigmaS = 10, float sigmaR = 0.15f)
         {
-            if (src == null) 
+            if (src == null)
                 throw new ArgumentNullException("nameof(src)");
-            if (dst == null) 
+            if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
 
             src.ThrowIfDisposed();
@@ -466,7 +466,7 @@ namespace OpenCvSharp
             InputArray src, OutputArray dst1, OutputArray dst2,
             float sigmaS = 60, float sigmaR = 0.07f, float shadeFactor = 0.02f)
         {
-            if (src == null) 
+            if (src == null)
                 throw new ArgumentNullException("nameof(src)");
             if (dst1 == null)
                 throw new ArgumentNullException("nameof(dst1)");
@@ -501,7 +501,7 @@ namespace OpenCvSharp
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
-            if (dst == null) 
+            if (dst == null)
                 throw new ArgumentNullException("nameof(dst)");
 
             src.ThrowIfDisposed();

@@ -17,7 +17,7 @@ namespace OpenCvSharp
         {
             this.ptr = ptr;
         }
-        
+
         #region Properties
 
         /// <summary>

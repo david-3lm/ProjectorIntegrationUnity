@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     /// <summary>
     /// cv::ORB score flags

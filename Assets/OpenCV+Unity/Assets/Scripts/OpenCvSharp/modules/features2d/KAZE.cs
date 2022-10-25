@@ -17,16 +17,16 @@ namespace OpenCvSharp
     {
         private bool disposed;
         private Ptr<KAZE> ptrObj;
-		
+
         #region Init & Disposal
 
         /// <summary>
         /// 
         /// </summary>
         internal KAZE(Ptr<KAZE> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace OpenCvSharp
         {
             IntPtr ptr = NativeMethods.features2d_KAZE_create(
                 extended, upright, threshold,
-                nOctaves, nOctaveLayers, (int) diffusivity);
+                nOctaves, nOctaveLayers, (int)diffusivity);
             return new KAZE(new Ptr<KAZE>(ptr));
         }
 

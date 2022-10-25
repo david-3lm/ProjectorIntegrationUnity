@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     // ReSharper disable InconsistentNaming
 #pragma warning disable 1591
@@ -10,7 +8,7 @@ namespace OpenCvSharp
     /// </summary>
     public enum FASTType : int
     {
-        TYPE_5_8 = 0, 
+        TYPE_5_8 = 0,
         TYPE_7_12 = 1,
         TYPE_9_16 = 2,
     }

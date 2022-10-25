@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OpenCvSharp.Detail;
+using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Detail;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -17,7 +17,7 @@ namespace OpenCvSharp
             Horizontal,
             Vertical
         }
-        
+
         public class FeaturesFinder
         {
         }
@@ -218,7 +218,7 @@ namespace OpenCvSharp
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
         }
-        
+
         public int[] Component
         {
             get

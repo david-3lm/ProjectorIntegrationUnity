@@ -10,8 +10,8 @@ namespace OpenCvSharp.Aruco
         /// <summary>
         /// cv::Ptr&lt;T&gt;
         /// </summary>
-		//internal Ptr<Dictionary> ObjectPtr { get; }
-		internal Ptr<Dictionary> ptrObj;
+        //internal Ptr<Dictionary> ObjectPtr { get; }
+        internal Ptr<Dictionary> ptrObj;
 
         #region Init & Disposal
 
@@ -20,8 +20,8 @@ namespace OpenCvSharp.Aruco
         /// </summary>
         internal Dictionary(IntPtr p)
         {
-			ptrObj = new Ptr<Dictionary>(p);
-			ptr = ptrObj.Get();
+            ptrObj = new Ptr<Dictionary>(p);
+            ptr = ptrObj.Get();
         }
 
         #endregion

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace OpenCvSharp.XFeatures2D
 {
@@ -27,7 +26,7 @@ namespace OpenCvSharp.XFeatures2D
         internal SIFT(Ptr<SIFT> p)
             : base(p.Get())
         {
-			detectorPtr = p;
+            detectorPtr = p;
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace OpenCvSharp.XFeatures2D
             double sigma = 1.6)
         {
             IntPtr ptr = NativeMethods.xfeatures2d_SIFT_create(
-                nFeatures, nOctaveLayers, 
+                nFeatures, nOctaveLayers,
                 contrastThreshold, edgeThreshold, sigma);
             return new SIFT(new Ptr<SIFT>(ptr));
         }
@@ -86,7 +85,7 @@ namespace OpenCvSharp.XFeatures2D
                         }
                     }
                     // releases unmanaged resources
-                    
+
                     ptr = IntPtr.Zero;
                     disposed = true;
                 }

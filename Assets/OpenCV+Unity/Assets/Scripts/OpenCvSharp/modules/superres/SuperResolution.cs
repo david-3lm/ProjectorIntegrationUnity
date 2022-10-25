@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -95,7 +92,7 @@ namespace OpenCvSharp
         public virtual void Reset()
         {
             frameSource.Reset();
-            firstCall = true; 
+            firstCall = true;
         }
 
         /// <summary>

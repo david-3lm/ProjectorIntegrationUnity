@@ -11,7 +11,7 @@ namespace OpenCvSharp
         public static extern double ml_LogisticRegression_getLearningRate(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ml_LogisticRegression_setLearningRate(IntPtr obj, double val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int ml_LogisticRegression_getIterations(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -31,7 +31,7 @@ namespace OpenCvSharp
         public static extern int ml_LogisticRegression_getMiniBatchSize(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ml_LogisticRegression_setMiniBatchSize(IntPtr obj, int val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern TermCriteria ml_LogisticRegression_getTermCriteria(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -40,7 +40,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float ml_LogisticRegression_predict(
             IntPtr obj, IntPtr samples, IntPtr results, int flags);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ml_LogisticRegression_get_learnt_thetas(IntPtr obj);
 

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -185,7 +185,7 @@ namespace OpenCvSharp
         public SparseMat AssignFrom(SparseMat m)
         {
             ThrowIfDisposed();
-            if(m == null)
+            if (m == null)
                 throw new ArgumentNullException("nameof(m)");
             NativeMethods.core_SparseMat_operatorAssign_SparseMat(ptr, m.CvPtr);
             return this;
@@ -204,7 +204,7 @@ namespace OpenCvSharp
             NativeMethods.core_SparseMat_operatorAssign_Mat(ptr, m.CvPtr);
             return this;
         }
-        
+
         /// <summary>
         /// creates full copy of the matrix
         /// </summary>
@@ -563,7 +563,7 @@ namespace OpenCvSharp
         /// <param name="hashVal">If hashVal is not null, the element hash value is not computed but hashval is taken instead.</param>
         /// <returns></returns>
         public T? Find<T>(int i0, int i1, long? hashVal = null)
-            where T : struct 
+            where T : struct
         {
             IntPtr p = Ptr(i0, i1, false, hashVal);
             if (p == IntPtr.Zero)
@@ -581,7 +581,7 @@ namespace OpenCvSharp
         /// <param name="hashVal">If hashVal is not null, the element hash value is not computed but hashval is taken instead.</param>
         /// <returns></returns>
         public T? Find<T>(int i0, int i1, int i2, long? hashVal = null)
-            where T : struct 
+            where T : struct
         {
             IntPtr p = Ptr(i0, i1, i2, false, hashVal);
             if (p == IntPtr.Zero)
@@ -597,7 +597,7 @@ namespace OpenCvSharp
         /// <param name="hashVal">If hashVal is not null, the element hash value is not computed but hashval is taken instead.</param>
         /// <returns></returns>
         public T? Find<T>(int[] idx, long? hashVal = null)
-            where T : struct 
+            where T : struct
         {
             IntPtr p = Ptr(idx, false, hashVal);
             if (p == IntPtr.Zero)
@@ -917,7 +917,7 @@ namespace OpenCvSharp
         }
 
         #endregion
-        
+
         #endregion
     }
 

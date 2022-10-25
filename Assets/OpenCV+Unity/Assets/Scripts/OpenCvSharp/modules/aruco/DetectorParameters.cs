@@ -20,8 +20,8 @@ namespace OpenCvSharp.Aruco
         /// </summary>
         protected DetectorParameters(IntPtr p)
         {
-			ptrObj = new Ptr<DetectorParameters>(p);
-			ptr = ptrObj.Get();
+            ptrObj = new Ptr<DetectorParameters>(p);
+            ptr = ptrObj.Get();
         }
 
         /// <summary>

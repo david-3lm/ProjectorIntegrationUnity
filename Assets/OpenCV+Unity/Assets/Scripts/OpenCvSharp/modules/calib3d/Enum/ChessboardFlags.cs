@@ -12,7 +12,7 @@ namespace OpenCvSharp
     /// </summary>
 #endif
     [Flags]
-    public enum ChessboardFlags 
+    public enum ChessboardFlags
     {
         /// <summary>
         /// 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -82,7 +80,7 @@ namespace OpenCvSharp
         {
             get
             {
-                if(disposed)
+                if (disposed)
                     throw new ObjectDisposedException("SVD");
                 IntPtr ret = NativeMethods.core_SVD_w(ptr);
                 return new Mat(ret);

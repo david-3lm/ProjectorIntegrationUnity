@@ -25,27 +25,27 @@ namespace OpenCvSharp
         public static extern void shape_ShapeContextDistanceExtractor_setAngularBins(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int shape_ShapeContextDistanceExtractor_getAngularBins(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setRadialBins(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int shape_ShapeContextDistanceExtractor_getRadialBins(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setInnerRadius(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float shape_ShapeContextDistanceExtractor_getInnerRadius(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setOuterRadius(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float shape_ShapeContextDistanceExtractor_getOuterRadius(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setRotationInvariant(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int shape_ShapeContextDistanceExtractor_getRotationInvariant(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setShapeContextWeight(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -55,27 +55,27 @@ namespace OpenCvSharp
         public static extern void shape_ShapeContextDistanceExtractor_setImageAppearanceWeight(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float shape_ShapeContextDistanceExtractor_getImageAppearanceWeight(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setBendingEnergyWeight(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float shape_ShapeContextDistanceExtractor_getBendingEnergyWeight(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setImages(IntPtr obj, IntPtr image1, IntPtr image2);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_getImages(IntPtr obj, IntPtr image1, IntPtr image2);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setIterations(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int shape_ShapeContextDistanceExtractor_getIterations(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_ShapeContextDistanceExtractor_setStdDev(IntPtr obj, float val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern float shape_ShapeContextDistanceExtractor_getStdDev(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr shape_createShapeContextDistanceExtractor(
             int nAngularBins, int nRadialBins,
@@ -85,7 +85,7 @@ namespace OpenCvSharp
 
 
         // HausdorffDistanceExtractor
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void shape_Ptr_HausdorffDistanceExtractor_delete(IntPtr obj);
 

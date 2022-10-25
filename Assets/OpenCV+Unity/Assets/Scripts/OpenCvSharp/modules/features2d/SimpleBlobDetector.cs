@@ -10,7 +10,7 @@ namespace OpenCvSharp
     {
         private bool disposed;
         private Ptr<SimpleBlobDetector> ptrObj;
-		
+
         /// <summary>
         /// SimpleBlobDetector parameters
         /// </summary>
@@ -24,27 +24,27 @@ namespace OpenCvSharp
             public Params()
             {
                 data = new WParams
-                    {
-                        thresholdStep = 10,
-                        minThreshold = 50,
-                        maxThreshold = 220,
-                        minRepeatability = 2,
-                        minDistBetweenBlobs = 10,
-                        filterByColor = 1,
-                        blobColor = 0,
-                        filterByArea = 1,
-                        minArea = 25,
-                        maxArea = 5000,
-                        filterByCircularity = 0,
-                        minCircularity = 0.8f,
-                        maxCircularity = Single.MaxValue,
-                        filterByInertia = 1,
-                        minInertiaRatio = 0.1f,
-                        maxInertiaRatio = Single.MaxValue,
-                        filterByConvexity = 1,
-                        minConvexity = 0.95f,
-                        maxConvexity = Single.MaxValue
-                    };
+                {
+                    thresholdStep = 10,
+                    minThreshold = 50,
+                    maxThreshold = 220,
+                    minRepeatability = 2,
+                    minDistBetweenBlobs = 10,
+                    filterByColor = 1,
+                    blobColor = 0,
+                    filterByArea = 1,
+                    minArea = 25,
+                    maxArea = 5000,
+                    filterByCircularity = 0,
+                    minCircularity = 0.8f,
+                    maxCircularity = Single.MaxValue,
+                    filterByInertia = 1,
+                    minInertiaRatio = 0.1f,
+                    maxInertiaRatio = Single.MaxValue,
+                    filterByConvexity = 1,
+                    minConvexity = 0.95f,
+                    maxConvexity = Single.MaxValue
+                };
             }
 
 #pragma warning disable 1591
@@ -90,7 +90,8 @@ namespace OpenCvSharp
                 get { return data.filterByArea != 0; }
                 set { data.filterByArea = (value ? 1 : 0); }
             }
-            public float MinArea{
+            public float MinArea
+            {
                 get { return data.minArea; }
                 set { data.minArea = value; }
             }
@@ -105,7 +106,8 @@ namespace OpenCvSharp
                 get { return data.filterByCircularity != 0; }
                 set { data.filterByCircularity = (value ? 1 : 0); }
             }
-            public float MinCircularity{
+            public float MinCircularity
+            {
                 get { return data.minCircularity; }
                 set { data.minCircularity = value; }
             }
@@ -120,7 +122,8 @@ namespace OpenCvSharp
                 get { return data.filterByInertia != 0; }
                 set { data.filterByInertia = (value ? 1 : 0); }
             }
-            public float MinInertiaRatio{
+            public float MinInertiaRatio
+            {
                 get { return data.minInertiaRatio; }
                 set { data.minInertiaRatio = value; }
             }
@@ -135,7 +138,8 @@ namespace OpenCvSharp
                 get { return data.filterByConvexity != 0; }
                 set { data.filterByConvexity = (value ? 1 : 0); }
             }
-            public float MinConvexity{
+            public float MinConvexity
+            {
                 get { return data.minConvexity; }
                 set { data.minConvexity = value; }
             }
@@ -171,16 +175,16 @@ namespace OpenCvSharp
             public float minConvexity, maxConvexity;
 #pragma warning restore 1591
         }
-        
+
         #region Init & Disposal
 
         /// <summary>
         /// 
         /// </summary>
         internal SimpleBlobDetector(Ptr<SimpleBlobDetector> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>
@@ -194,7 +198,7 @@ namespace OpenCvSharp
             IntPtr ptr = NativeMethods.features2d_SimpleBlobDetector_create(ref parameters.data);
             return new SimpleBlobDetector(new Ptr<SimpleBlobDetector>(ptr));
         }
-                
+
 #if LANG_JP
     /// <summary>
     /// リソースの解放

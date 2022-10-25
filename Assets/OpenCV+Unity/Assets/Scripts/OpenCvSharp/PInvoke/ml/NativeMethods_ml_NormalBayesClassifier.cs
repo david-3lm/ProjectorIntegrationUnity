@@ -14,10 +14,10 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ml_NormalBayesClassifier_create();
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ml_Ptr_NormalBayesClassifier_delete(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ml_Ptr_NormalBayesClassifier_get(IntPtr obj);
     }

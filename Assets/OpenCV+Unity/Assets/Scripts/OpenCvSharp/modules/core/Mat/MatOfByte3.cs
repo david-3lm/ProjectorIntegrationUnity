@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -549,7 +547,7 @@ namespace OpenCvSharp
         /// 
         /// </summary>
         /// <returns></returns>
-        public override MatIndexer<Vec3b> GetIndexer() 
+        public override MatIndexer<Vec3b> GetIndexer()
         {
             return new Indexer(this);
         }

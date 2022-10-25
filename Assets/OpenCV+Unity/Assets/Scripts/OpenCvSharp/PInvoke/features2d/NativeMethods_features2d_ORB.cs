@@ -17,7 +17,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Ptr_ORB_delete(IntPtr ptr);
 
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr features2d_ORB_info(IntPtr obj);
 
@@ -28,7 +28,7 @@ namespace OpenCvSharp
         public static extern void features2d_ORB_setMaxFeatures(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int features2d_ORB_getMaxFeatures(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_ORB_setScaleFactor(IntPtr obj, double val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -38,7 +38,7 @@ namespace OpenCvSharp
         public static extern void features2d_ORB_setNLevels(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int features2d_ORB_getNLevels(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_ORB_setEdgeThreshold(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -53,17 +53,17 @@ namespace OpenCvSharp
         public static extern void features2d_ORB_setWTA_K(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int features2d_ORB_getWTA_K(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_ORB_setScoreType(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int features2d_ORB_getScoreType(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_ORB_setPatchSize(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int features2d_ORB_getPatchSize(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_ORB_setFastThreshold(IntPtr obj, int val);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

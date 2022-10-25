@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -28,10 +26,10 @@ namespace OpenCvSharp
 #endif
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int CvErrorCallback(
-        [MarshalAs(UnmanagedType.I4)] ErrorCode status, 
-        [MarshalAs(UnmanagedType.LPStr)] string funcName, 
+        [MarshalAs(UnmanagedType.I4)] ErrorCode status,
+        [MarshalAs(UnmanagedType.LPStr)] string funcName,
         [MarshalAs(UnmanagedType.LPStr)] string errMsg,
-        [MarshalAs(UnmanagedType.LPStr)] string fileName, 
+        [MarshalAs(UnmanagedType.LPStr)] string fileName,
         int line,
         IntPtr userdata
     );

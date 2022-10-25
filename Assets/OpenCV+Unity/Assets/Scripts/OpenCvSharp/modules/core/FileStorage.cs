@@ -74,7 +74,7 @@ namespace OpenCvSharp
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Returns the specified element of the top-level mapping
         /// </summary>
@@ -443,7 +443,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         [Flags]
-        public enum Mode 
+        public enum Mode
         {
 #if LANG_JP
         /// <summary>

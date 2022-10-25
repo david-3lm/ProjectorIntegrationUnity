@@ -1,13 +1,12 @@
 ﻿namespace OpenCvSharp.Demo
 {
-	using System;
-	using System.Collections.Generic;
-	using OpenCvSharp;
+    using OpenCvSharp;
+    using System;
 
-	/// <summary>
-	/// Data stabilizer general parameters
-	/// </summary>
-	class DataStabilizerParams
+    /// <summary>
+    /// Data stabilizer general parameters
+    /// </summary>
+    class DataStabilizerParams
     {
         /// <summary>
         /// Should this stabilizer just push data through (false value) or do some work before (true value)?
@@ -23,7 +22,7 @@
         /// Threshold scale factor (should processing space be scaled)
         /// </summary>
         public double ThresholdFactor { get; set; }
-        
+
         /// <summary>
         /// Accumulated samples count
         /// </summary>
@@ -262,7 +261,7 @@
                 result = average;
                 return true;
             }
-            
+
             // we have new average and saved data as well - test it
             double dmin = double.MaxValue, dmax = double.MinValue, dmean = 0.0;
             double[] distance = new double[result.Length];
@@ -322,8 +321,8 @@
         /// <param name="parameters">Data stabilizer general parameters</param>
         public RectStabilizer(DataStabilizerParams parameters)
             : base(parameters)
-        {}
-        
+        { }
+
         /// <summary>
         /// Computes average data sample
         /// </summary>
@@ -344,7 +343,7 @@
         /// </summary>
         /// <param name="sample">Sample to test</param>
         protected override void ValidateSample(Rect sample)
-        {}
+        { }
 
         /// <summary>
         /// Prepares stabilized sample (Rectangle)

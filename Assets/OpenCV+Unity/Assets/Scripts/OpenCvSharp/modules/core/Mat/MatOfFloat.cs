@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -458,7 +458,7 @@ namespace OpenCvSharp
         /// </summary>
         public sealed unsafe class Indexer : MatIndexer<float>
         {
-            private readonly byte *ptr;
+            private readonly byte* ptr;
 
             internal Indexer(Mat parent)
                 : base(parent)

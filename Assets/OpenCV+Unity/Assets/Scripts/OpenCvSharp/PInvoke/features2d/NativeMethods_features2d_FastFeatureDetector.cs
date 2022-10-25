@@ -18,8 +18,8 @@ namespace OpenCvSharp
         public static extern IntPtr features2d_FastFeatureDetector_create(int threshold, int nonmaxSuppression);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Ptr_FastFeatureDetector_delete(IntPtr ptr);
-		//EX
-		//[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
+        //EX
+        //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr features2d_FastFeatureDetector_info(IntPtr obj);
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

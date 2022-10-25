@@ -9,7 +9,7 @@ namespace OpenCvSharp
     /// </summary>
     /// <typeparam name="TElem">Element Type</typeparam>
     /// <typeparam name="TInherit">For return value type of re-defined Mat methods</typeparam>
-    public abstract class Mat<TElem, TInherit> : Mat, ICollection<TElem> 
+    public abstract class Mat<TElem, TInherit> : Mat, ICollection<TElem>
         where TElem : struct
         where TInherit : Mat, new()
     {
@@ -518,7 +518,7 @@ namespace OpenCvSharp
             mat.AssignTo(ret);
             return ret;
         }
-        
+
         #region Clone
 
         /// <summary>
@@ -597,7 +597,7 @@ namespace OpenCvSharp
         {
             return this.SubMat(rowRange.Start, rowRange.End, colRange.Start, colRange.End);
         }
-        
+
         /// <summary>
         /// Extracts a rectangular submatrix.
         /// </summary>
@@ -719,7 +719,7 @@ namespace OpenCvSharp
         {
             throw new NotImplementedException();
         }
-        
+
         /// <summary>
         /// Determines whether the ICollection&lt;T&gt; contains a specific value.
         /// </summary>
@@ -785,7 +785,7 @@ namespace OpenCvSharp
         /// Gets a value indicating whether the IList is read-only.
         /// </summary>
         /// <returns></returns>
-        public bool IsReadOnly { get { return false; }}
+        public bool IsReadOnly { get { return false; } }
         #endregion
     }
 }

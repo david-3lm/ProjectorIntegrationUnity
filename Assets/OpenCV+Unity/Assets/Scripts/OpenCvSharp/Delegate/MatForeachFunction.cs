@@ -1,10 +1,9 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace OpenCvSharp
 {
 #pragma warning disable 1591
-// ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public unsafe delegate void MatForeachFunctionByte(byte* value, int* position);

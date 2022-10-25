@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -25,7 +23,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public const int SizeOf = sizeof (int) + sizeof (int);
+        public const int SizeOf = sizeof(int) + sizeof(int);
 
         /// <summary>
         /// 
@@ -45,8 +43,8 @@ namespace OpenCvSharp
         /// <param name="y"></param>
         public Point(double x, double y)
         {
-            X = (int) x;
-            Y = (int) y;
+            X = (int)x;
+            Y = (int)y;
         }
 
         #region Cast
@@ -74,7 +72,7 @@ namespace OpenCvSharp
         #endregion
 
         #region Operators
-        
+
         /// <summary>
         /// Specifies whether this object contains the same members as the specified Object.
         /// </summary>
@@ -84,7 +82,7 @@ namespace OpenCvSharp
         {
             return (this.X == obj.X && this.Y == obj.Y);
         }
-        
+
         /// <summary>
         /// Compares two Point objects. The result specifies whether the values of the X and Y properties of the two Point objects are equal.
         /// </summary>
@@ -105,58 +103,58 @@ namespace OpenCvSharp
         {
             return !lhs.Equals(rhs);
         }
-        
+
         /// <summary>
         /// Unary plus operator
         /// </summary>
         /// <param name="pt"></param>
         /// <returns></returns>
-        public static Point operator + (Point pt)
+        public static Point operator +(Point pt)
         {
             return pt;
         }
-        
+
         /// <summary>
         /// Unary minus operator
         /// </summary>
         /// <param name="pt"></param>
         /// <returns></returns>
-        public static Point operator - (Point pt)
+        public static Point operator -(Point pt)
         {
             return new Point(-pt.X, -pt.Y);
         }
-        
+
         /// <summary>
         /// Shifts point by a certain offset
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
-        public static Point operator + (Point p1, Point p2)
+        public static Point operator +(Point p1, Point p2)
         {
             return new Point(p1.X + p2.X, p1.Y + p2.Y);
         }
-        
+
         /// <summary>
         /// Shifts point by a certain offset
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
-        public static Point operator - (Point p1, Point p2)
+        public static Point operator -(Point p1, Point p2)
         {
             return new Point(p1.X - p2.X, p1.Y - p2.Y);
         }
-        
+
         /// <summary>
         /// Multiplies point with scale factor
         /// </summary>
         /// <param name="pt"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public static Point operator * (Point pt, double scale)
+        public static Point operator *(Point pt, double scale)
         {
-            return new Point((int) (pt.X * scale + 0.5), (int) (pt.Y * scale + 0.5));
+            return new Point((int)(pt.X * scale + 0.5), (int)(pt.Y * scale + 0.5));
         }
 
         /// <summary>
@@ -165,7 +163,7 @@ namespace OpenCvSharp
         /// <param name="pt"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public static Point operator / (Point pt, double scale)
+        public static Point operator /(Point pt, double scale)
         {
             return new Point((int)(pt.X / scale + 0.5), (int)(pt.Y / scale + 0.5));
         }
@@ -183,7 +181,7 @@ namespace OpenCvSharp
         {
             return base.Equals(obj);
         }
-        
+
         /// <summary>
         /// Returns a hash code for this object.
         /// </summary>
@@ -192,7 +190,7 @@ namespace OpenCvSharp
         {
             return X.GetHashCode() ^ Y.GetHashCode();
         }
-        
+
         /// <summary>
         /// Converts this object to a human readable string.
         /// </summary>
@@ -255,7 +253,7 @@ namespace OpenCvSharp
         {
             return Distance(this, p);
         }
-        
+
         /// <summary>
         /// Calculates the dot product of two 2D vectors.
         /// </summary>
@@ -264,9 +262,9 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static double DotProduct(Point p1, Point p2)
         {
-            return p1.X*p2.X + p1.Y*p2.Y;
+            return p1.X * p2.X + p1.Y * p2.Y;
         }
-        
+
         /// <summary>
         /// Calculates the dot product of two 2D vectors.
         /// </summary>
@@ -276,7 +274,7 @@ namespace OpenCvSharp
         {
             return DotProduct(this, p);
         }
-        
+
         /// <summary>
         /// Calculates the cross product of two 2D vectors.
         /// </summary>
@@ -285,9 +283,9 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static double CrossProduct(Point p1, Point p2)
         {
-            return p1.X*p2.Y - p2.X*p1.Y;
+            return p1.X * p2.Y - p2.X * p1.Y;
         }
-        
+
         /// <summary>
         /// Calculates the cross product of two 2D vectors.
         /// </summary>

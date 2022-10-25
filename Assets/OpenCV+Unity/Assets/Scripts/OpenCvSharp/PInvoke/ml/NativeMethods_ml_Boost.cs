@@ -21,7 +21,7 @@ namespace OpenCvSharp
         public static extern double ml_Boost_getWeightTrimRate(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ml_Boost_setWeightTrimRate(IntPtr obj, double val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ml_Boost_create();
 

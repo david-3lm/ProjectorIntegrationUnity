@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     // ReSharper disable InconsistentNaming
 #pragma warning disable 1591
@@ -10,8 +8,8 @@ namespace OpenCvSharp
     /// </summary>
     public enum AGASTType : int
     {
-        AGAST_5_8 = 0, 
-        AGAST_7_12d = 1, 
+        AGAST_5_8 = 0,
+        AGAST_7_12d = 1,
         AGAST_7_12s = 2,
         OAST_9_16 = 3,
     }

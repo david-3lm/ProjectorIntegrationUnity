@@ -13,11 +13,12 @@ namespace OpenCvSharp
         private bool disposed;
         private Ptr<BFMatcher> detectorPtr;
 
-		//UFIX
+        //UFIX
         //internal override IntPtr PtrObj => detectorPtr.CvPtr;
-		internal override IntPtr PtrObj {
-			get { return detectorPtr.CvPtr; }
-		}
+        internal override IntPtr PtrObj
+        {
+            get { return detectorPtr.CvPtr; }
+        }
 
         #region Init & Disposal
 
@@ -28,7 +29,7 @@ namespace OpenCvSharp
         /// <param name="crossCheck"></param>
         public BFMatcher(NormTypes normType = NormTypes.L2, bool crossCheck = false)
         {
-            ptr = NativeMethods.features2d_BFMatcher_new((int) normType, crossCheck ? 1 : 0);
+            ptr = NativeMethods.features2d_BFMatcher_new((int)normType, crossCheck ? 1 : 0);
         }
 
         /// <summary>

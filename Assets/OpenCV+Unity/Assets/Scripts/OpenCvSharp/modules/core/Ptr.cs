@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-//TEMP_EX
+﻿//TEMP_EX
 //using OpenCvSharp.Face;
 using OpenCvSharp.ML;
 using OpenCvSharp.XFeatures2D;
+using System;
+using System.Collections.Generic;
 
 namespace OpenCvSharp
 {
@@ -82,8 +82,8 @@ namespace OpenCvSharp
                 {typeof (ShapeContextDistanceExtractor), NativeMethods.shape_Ptr_ShapeContextDistanceExtractor_delete},
                 {typeof (HausdorffDistanceExtractor), NativeMethods.shape_Ptr_HausdorffDistanceExtractor_delete},
                 {typeof (CalibrateDebevec), NativeMethods.photo_Ptr_CalibrateDebevec_delete},
-				{typeof (Aruco.DetectorParameters), NativeMethods.aruco_Ptr_DetectorParameters_delete},
-				{typeof (Aruco.Dictionary), NativeMethods.aruco_Ptr_Dictionary_delete},
+                {typeof (Aruco.DetectorParameters), NativeMethods.aruco_Ptr_DetectorParameters_delete},
+                {typeof (Aruco.Dictionary), NativeMethods.aruco_Ptr_Dictionary_delete},
 
             };
 
@@ -139,9 +139,9 @@ namespace OpenCvSharp
                 {typeof (ShapeContextDistanceExtractor), NativeMethods.shape_Ptr_ShapeContextDistanceExtractor_get},
                 {typeof (HausdorffDistanceExtractor), NativeMethods.shape_Ptr_HausdorffDistanceExtractor_get},
                 {typeof (CalibrateDebevec), NativeMethods.photo_Ptr_CalibrateDebevec_get},
-				{typeof (Aruco.DetectorParameters), NativeMethods.aruco_Ptr_DetectorParameters_get},
-				{typeof (Aruco.Dictionary), NativeMethods.aruco_Ptr_Dictionary_get},
-			};
+                {typeof (Aruco.DetectorParameters), NativeMethods.aruco_Ptr_DetectorParameters_get},
+                {typeof (Aruco.Dictionary), NativeMethods.aruco_Ptr_Dictionary_get},
+            };
         }
 
         /// <summary>
@@ -177,18 +177,18 @@ namespace OpenCvSharp
         private bool disposed;
         private readonly PtrNativeFunctions.ReleaseFunc releaseFunc;
         private readonly PtrNativeFunctions.ObjFunc getFunc;
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="ptr"></param>
         public Ptr(IntPtr ptr)
         {
-            Type type = typeof (T);
-			if (!PtrNativeFunctions.Instance.ReleaseFunctions.TryGetValue(type, out releaseFunc))
-				releaseFunc = null;
-			if (!PtrNativeFunctions.Instance.AccessFunctions.TryGetValue(type, out getFunc))
-				getFunc = null;
+            Type type = typeof(T);
+            if (!PtrNativeFunctions.Instance.ReleaseFunctions.TryGetValue(type, out releaseFunc))
+                releaseFunc = null;
+            if (!PtrNativeFunctions.Instance.AccessFunctions.TryGetValue(type, out getFunc))
+                getFunc = null;
 
             this.ptr = ptr;
         }
@@ -205,7 +205,7 @@ namespace OpenCvSharp
                 {
                     if (ptr != IntPtr.Zero)
                     {
-						DisposeUnmanaged();
+                        DisposeUnmanaged();
                     }
                     ptr = IntPtr.Zero;
                     disposed = true;
@@ -222,21 +222,21 @@ namespace OpenCvSharp
         /// </summary>
         public virtual IntPtr Get()
         {
-			if (null == getFunc)
-				throw new OpenCvSharpException("Ptr<{0}> not supported", GetType().Name);
+            if (null == getFunc)
+                throw new OpenCvSharpException("Ptr<{0}> not supported", GetType().Name);
 
-			return getFunc(ptr);
+            return getFunc(ptr);
         }
 
-		/// <summary>
-		/// Disposes unmanaged resources
-		/// </summary>
-		protected override void DisposeUnmanaged()
-		{
-			if (null == releaseFunc)
-				throw new OpenCvSharpException("Ptr<{0}> not supported", GetType().Name);
+        /// <summary>
+        /// Disposes unmanaged resources
+        /// </summary>
+        protected override void DisposeUnmanaged()
+        {
+            if (null == releaseFunc)
+                throw new OpenCvSharpException("Ptr<{0}> not supported", GetType().Name);
 
-			releaseFunc(ptr);
-		}
-	}
+            releaseFunc(ptr);
+        }
+    }
 }

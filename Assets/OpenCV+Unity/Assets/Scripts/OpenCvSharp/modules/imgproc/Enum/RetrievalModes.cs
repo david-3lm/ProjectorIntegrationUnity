@@ -23,7 +23,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         External = 0,
-        
+
 #if LANG_JP
 		/// <summary>
 		/// 全ての輪郭を抽出し，リストに追加 

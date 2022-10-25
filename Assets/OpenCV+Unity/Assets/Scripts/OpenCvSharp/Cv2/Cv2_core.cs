@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -144,7 +144,7 @@ namespace OpenCvSharp
         public static int AlignSize(int sz, int n)
         {
             bool assert = ((n & (n - 1)) == 0); // n is a power of 2
-            if(!assert)
+            if (!assert)
                 throw new ArgumentException();
             return (sz + n - 1) & -n;
         }
@@ -527,7 +527,7 @@ namespace OpenCvSharp
             mtx.ThrowIfDisposed();
             var ret = NativeMethods.core_countNonZero(mtx.CvPtr);
             return ret;
-			//UFIX Warning
+            //UFIX Warning
             //GC.KeepAlive(mtx);
         }
         #endregion
@@ -629,7 +629,7 @@ namespace OpenCvSharp
         /// <param name="normType">Type of the norm</param>
         /// <param name="mask">The optional operation mask</param>
         /// <returns></returns>
-        public static double Norm(InputArray src1, 
+        public static double Norm(InputArray src1,
             NormTypes normType = NormTypes.L2, InputArray mask = null)
         {
             if (src1 == null)
@@ -720,8 +720,8 @@ namespace OpenCvSharp
         /// the destination array will have the same type as src, 
         /// otherwise it will have the same number of channels as src and the depth =CV_MAT_DEPTH(rtype)</param>
         /// <param name="mask">The optional operation mask</param>
-        public static void Normalize( InputArray src, InputOutputArray dst, double alpha=1, double beta=0,
-                             NormTypes normType=NormTypes.L2, int dtype=-1, InputArray mask=null)
+        public static void Normalize(InputArray src, InputOutputArray dst, double alpha = 1, double beta = 0,
+                             NormTypes normType = NormTypes.L2, int dtype = -1, InputArray mask = null)
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
@@ -871,7 +871,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(dst)");
             foreach (Mat m in mv)
             {
-                if(m == null)
+                if (m == null)
                     throw new ArgumentException("mv contains null element");
                 m.ThrowIfDisposed();
             }
@@ -956,7 +956,7 @@ namespace OpenCvSharp
                 dst[i].ThrowIfDisposed();
                 dstPtr[i] = dst[i].CvPtr;
             }
-            NativeMethods.core_mixChannels(srcPtr, (uint)src.Length, dstPtr, (uint)dst.Length, 
+            NativeMethods.core_mixChannels(srcPtr, (uint)src.Length, dstPtr, (uint)dst.Length,
                 fromTo, (uint)(fromTo.Length / 2));
 
             GC.KeepAlive(src);
@@ -1024,30 +1024,30 @@ namespace OpenCvSharp
             GC.KeepAlive(src);
             dst.Fix();
         }
-		#endregion
-		#region Rotate
-		public static void Rotate(InputArray src, OutputArray dst, RotateFlags code)
-		{
-			if (src == null)
-				throw new ArgumentNullException("nameof(src)");
-			if (dst == null)
-				throw new ArgumentNullException("nameof(dst)");
-			src.ThrowIfDisposed();
-			dst.ThrowIfNotReady();
-			NativeMethods.core_rotate(src.CvPtr, dst.CvPtr, (int)code);
-			GC.KeepAlive(src);
-			dst.Fix();
-		}
-		#endregion
-		#region Repeat
-		/// <summary>
-		/// replicates the input matrix the specified number of times in the horizontal and/or vertical direction
-		/// </summary>
-		/// <param name="src">The source array to replicate</param>
-		/// <param name="ny">How many times the src is repeated along the vertical axis</param>
-		/// <param name="nx">How many times the src is repeated along the horizontal axis</param>
-		/// <param name="dst">The destination array; will have the same type as src</param>
-		public static void Repeat(InputArray src, int ny, int nx, OutputArray dst)
+        #endregion
+        #region Rotate
+        public static void Rotate(InputArray src, OutputArray dst, RotateFlags code)
+        {
+            if (src == null)
+                throw new ArgumentNullException("nameof(src)");
+            if (dst == null)
+                throw new ArgumentNullException("nameof(dst)");
+            src.ThrowIfDisposed();
+            dst.ThrowIfNotReady();
+            NativeMethods.core_rotate(src.CvPtr, dst.CvPtr, (int)code);
+            GC.KeepAlive(src);
+            dst.Fix();
+        }
+        #endregion
+        #region Repeat
+        /// <summary>
+        /// replicates the input matrix the specified number of times in the horizontal and/or vertical direction
+        /// </summary>
+        /// <param name="src">The source array to replicate</param>
+        /// <param name="ny">How many times the src is repeated along the vertical axis</param>
+        /// <param name="nx">How many times the src is repeated along the horizontal axis</param>
+        /// <param name="dst">The destination array; will have the same type as src</param>
+        public static void Repeat(InputArray src, int ny, int nx, OutputArray dst)
         {
             if (src == null)
                 throw new ArgumentNullException("nameof(src)");
@@ -1804,7 +1804,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(dst)");
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
-            NativeMethods.core_mulTransposed(src.CvPtr, dst.CvPtr, aTa ? 1 : 0 , ToPtr(delta), scale, dtype);
+            NativeMethods.core_mulTransposed(src.CvPtr, dst.CvPtr, aTa ? 1 : 0, ToPtr(delta), scale, dtype);
             GC.KeepAlive(src);
             GC.KeepAlive(delta);
             dst.Fix();
@@ -2076,7 +2076,7 @@ namespace OpenCvSharp
             dst.ThrowIfNotReady();
             int ret = NativeMethods.core_solve(src1.CvPtr, src2.CvPtr, dst.CvPtr, (int)flags);
             GC.KeepAlive(src1);
-            GC.KeepAlive(src2); 
+            GC.KeepAlive(src2);
             dst.Fix();
             return ret != 0;
         }
@@ -2268,7 +2268,7 @@ namespace OpenCvSharp
             covar.ThrowIfNotReady();
             mean.ThrowIfNotReady();
             NativeMethods.core_calcCovarMatrix_InputArray(samples.CvPtr, covar.CvPtr, mean.CvPtr, (int)flags, ctype);
-            GC.KeepAlive(samples); 
+            GC.KeepAlive(samples);
             covar.Fix();
             mean.Fix();
         }
@@ -2296,7 +2296,7 @@ namespace OpenCvSharp
             mean.ThrowIfNotReady();
             eigenvectors.ThrowIfNotReady();
             NativeMethods.core_PCACompute(data.CvPtr, mean.CvPtr, eigenvectors.CvPtr, maxComponents);
-            GC.KeepAlive(data); 
+            GC.KeepAlive(data);
             mean.Fix();
             eigenvectors.Fix();
         }
@@ -2320,7 +2320,7 @@ namespace OpenCvSharp
             mean.ThrowIfNotReady();
             eigenvectors.ThrowIfNotReady();
             NativeMethods.core_PCAComputeVar(data.CvPtr, mean.CvPtr, eigenvectors.CvPtr, retainedVariance);
-            GC.KeepAlive(data); 
+            GC.KeepAlive(data);
             mean.Fix();
             eigenvectors.Fix();
         }
@@ -2348,7 +2348,7 @@ namespace OpenCvSharp
             result.ThrowIfNotReady();
             NativeMethods.core_PCAProject(data.CvPtr, mean.CvPtr, eigenvectors.CvPtr, result.CvPtr);
             GC.KeepAlive(data);
-            GC.KeepAlive(mean); 
+            GC.KeepAlive(mean);
             result.Fix();
         }
         /// <summary>
@@ -2376,7 +2376,7 @@ namespace OpenCvSharp
             NativeMethods.core_PCABackProject(data.CvPtr, mean.CvPtr, eigenvectors.CvPtr, result.CvPtr);
             GC.KeepAlive(data);
             GC.KeepAlive(mean);
-            GC.KeepAlive(eigenvectors); 
+            GC.KeepAlive(eigenvectors);
             result.Fix();
         }
         #endregion
@@ -2498,7 +2498,7 @@ namespace OpenCvSharp
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
             NativeMethods.core_dft(src.CvPtr, dst.CvPtr, (int)flags, nonzeroRows);
-            GC.KeepAlive(src); 
+            GC.KeepAlive(src);
             dst.Fix();
         }
 
@@ -2523,7 +2523,7 @@ namespace OpenCvSharp
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
             NativeMethods.core_idft(src.CvPtr, dst.CvPtr, (int)flags, nonzeroRows);
-            GC.KeepAlive(src); 
+            GC.KeepAlive(src);
             dst.Fix();
         }
         #endregion
@@ -2543,7 +2543,7 @@ namespace OpenCvSharp
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
             NativeMethods.core_dct(src.CvPtr, dst.CvPtr, (int)flags);
-            GC.KeepAlive(src); 
+            GC.KeepAlive(src);
             dst.Fix();
         }
 
@@ -2562,7 +2562,7 @@ namespace OpenCvSharp
             src.ThrowIfDisposed();
             dst.ThrowIfNotReady();
             NativeMethods.core_idct(src.CvPtr, dst.CvPtr, (int)flags);
-            GC.KeepAlive(src); 
+            GC.KeepAlive(src);
             dst.Fix();
         }
         #endregion
@@ -2590,7 +2590,7 @@ namespace OpenCvSharp
             c.ThrowIfNotReady();
             NativeMethods.core_mulSpectrums(a.CvPtr, b.CvPtr, c.CvPtr, (int)flags, conjB ? 1 : 0);
             GC.KeepAlive(a);
-            GC.KeepAlive(b); 
+            GC.KeepAlive(b);
             c.Fix();
         }
         #endregion
@@ -2628,9 +2628,9 @@ namespace OpenCvSharp
             bestLabels.ThrowIfDisposed();
             double ret = NativeMethods.core_kmeans(data.CvPtr, k, bestLabels.CvPtr, criteria, attempts, (int)flags, ToPtr(centers));
             bestLabels.Fix();
-            if(centers != null)
+            if (centers != null)
                 centers.Fix();
-            GC.KeepAlive(data); 
+            GC.KeepAlive(data);
             return ret;
         }
         #endregion
@@ -2666,7 +2666,7 @@ namespace OpenCvSharp
             high.ThrowIfDisposed();
             NativeMethods.core_randu_InputArray(dst.CvPtr, low.CvPtr, high.CvPtr);
             GC.KeepAlive(low);
-            GC.KeepAlive(high); 
+            GC.KeepAlive(high);
             dst.Fix();
         }
 
@@ -2684,7 +2684,7 @@ namespace OpenCvSharp
             dst.ThrowIfNotReady();
             NativeMethods.core_randu_Scalar(dst.CvPtr, low, high);
             GC.KeepAlive(low);
-            GC.KeepAlive(high); 
+            GC.KeepAlive(high);
             dst.Fix();
         }
         #endregion
@@ -2709,7 +2709,7 @@ namespace OpenCvSharp
             stddev.ThrowIfDisposed();
             NativeMethods.core_randn_InputArray(dst.CvPtr, mean.CvPtr, stddev.CvPtr);
             GC.KeepAlive(mean);
-            GC.KeepAlive(stddev); 
+            GC.KeepAlive(stddev);
             dst.Fix();
         }
 

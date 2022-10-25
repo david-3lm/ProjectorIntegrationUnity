@@ -1,14 +1,14 @@
 ﻿namespace OpenCvSharp.Demo
 {
-	using System;
-	using System.Collections.Generic;
-	using OpenCvSharp;
+    using OpenCvSharp;
+    using System;
+    using System.Collections.Generic;
 
-	/// <summary>
-	/// Array utilities
-	/// http://stackoverflow.com/questions/1792470/subset-of-array-in-c-sharp
-	/// </summary>
-	static partial class ArrayUtilities
+    /// <summary>
+    /// Array utilities
+    /// http://stackoverflow.com/questions/1792470/subset-of-array-in-c-sharp
+    /// </summary>
+    static partial class ArrayUtilities
     {
         // create a subset from a range of indices
         public static T[] RangeSubset<T>(this T[] array, int startIndex, int length)
@@ -68,7 +68,7 @@
     /// High-level wrapper around OpenCV and DLib functionality that simplifies face detection tasks
     /// </summary>
     class FaceProcessor<T>
-        where T: UnityEngine.Texture
+        where T : UnityEngine.Texture
     {
         protected CascadeClassifier cascadeFaces = null;
         protected CascadeClassifier cascadeEyes = null;
@@ -76,7 +76,7 @@
 
         protected Mat processingImage = null;
         protected Double appliedFactor = 1.0;
-		protected bool cutFalsePositivesWithEyesSearch = false;
+        protected bool cutFalsePositivesWithEyesSearch = false;
 
         /// <summary>
         /// Performance options
@@ -237,8 +237,8 @@
 
                 // detect matching regions (faces bounding)
                 Rect[] rawFaces = cascadeFaces.DetectMultiScale(gray, 1.2, 6);
-				if (Faces.Count != rawFaces.Length)
-					Faces.Clear();
+                if (Faces.Count != rawFaces.Length)
+                    Faces.Clear();
 
                 // now per each detected face draw a marker and detect eyes inside the face rect
                 int facesCount = 0;
@@ -341,7 +341,7 @@
         /// </summary>
         public FaceProcessorLive()
             : base()
-        {}
+        { }
 
         /// <summary>
         /// Detector
@@ -349,7 +349,7 @@
         /// <param name="inputTexture">Input Unity texture</param>
         /// <param name="texParams">Texture parameters (flipped, rotated etc.)</param>
         /// <param name="detect">Flag signalling whether we need detection on this frame</param>
-        public override void ProcessTexture(T texture, Unity.TextureConversionParams texParams,  bool detect = true)
+        public override void ProcessTexture(T texture, Unity.TextureConversionParams texParams, bool detect = true)
         {
             bool acceptedFrame = (0 == Performance.SkipRate || 0 == frameCounter++ % Performance.SkipRate);
             base.ProcessTexture(texture, texParams, detect && acceptedFrame);

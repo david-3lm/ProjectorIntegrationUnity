@@ -33,9 +33,9 @@ namespace OpenCvSharp
         /// 
         /// </summary>
         internal AgastFeatureDetector(Ptr<AgastFeatureDetector> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace OpenCvSharp
         /// and pixels of a circle around this pixel.</param>
         /// <param name="nonmaxSuppression">if true, non-maximum suppression is applied to detected corners (keypoints).</param>
         /// <param name="type"></param>
-        public static AgastFeatureDetector Create( int threshold=10,
-                                                     bool nonmaxSuppression=true,
+        public static AgastFeatureDetector Create(int threshold = 10,
+                                                     bool nonmaxSuppression = true,
                                                      AGASTType type = AGASTType.OAST_9_16)
         {
             IntPtr ptr = NativeMethods.features2d_AgastFeatureDetector_create(
@@ -156,7 +156,7 @@ namespace OpenCvSharp
                 NativeMethods.features2d_AgastFeatureDetector_setType(ptr, (int)value);
             }
         }
-        
+
         #endregion
 
         #region Methods

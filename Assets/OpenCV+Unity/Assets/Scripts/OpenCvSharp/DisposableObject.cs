@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -83,7 +81,7 @@ namespace OpenCvSharp
         protected virtual void Dispose(bool disposing)
         {
             if (!IsDisposed)
-            {             
+            {
                 // releases managed resources
                 if (disposing)
                 {
@@ -193,7 +191,7 @@ namespace OpenCvSharp
         {
             if (obj == null)
                 throw new ArgumentNullException("nameof(obj)");
-            
+
             if (dataHandle.IsAllocated)
                 dataHandle.Free();
             dataHandle = GCHandle.Alloc(obj, GCHandleType.Pinned);
@@ -216,7 +214,7 @@ namespace OpenCvSharp
         {
             if (size <= 0)
                 throw new ArgumentOutOfRangeException("nameof(size)");
-            
+
             if (AllocatedMemory != IntPtr.Zero)
                 Marshal.FreeHGlobal(AllocatedMemory);
             AllocatedMemory = Marshal.AllocHGlobal(size);
@@ -246,10 +244,10 @@ namespace OpenCvSharp
                 return;
             if (size <= 0)
                 throw new ArgumentOutOfRangeException("nameof(size)");
-            
+
             if (AllocatedMemorySize > 0)
                 GC.RemoveMemoryPressure(AllocatedMemorySize);
-            
+
             AllocatedMemorySize = size;
             GC.AddMemoryPressure(size);
         }
@@ -265,7 +263,7 @@ namespace OpenCvSharp
 #endif
         public void ThrowIfDisposed()
         {
-            if (IsDisposed) 
+            if (IsDisposed)
                 throw new ObjectDisposedException(GetType().FullName);
         }
         #endregion

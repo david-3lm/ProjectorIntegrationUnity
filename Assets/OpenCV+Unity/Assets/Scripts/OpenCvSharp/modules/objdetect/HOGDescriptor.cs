@@ -38,7 +38,7 @@ namespace OpenCvSharp
         /// <summary>
         /// Returns coefficients of the classifier trained for people detection (for default window size).
         /// </summary>
-        public static readonly float[] DefaultPeopleDetector = 
+        public static readonly float[] DefaultPeopleDetector =
         {
             0.05359386f, -0.14721455f, -0.05532170f, 0.05077307f,
             0.11547081f, -0.04268804f, 0.04635834f, -0.05468199f, 0.08232084f,
@@ -1368,9 +1368,9 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         public HOGDescriptor()
-	    {
-            ptr = NativeMethods.objdetect_HOGDescriptor_new1();               
-	    }
+        {
+            ptr = NativeMethods.objdetect_HOGDescriptor_new1();
+        }
 #if LANG_JP
         /// <summary>
         /// HOG ディスクリプタおよび検出器を作成します
@@ -1407,24 +1407,24 @@ namespace OpenCvSharp
             Size? blockSize = null,
             Size? blockStride = null,
             Size? cellSize = null,
-            int nbins = 9, 
-            int derivAperture = 1, 
-            double winSigma = -1, 
-            HistogramNormType histogramNormType = HistogramNormType.L2Hys, 
-            double l2HysThreshold = 0.2, 
+            int nbins = 9,
+            int derivAperture = 1,
+            double winSigma = -1,
+            HistogramNormType histogramNormType = HistogramNormType.L2Hys,
+            double l2HysThreshold = 0.2,
             bool gammaCorrection = true,
             int nlevels = DefaultNlevels)
         {
             ptr = NativeMethods.objdetect_HOGDescriptor_new2(
                 winSize.GetValueOrDefault(new Size(64, 128)),
                 blockSize.GetValueOrDefault(new Size(16, 16)),
-                blockStride.GetValueOrDefault(new Size(8, 8)), 
-                cellSize.GetValueOrDefault(new Size(8, 8)), 
+                blockStride.GetValueOrDefault(new Size(8, 8)),
+                cellSize.GetValueOrDefault(new Size(8, 8)),
                 nbins,
-                derivAperture, 
-                winSigma, histogramNormType, 
-                l2HysThreshold, 
-                gammaCorrection ? 1 : 0, 
+                derivAperture,
+                winSigma, histogramNormType,
+                l2HysThreshold,
+                gammaCorrection ? 1 : 0,
                 nlevels);
         }
 #if LANG_JP
@@ -1487,7 +1487,7 @@ namespace OpenCvSharp
                     }
                     if (IsEnabledDispose)
                     {
-                        if(ptr != IntPtr.Zero)
+                        if (ptr != IntPtr.Zero)
                             NativeMethods.objdetect_HOGDescriptor_delete(ptr);
                         ptr = IntPtr.Zero;
                     }
@@ -1743,7 +1743,7 @@ namespace OpenCvSharp
         /// <param name="padding">Mock parameter to keep the CPU interface compatibility. It must be (0,0).</param>
         /// <param name="searchLocations"></param>
         /// <returns>Left-top corner points of detected objects boundaries.</returns>
-        public virtual Point[] Detect(Mat img, 
+        public virtual Point[] Detect(Mat img,
             double hitThreshold = 0, Size? winStride = null, Size? padding = null, Point[] searchLocations = null)
         {
             if (disposed)
@@ -1757,7 +1757,7 @@ namespace OpenCvSharp
             using (var flVec = new VectorOfPoint())
             {
                 int slLength = (searchLocations != null) ? searchLocations.Length : 0;
-                NativeMethods.objdetect_HOGDescriptor_detect(ptr, img.CvPtr, flVec.CvPtr, 
+                NativeMethods.objdetect_HOGDescriptor_detect(ptr, img.CvPtr, flVec.CvPtr,
                     hitThreshold, winStride0, padding0, searchLocations, slLength);
                 return flVec.ToArray();
             }
@@ -1775,7 +1775,7 @@ namespace OpenCvSharp
         /// <param name="padding">Mock parameter to keep the CPU interface compatibility. It must be (0,0).</param>
         /// <param name="searchLocations"></param>
         /// <returns>Left-top corner points of detected objects boundaries.</returns>
-        public virtual Point[] Detect(Mat img, out double[] weights, 
+        public virtual Point[] Detect(Mat img, out double[] weights,
             double hitThreshold = 0, Size? winStride = null, Size? padding = null, Point[] searchLocations = null)
         {
             if (disposed)
@@ -1809,8 +1809,8 @@ namespace OpenCvSharp
         /// <param name="groupThreshold">Coefficient to regulate the similarity threshold. 
         /// When detected, some objects can be covered by many rectangles. 0 means not to perform grouping.</param>
         /// <returns>Detected objects boundaries.</returns>
-        public virtual Rect[] DetectMultiScale(Mat img, 
-            double hitThreshold = 0, Size? winStride = null, Size? padding = null, double scale=1.05, int groupThreshold = 2)
+        public virtual Rect[] DetectMultiScale(Mat img,
+            double hitThreshold = 0, Size? winStride = null, Size? padding = null, double scale = 1.05, int groupThreshold = 2)
         {
             if (disposed)
                 throw new ObjectDisposedException("HOGDescriptor");
@@ -1822,10 +1822,10 @@ namespace OpenCvSharp
             Size padding0 = padding.GetValueOrDefault(new Size());
             using (var flVec = new VectorOfRect())
             {
-                NativeMethods.objdetect_HOGDescriptor_detectMultiScale(ptr, img.CvPtr, flVec.CvPtr, 
+                NativeMethods.objdetect_HOGDescriptor_detectMultiScale(ptr, img.CvPtr, flVec.CvPtr,
                     hitThreshold, winStride0, padding0, scale, groupThreshold);
                 return flVec.ToArray();
-            }          
+            }
         }
 
         /// <summary>
@@ -1951,7 +1951,7 @@ namespace OpenCvSharp
             using (var confidencesVec = new VectorOfVectorDouble())
             {
                 NativeMethods.objdetect_HOGDescriptor_detectMultiScaleROI(
-                    ptr, img.CvPtr, flVec.CvPtr, 
+                    ptr, img.CvPtr, flVec.CvPtr,
                     scalesVec.CvPtr, locationsVec.CvPtr, confidencesVec.CvPtr,
                     hitThreshold, groupThreshold);
                 foundLocations = flVec.ToArray();
@@ -1960,7 +1960,7 @@ namespace OpenCvSharp
                 Point[][] l = locationsVec.ToArray();
                 double[][] c = confidencesVec.ToArray();
 
-                if(s.Length != l.Length || l.Length != c.Length)
+                if (s.Length != l.Length || l.Length != c.Length)
                     throw new OpenCvSharpException("Invalid result data 'locations'");
                 locations = new DetectionROI[s.Length];
                 for (int i = 0; i < s.Length; i++)

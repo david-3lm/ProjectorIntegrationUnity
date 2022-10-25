@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Flann;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using OpenCvSharp.Flann;
 
 #pragma warning disable 1591
 

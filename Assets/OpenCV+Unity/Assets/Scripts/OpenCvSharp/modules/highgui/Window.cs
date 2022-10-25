@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -161,7 +161,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(name)");
 
             this.name = name;
-            NativeMethods.highgui_namedWindow(name, (int) flags);
+            NativeMethods.highgui_namedWindow(name, (int)flags);
 
             this.image = image;
             ShowImage(image);

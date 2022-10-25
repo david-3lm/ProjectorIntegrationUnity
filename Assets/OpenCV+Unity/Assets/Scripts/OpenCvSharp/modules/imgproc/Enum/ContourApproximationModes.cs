@@ -45,7 +45,7 @@ namespace OpenCvSharp
         /// CHAIN_APPROX_TC89_L1 - apply one of the flavors of Teh-Chin chain approximation algorithm. 
         /// </summary>
 #endif
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
         ApproxTC89L1 = 3,
 
 
@@ -58,7 +58,7 @@ namespace OpenCvSharp
         /// CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm. 
         /// </summary>
 #endif
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
         ApproxTC89KCOS = 4,
     }
 }

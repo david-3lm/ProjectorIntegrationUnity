@@ -19,7 +19,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static KeyPoint[] RunByImageBorder(IEnumerable<KeyPoint> keypoints, Size imageSize, int borderSize)
         {
-            if (keypoints == null) 
+            if (keypoints == null)
                 throw new ArgumentNullException("nameof(keypoints)");
 
             using (var keypointsVec = new VectorOfKeyPoint(keypoints))
@@ -61,7 +61,7 @@ namespace OpenCvSharp
         {
             if (keypoints == null)
                 throw new ArgumentNullException("nameof(keypoints)");
-            if (mask == null) 
+            if (mask == null)
                 throw new ArgumentNullException("nameof(mask)");
             mask.ThrowIfDisposed();
 

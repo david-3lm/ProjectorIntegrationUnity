@@ -72,7 +72,7 @@ namespace OpenCvSharp.Util
         /// <returns></returns>
         public static IntPtr[] SelectPtrs(IEnumerable<Mat> enumerable)
         {
-            return SelectToArray(enumerable, delegate(Mat obj)
+            return SelectToArray(enumerable, delegate (Mat obj)
             {
                 if (obj == null)
                     throw new ArgumentException("enumerable contains null");
@@ -88,7 +88,7 @@ namespace OpenCvSharp.Util
         /// <returns></returns>
         public static IntPtr[] SelectPtrs(IEnumerable<InputArray> enumerable)
         {
-            return SelectToArray(enumerable, delegate(InputArray obj)
+            return SelectToArray(enumerable, delegate (InputArray obj)
             {
                 if (obj == null)
                     throw new ArgumentException("enumerable contains null");
@@ -178,7 +178,7 @@ namespace OpenCvSharp.Util
         {
             if (enumerable == null)
                 throw new ArgumentNullException("nameof(enumerable)");
-            if (typeof (TSource).IsValueType)
+            if (typeof(TSource).IsValueType)
                 return false;
 
             foreach (TSource elem in enumerable)
@@ -251,13 +251,13 @@ namespace OpenCvSharp.Util
                 return collection.Count;
 
             int count = 0;
-			//UFIX Warning
-			#pragma warning disable 0219
+            //UFIX Warning
+#pragma warning disable 0219
             foreach (TSource elem in enumerable)
             {
                 count++;
-            }			
-			#pragma warning restore 0219
+            }
+#pragma warning restore 0219
             return count;
         }
 
@@ -272,14 +272,14 @@ namespace OpenCvSharp.Util
             if (enumerable == null)
                 throw new ArgumentNullException("nameof(enumerable)");
 
-			//UFIX Warning
-			#pragma warning disable 0219
+            //UFIX Warning
+#pragma warning disable 0219
             foreach (TSource elem in enumerable)
             {
                 return false;
             }
-			#pragma warning restore 0219
-			return true;
+#pragma warning restore 0219
+            return true;
         }
     }
 }

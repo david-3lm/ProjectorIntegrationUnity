@@ -153,17 +153,17 @@ namespace OpenCvSharp
             return dst;
         }
 
-		/// <summary>
-		/// Rotates Mat with 90 degree step
-		/// </summary>
-		/// <param name="flags">Flag that indicates rotation type</param>
-		/// <returns>Rotated Mat</returns>
-		public Mat Rotate(RotateFlags flags)
-		{
-			var dst = new Mat();
-			Cv2.Rotate(this, dst, flags);
-			return dst;
-		}
+        /// <summary>
+        /// Rotates Mat with 90 degree step
+        /// </summary>
+        /// <param name="flags">Flag that indicates rotation type</param>
+        /// <returns>Rotated Mat</returns>
+        public Mat Rotate(RotateFlags flags)
+        {
+            var dst = new Mat();
+            Cv2.Rotate(this, dst, flags);
+            return dst;
+        }
 
         /// <summary>
         /// finds global minimum and maximum array elements and returns their values and their locations
@@ -704,7 +704,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public void Line(
-            Point pt1, Point pt2, Scalar color, int thickness = 1, 
+            Point pt1, Point pt2, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             Cv2.Line(this, pt1, pt2, color, thickness, lineType, shift);
@@ -736,7 +736,7 @@ namespace OpenCvSharp
         /// <param name="shift">Number of fractional bits in the point coordinates. [By default this is 0]</param>
 #endif
         public void Rectangle(
-            Point pt1, Point pt2, Scalar color, int thickness = 1, 
+            Point pt1, Point pt2, Scalar color, int thickness = 1,
             LineTypes lineType = LineTypes.Link8, int shift = 0)
         {
             Cv2.Rectangle(this, pt1, pt2, color, thickness, lineType, shift);
@@ -1183,7 +1183,7 @@ namespace OpenCvSharp
         /// <param name="normalize">Indicates, whether the kernel is normalized by its area or not</param>
         /// <param name="borderType">The border mode used to extrapolate pixels outside of the image</param>
         /// <returns>The destination image; will have the same size and the same type as src</returns>
-        public Mat BoxFilter(MatType ddepth, Size ksize, Point? anchor = null, 
+        public Mat BoxFilter(MatType ddepth, Size ksize, Point? anchor = null,
             bool normalize = true, BorderTypes borderType = BorderTypes.Default)
         {
             var dst = new Mat();
@@ -1198,7 +1198,7 @@ namespace OpenCvSharp
         /// <param name="anchor">The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center</param>
         /// <param name="borderType">The border mode used to extrapolate pixels outside of the image</param>
         /// <returns>The destination image; will have the same size and the same type as src</returns>
-        public Mat Blur(Size ksize, Point? anchor = null, 
+        public Mat Blur(Size ksize, Point? anchor = null,
             BorderTypes borderType = BorderTypes.Default)
         {
             var dst = new Mat();
@@ -1219,7 +1219,7 @@ namespace OpenCvSharp
         /// <param name="delta">The optional value added to the filtered pixels before storing them in dst</param>
         /// <param name="borderType">The pixel extrapolation method</param>
         /// <returns>The destination image. It will have the same size and the same number of channels as src</returns>
-        public Mat Filter2D(MatType ddepth, InputArray kernel, Point? anchor = null, 
+        public Mat Filter2D(MatType ddepth, InputArray kernel, Point? anchor = null,
             double delta = 0, BorderTypes borderType = BorderTypes.Default)
         {
             var dst = new Mat();
@@ -1318,7 +1318,7 @@ namespace OpenCvSharp
         /// <param name="L2gradient">Indicates, whether the more accurate L2 norm should be used to compute the image gradient magnitude (true), or a faster default L1 norm is enough (false). [By default this is false]</param>
         /// <returns>The output edge map. It will have the same size and the same type as image</returns>
 #endif
-// ReSharper disable once InconsistentNaming
+        // ReSharper disable once InconsistentNaming
         public Mat Canny(double threshold1, double threshold2, int apertureSize = 3, bool L2gradient = false)
         {
             var dst = new Mat();
@@ -1507,7 +1507,7 @@ namespace OpenCvSharp
         /// <param name="borderValue">The border value in case of a constant border. The default value has a special meaning. [By default this is CvCpp.MorphologyDefaultBorderValue()]</param>
         /// <returns>The destination image. It will have the same size and the same type as src</returns>
 #endif
-        public Mat Dilate(InputArray element, Point? anchor = null, int iterations = 1, 
+        public Mat Dilate(InputArray element, Point? anchor = null, int iterations = 1,
             BorderTypes borderType = BorderTypes.Constant, Scalar? borderValue = null)
         {
             var dst = new Mat();
@@ -1536,7 +1536,7 @@ namespace OpenCvSharp
         /// <param name="borderValue">The border value in case of a constant border. The default value has a special meaning. [By default this is CvCpp.MorphologyDefaultBorderValue()]</param>
         /// <returns>The destination image. It will have the same size and the same type as src</returns>
 #endif
-        public Mat Erode(InputArray element, Point? anchor = null, int iterations = 1, 
+        public Mat Erode(InputArray element, Point? anchor = null, int iterations = 1,
             BorderTypes borderType = BorderTypes.Constant, Scalar? borderValue = null)
         {
             var dst = new Mat();
@@ -1609,7 +1609,7 @@ namespace OpenCvSharp
         /// it means that the pixels in the destination image corresponding to the "outliers" 
         /// in the source image are not modified by the function.</param>
         /// <param name="borderValue">value used in case of a constant border; by default, it is 0.</param>
-        public Mat WarpAffine(InputArray m, Size dsize, InterpolationFlags flags = InterpolationFlags.Linear, 
+        public Mat WarpAffine(InputArray m, Size dsize, InterpolationFlags flags = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant, Scalar? borderValue = null)
         {
             var dst = new Mat();
@@ -1627,7 +1627,7 @@ namespace OpenCvSharp
         /// <param name="borderMode">pixel extrapolation method (BORDER_CONSTANT or BORDER_REPLICATE).</param>
         /// <param name="borderValue">value used in case of a constant border; by default, it equals 0.</param>
         /// <returns>output image that has the size dsize and the same type as src.</returns>
-        public Mat WarpPerspective(Mat m, Size dsize, InterpolationFlags flags = InterpolationFlags.Linear, 
+        public Mat WarpPerspective(Mat m, Size dsize, InterpolationFlags flags = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant, Scalar? borderValue = null)
         {
             var dst = new Mat();
@@ -1646,7 +1646,7 @@ namespace OpenCvSharp
         /// the source image are not modified by the function.</param>
         /// <param name="borderValue">Value used in case of a constant border. By default, it is 0.</param>
         /// <returns>Destination image. It has the same size as map1 and the same type as src</returns>
-        public Mat Remap(InputArray map1, InputArray map2, InterpolationFlags interpolation = InterpolationFlags.Linear, 
+        public Mat Remap(InputArray map1, InputArray map2, InterpolationFlags interpolation = InterpolationFlags.Linear,
             BorderTypes borderMode = BorderTypes.Constant, Scalar? borderValue = null)
         {
             var dst = new Mat();
@@ -1740,11 +1740,11 @@ namespace OpenCvSharp
         /// <param name="c">Constant subtracted from the mean or weighted mean (see the details below). 
         /// Normally, it is positive but may be zero or negative as well.</param>
         /// <returns>Destination image of the same size and the same type as src.</returns>
-        public Mat AdaptiveThreshold(double maxValue, AdaptiveThresholdTypes adaptiveMethod, 
+        public Mat AdaptiveThreshold(double maxValue, AdaptiveThresholdTypes adaptiveMethod,
             ThresholdTypes thresholdType, int blockSize, double c)
         {
             var dst = new Mat();
-            Cv2.AdaptiveThreshold(this, dst, maxValue, adaptiveMethod, 
+            Cv2.AdaptiveThreshold(this, dst, maxValue, adaptiveMethod,
                 thresholdType, blockSize, c);
             return dst;
         }
@@ -1975,7 +1975,7 @@ namespace OpenCvSharp
         /// 4 (default) or 8, used within the function. Connectivity determines which 
         /// neighbors of a pixel are considered. </param>
         /// <returns></returns>
-        public int FloodFill(InputOutputArray mask, Point seedPoint, Scalar newVal, 
+        public int FloodFill(InputOutputArray mask, Point seedPoint, Scalar newVal,
             out Rect rect, Scalar? loDiff = null, Scalar? upDiff = null,
             FloodFillFlags flags = FloodFillFlags.Link4)
         {
@@ -2308,7 +2308,7 @@ namespace OpenCvSharp
             int maxLevel = Int32.MaxValue,
             Point? offset = null)
         {
-            Cv2.DrawContours(this, contours, contourIdx, color, 
+            Cv2.DrawContours(this, contours, contourIdx, color,
                 thickness, lineType, hierarchy, maxLevel, offset);
         }
 
@@ -2357,7 +2357,7 @@ namespace OpenCvSharp
             int maxLevel = Int32.MaxValue,
             Point? offset = null)
         {
-            Cv2.DrawContours(image, contours, contourIdx, color, 
+            Cv2.DrawContours(image, contours, contourIdx, color,
                 thickness, lineType, hierarchy, maxLevel, offset);
         }
 

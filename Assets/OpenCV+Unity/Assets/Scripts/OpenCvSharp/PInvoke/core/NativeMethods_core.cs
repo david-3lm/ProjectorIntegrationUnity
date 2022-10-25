@@ -63,7 +63,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, EntryPoint = "core_divide2")]
         public static extern void core_divide(IntPtr src1, IntPtr src2, IntPtr dst, double scale, int dtype);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void core_scaleAdd(IntPtr src1, double alpha, IntPtr src2,IntPtr dst);
+        public static extern void core_scaleAdd(IntPtr src1, double alpha, IntPtr src2, IntPtr dst);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_addWeighted(IntPtr src1, double alpha, IntPtr src2,
             double beta, double gamma, IntPtr dst, int dtype);
@@ -129,9 +129,9 @@ namespace OpenCvSharp
         public static extern void core_insertChannel(IntPtr src, IntPtr dst, int coi);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_flip(IntPtr src, IntPtr dst, int flipCode);
-		[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-		public static extern void core_rotate(IntPtr src, IntPtr dst, int code);
-		[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, EntryPoint = "core_repeat1")]
+        [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void core_rotate(IntPtr src, IntPtr dst, int code);
+        [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, EntryPoint = "core_repeat1")]
         public static extern void core_repeat(IntPtr src, int ny, int nx, IntPtr dst);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, EntryPoint = "core_repeat2")]
         public static extern IntPtr core_repeat(IntPtr src, int ny, int nx);
@@ -167,7 +167,7 @@ namespace OpenCvSharp
         public static extern void core_min_MatMat(IntPtr src1, IntPtr src2, IntPtr dst);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_min_MatDouble(IntPtr src1, double src2, IntPtr dst);
-        [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)] 
+        [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_max_MatMat(IntPtr src1, IntPtr src2, IntPtr dst);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_max_MatDouble(IntPtr src1, double src2, IntPtr dst);
@@ -241,7 +241,7 @@ namespace OpenCvSharp
         public static extern int core_eigen(IntPtr src, IntPtr eigenvalues, IntPtr eigenvectors);
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void core_calcCovarMatrix_Mat([MarshalAs(UnmanagedType.LPArray)] IntPtr[] samples, 
+        public static extern void core_calcCovarMatrix_Mat([MarshalAs(UnmanagedType.LPArray)] IntPtr[] samples,
             int nsamples, IntPtr covar, IntPtr mean, int flags, int ctype);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_calcCovarMatrix_InputArray(IntPtr samples, IntPtr covar,

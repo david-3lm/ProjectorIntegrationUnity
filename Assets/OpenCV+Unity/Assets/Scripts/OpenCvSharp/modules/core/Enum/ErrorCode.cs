@@ -3,7 +3,7 @@
     /// <summary>
     /// Error status codes
     /// </summary>
-    public enum ErrorCode 
+    public enum ErrorCode
     {
         /* this part of CVStatus is compatible with IPLStatus 
            Some of below symbols are not [yet] used in OpenCV

@@ -23,16 +23,16 @@ namespace OpenCvSharp
     {
         private bool disposed;
         private Ptr<ORB> ptrObj;
-		
+
         #region Init & Disposal
 
         /// <summary>
         /// 
         /// </summary>
         internal ORB(Ptr<ORB> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace OpenCvSharp
         /// <param name="scoreType"></param>
         /// <param name="patchSize"></param>
         public static ORB Create(
-            int nFeatures = 500, float scaleFactor = 1.2f, int nLevels = 8, 
-            int edgeThreshold = 31, int firstLevel = 0, int wtaK = 2, 
+            int nFeatures = 500, float scaleFactor = 1.2f, int nLevels = 8,
+            int edgeThreshold = 31, int firstLevel = 0, int wtaK = 2,
             ORBScore scoreType = ORBScore.Harris, int patchSize = 31)
         {
             IntPtr ptr = NativeMethods.features2d_ORB_create(

@@ -26,15 +26,15 @@ namespace OpenCvSharp
         private bool disposed;
         private Ptr<AKAZE> ptrObj;
 
-		#region Init & Disposal
+        #region Init & Disposal
 
         /// <summary>
         /// 
         /// </summary>
         internal AKAZE(Ptr<AKAZE> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace OpenCvSharp
             KAZEDiffusivity diffusivity = KAZEDiffusivity.DiffPmG2)
         {
             IntPtr ptr = NativeMethods.features2d_AKAZE_create(
-                (int) descriptorType, descriptorSize, descriptorChannels,
-                threshold, nOctaves, nOctaveLayers, (int) diffusivity);
+                (int)descriptorType, descriptorSize, descriptorChannels,
+                threshold, nOctaves, nOctaveLayers, (int)diffusivity);
             return new AKAZE(new Ptr<AKAZE>(ptr));
         }
 
@@ -107,7 +107,7 @@ namespace OpenCvSharp
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// 
         /// </summary>

@@ -22,7 +22,7 @@ namespace OpenCvSharp
         /// query descriptor index
         /// </summary>
 #endif
-        public int QueryIdx; 
+        public int QueryIdx;
 
 #if LANG_JP
         /// <summary>
@@ -33,7 +33,7 @@ namespace OpenCvSharp
         /// train descriptor index
         /// </summary>
 #endif
-        public int TrainIdx; 
+        public int TrainIdx;
 
 #if LANG_JP
         /// <summary>
@@ -44,7 +44,7 @@ namespace OpenCvSharp
         /// train image index
         /// </summary>
 #endif
-        public int ImgIdx; 
+        public int ImgIdx;
 
 
         /// <summary>

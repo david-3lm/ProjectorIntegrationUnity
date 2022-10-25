@@ -21,7 +21,7 @@ namespace OpenCvSharp
         /// autosize property (can be WINDOW_NORMAL or WINDOW_AUTOSIZE)
         /// </summary>
         AutoSize = 1,
-        
+
         /// <summary>
         /// window's aspect ration (can be set to WINDOW_FREERATIO or WINDOW_KEEPRATIO)
         /// </summary>

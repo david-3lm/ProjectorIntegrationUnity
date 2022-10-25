@@ -4,7 +4,7 @@
     /// PredefinedDictionaryName
     /// </summary>
     public enum PredefinedDictionaryName : int
-    { 
+    {
 #pragma warning disable 1591
         Dict4X4_50 = 0,
         Dict4X4_100,

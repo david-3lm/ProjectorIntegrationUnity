@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 // ReSharper disable once InconsistentNaming
 
@@ -19,16 +19,16 @@ namespace OpenCvSharp.XFeatures2D
     {
         private bool disposed;
         private Ptr<FREAK> ptrObj;
-		
+
         #region Init & Disposal
 
         /// <summary>
         /// 
         /// </summary>
         internal FREAK(Ptr<FREAK> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
         /// <summary>

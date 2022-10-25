@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -168,7 +167,7 @@ namespace OpenCvSharp.Util
                     throw new OpenCvSharpException("{0} is invalid type for this method. Value type or OpenCV's class are valid.", t.Name);
                 }
                 return (T)info.Invoke(new object[] { p });
-            }   
+            }
         }
 #if LANG_JP
         /// <summary>
@@ -193,7 +192,7 @@ namespace OpenCvSharp.Util
             {
                 return (T)(object)ptr;
             }
-            
+
             return (T)Marshal.PtrToStructure(ptr, typeof(T));
         }
 

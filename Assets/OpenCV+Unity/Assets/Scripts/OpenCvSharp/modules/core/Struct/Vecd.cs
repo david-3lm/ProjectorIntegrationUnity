@@ -166,7 +166,7 @@ namespace OpenCvSharp
             Item2 = item2;
             Item3 = item3;
         }
-        
+
         /// <summary>
         /// Indexer
         /// </summary>
@@ -253,7 +253,7 @@ namespace OpenCvSharp
             Item1 = item1;
             Item2 = item2;
             Item3 = item3;
-            Item4 = item4; 
+            Item4 = item4;
             Item5 = item5;
         }
 

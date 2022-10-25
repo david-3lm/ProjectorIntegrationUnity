@@ -180,12 +180,12 @@ namespace OpenCvSharp
             double yb = Y1 + Vy;
             double zb = Z1 + Vz;
 
-            double k = ((x - xa)*(xb - xa) + (y - ya)*(yb - ya) + (z - za)*(zb - za))/
+            double k = ((x - xa) * (xb - xa) + (y - ya) * (yb - ya) + (z - za) * (zb - za)) /
                        (Math.Pow(xb - xa, 2) + Math.Pow(yb - ya, 2) + Math.Pow(zb - za, 2));
 
-            double hx = k*xb+(1-k)*xa;
-            double hy = k*yb+(1-k)*ya;
-            double hz = k*zb+(1-k)*za;
+            double hx = k * xb + (1 - k) * xa;
+            double hy = k * yb + (1 - k) * ya;
+            double hz = k * zb + (1 - k) * za;
             return new Point3d(hx, hy, hz);
         }
 
@@ -261,11 +261,11 @@ namespace OpenCvSharp
         private Point3d CrossProduct(Point3d vl, Point3d vr)
         {
             var ret = new Point3d
-                {
-                    X = (vl.Y*vr.Z) - (vl.Z*vr.Y), 
-                    Y = (vl.Z*vr.X) - (vl.X*vr.Z), 
-                    Z = (vl.X*vr.Y) - (vl.Y*vr.X)
-                };
+            {
+                X = (vl.Y * vr.Z) - (vl.Z * vr.Y),
+                Y = (vl.Z * vr.X) - (vl.X * vr.Z),
+                Z = (vl.X * vr.Y) - (vl.Y * vr.X)
+            };
             return ret;
         }
         /// <summary>
@@ -285,8 +285,8 @@ namespace OpenCvSharp
         /// <returns></returns>
         private double VertexDistance(Point3d p1, Point3d p2)
         {
-            return Math.Sqrt((p2.X - p1.X) * (p2.X - p1.X) + 
-                             (p2.Y - p1.Y) * (p2.Y - p1.Y) + 
+            return Math.Sqrt((p2.X - p1.X) * (p2.X - p1.X) +
+                             (p2.Y - p1.Y) * (p2.Y - p1.Y) +
                              (p2.Z - p1.Z) * (p2.Z - p1.Z));
         }
         #endregion

@@ -40,7 +40,7 @@ namespace OpenCvSharp
         internal BackgroundSubtractorMOG2(IntPtr ptr)
         {
             this.objectPtr = new Ptr<BackgroundSubtractorMOG2>(ptr);
-            this.ptr = objectPtr.Get(); 
+            this.ptr = objectPtr.Get();
         }
 
 #if LANG_JP

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp.Face
 {
@@ -13,29 +11,29 @@ namespace OpenCvSharp.Face
         ///
         /// </summary>
         public BasicFaceRecognizer(IntPtr smartPtr)
-			: base(smartPtr)
-        {}
+            : base(smartPtr)
+        { }
 
-		protected override void FreeNativeResources()
-		{
-			if (smartPointer != IntPtr.Zero)
-			{
-				NativeMethods.face_Ptr_BasicFaceRecognizer_get(smartPointer);
-				smartPointer = IntPtr.Zero;
-			}
-		}
+        protected override void FreeNativeResources()
+        {
+            if (smartPointer != IntPtr.Zero)
+            {
+                NativeMethods.face_Ptr_BasicFaceRecognizer_get(smartPointer);
+                smartPointer = IntPtr.Zero;
+            }
+        }
 
-		protected override IntPtr GetPureObjectPtr()
-		{
-			return NativeMethods.face_Ptr_BasicFaceRecognizer_get(smartPointer);
-		}
+        protected override IntPtr GetPureObjectPtr()
+        {
+            return NativeMethods.face_Ptr_BasicFaceRecognizer_get(smartPointer);
+        }
 
-		#region Methods
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public virtual int GetNumComponents()
+        #region Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetNumComponents()
         {
             ThrowIfDisposed();
             return NativeMethods.face_BasicFaceRecognizer_getNumComponents(ptr);
@@ -134,5 +132,5 @@ namespace OpenCvSharp.Face
         }
 
         #endregion
-	}
+    }
 }

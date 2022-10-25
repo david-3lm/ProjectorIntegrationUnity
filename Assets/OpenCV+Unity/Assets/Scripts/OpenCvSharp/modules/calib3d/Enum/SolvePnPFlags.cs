@@ -14,7 +14,7 @@ namespace OpenCvSharp
         /// that is the sum of squared distances between the observed projections imagePoints and the projected (using projectPoints() ) objectPoints .
         /// </summary>
         Iterative = 0,
-        
+
         /// <summary>
         /// Method has been introduced by F.Moreno-Noguer, V.Lepetit and P.Fua in the paper “EPnP: Efficient Perspective-n-Point Camera Pose Estimation”.
         /// </summary>
@@ -29,8 +29,8 @@ namespace OpenCvSharp
         /// <summary>
         /// Joel A. Hesch and Stergios I. Roumeliotis. "A Direct Least-Squares (DLS) Method for PnP"
         /// </summary>
-        DLS = 3, 
-        
+        DLS = 3,
+
         /// <summary>
         /// A.Penate-Sanchez, J.Andrade-Cetto, F.Moreno-Noguer. "Exhaustive Linearization for Robust Camera Pose and Focal Length Estimation"
         /// </summary>

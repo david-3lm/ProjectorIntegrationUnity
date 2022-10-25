@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OpenCvSharp.Flann
+﻿namespace OpenCvSharp.Flann
 {
 
 #if LANG_JP

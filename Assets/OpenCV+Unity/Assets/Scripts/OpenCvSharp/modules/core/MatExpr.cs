@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenCvSharp.Util;
+﻿using OpenCvSharp.Util;
+using System;
 
 namespace OpenCvSharp
 {
@@ -27,7 +25,7 @@ namespace OpenCvSharp
         /// <param name="mat"></param>
         internal MatExpr(Mat mat)
         {
-            if(mat == null)
+            if (mat == null)
                 throw new ArgumentNullException("nameof(mat)");
             ptr = NativeMethods.core_MatExpr_new(mat.CvPtr);
         }
@@ -208,7 +206,7 @@ namespace OpenCvSharp
             catch (BadImageFormatException ex)
             {
                 throw PInvokeHelper.CreateException(ex);
-            } 
+            }
         }
         /// <summary>
         /// 
@@ -324,7 +322,7 @@ namespace OpenCvSharp
             catch (BadImageFormatException ex)
             {
                 throw PInvokeHelper.CreateException(ex);
-            } 
+            }
         }
         /// <summary>
         /// 
@@ -880,7 +878,7 @@ namespace OpenCvSharp
             /// <returns></returns>
             public override MatExpr this[int y]
             {
-                get 
+                get
                 {
                     parent.ThrowIfDisposed();
                     IntPtr retPtr = NativeMethods.core_MatExpr_row(parent.CvPtr, y);
@@ -895,7 +893,7 @@ namespace OpenCvSharp
         {
             get
             {
-                if(row == null)
+                if (row == null)
                     row = new RowIndexer(this);
                 return row;
             }

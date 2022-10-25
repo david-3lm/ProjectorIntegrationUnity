@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -13,7 +11,7 @@ namespace OpenCvSharp
     {
         private bool disposed;
         private Ptr<GFTTDetector> ptrObj;
-		
+
         #region Init & Disposal
 
         /// <summary>
@@ -30,7 +28,7 @@ namespace OpenCvSharp
             int blockSize = 3, bool useHarrisDetector = false, double k = 0.04)
         {
             IntPtr ptr = NativeMethods.features2d_GFTTDetector_create(
-                maxCorners, qualityLevel, minDistance, 
+                maxCorners, qualityLevel, minDistance,
                 blockSize, useHarrisDetector ? 1 : 0, k);
             return new GFTTDetector(new Ptr<GFTTDetector>(ptr));
         }
@@ -40,11 +38,11 @@ namespace OpenCvSharp
         /// </summary>
         /// <param name="p"></param>
         internal GFTTDetector(Ptr<GFTTDetector> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
-		
+
         /// <summary>
         /// Releases the resources
         /// </summary>
@@ -68,7 +66,7 @@ namespace OpenCvSharp
                         }
                     }
                     // releases unmanaged resources
-                    
+
                     disposed = true;
                 }
                 finally

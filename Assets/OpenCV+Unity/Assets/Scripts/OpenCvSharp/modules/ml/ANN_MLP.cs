@@ -7,12 +7,12 @@ namespace OpenCvSharp.ML
     /// MLPモデルクラス
     /// </summary>
 #else
-	/// <summary>
+    /// <summary>
     /// Artificial Neural Networks - Multi-Layer Perceptrons.
     /// </summary>
 #endif
-	public class ANN_MLP : StatModel
-	{
+    public class ANN_MLP : StatModel
+    {
         /// <summary>
         /// Track whether Dispose has been called
         /// </summary>
@@ -35,10 +35,10 @@ namespace OpenCvSharp.ML
         /// </summary>
         /// <returns></returns>
         public static ANN_MLP Create()
-	    {
+        {
             IntPtr ptr = NativeMethods.ml_ANN_MLP_create();
             return new ANN_MLP(ptr);
-	    }
+        }
 
         /// <summary>
         /// Clean up any resources being used.
@@ -70,7 +70,7 @@ namespace OpenCvSharp.ML
                 }
             }
         }
-		#endregion
+        #endregion
 
         #region Properties
 
@@ -170,8 +170,8 @@ namespace OpenCvSharp.ML
         /// </summary>
         /// <param name="layerSizes"></param>
         public virtual void SetLayerSizes(InputArray layerSizes)
-	    {
-	        if (disposed)
+        {
+            if (disposed)
                 throw new ObjectDisposedException(GetType().Name);
             if (layerSizes == null)
                 throw new ArgumentNullException("nameof(layerSizes)");
@@ -185,12 +185,12 @@ namespace OpenCvSharp.ML
         /// </summary>
         /// <returns></returns>
 	    public virtual Mat GetLayerSizes()
-	    {
+        {
             if (disposed)
                 throw new ObjectDisposedException(GetType().Name);
-	        IntPtr p = NativeMethods.ml_ANN_MLP_getLayerSizes(ptr);
+            IntPtr p = NativeMethods.ml_ANN_MLP_getLayerSizes(ptr);
             return new Mat(p);
-	    }
+        }
 
         #endregion
 
@@ -256,12 +256,12 @@ namespace OpenCvSharp.ML
             /// <summary>
             /// The back-propagation algorithm.
             /// </summary>
-            BackProp = 0, 
+            BackProp = 0,
 
             /// <summary>
             /// The RPROP algorithm. See @cite RPROP93 for details.
             /// </summary>
-            RProp = 1  
+            RProp = 1
         }
 
         #endregion

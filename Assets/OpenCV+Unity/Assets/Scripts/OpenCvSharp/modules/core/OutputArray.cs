@@ -104,7 +104,7 @@ namespace OpenCvSharp
             return obj as Mat;
         }
 
-     
+
         /// <summary>
         /// 
         /// </summary>

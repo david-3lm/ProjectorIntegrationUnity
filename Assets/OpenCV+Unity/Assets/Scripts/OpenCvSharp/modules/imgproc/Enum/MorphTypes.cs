@@ -22,7 +22,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        DILATE = 1, 
+        DILATE = 1,
 
 #if LANG_JP
 		/// <summary>

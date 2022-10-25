@@ -1,11 +1,8 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-#pragma warning disable 1591
+﻿#pragma warning disable 1591
 
 namespace OpenCvSharp
 {
-	//EX
+    //EX
     //static partial class NativeMethods
     //{
 
@@ -33,7 +30,7 @@ namespace OpenCvSharp
     //    public static extern int ml_DTrees_getUseSurrogates(IntPtr obj);
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern void ml_DTrees_setUseSurrogates(IntPtr obj, int val);
-        
+
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern int ml_DTrees_getUse1SERule(IntPtr obj);
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -43,7 +40,7 @@ namespace OpenCvSharp
     //    public static extern int ml_DTrees_getTruncatePrunedTree(IntPtr obj);
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern void ml_DTrees_setTruncatePrunedTree(IntPtr obj, int val);
-        
+
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern float ml_DTrees_getRegressionAccuracy(IntPtr obj);
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -68,7 +65,7 @@ namespace OpenCvSharp
 
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern void ml_Ptr_DTrees_delete(IntPtr obj);
-        
+
     //    [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
     //    public static extern IntPtr ml_Ptr_DTrees_get(IntPtr obj);
     //}

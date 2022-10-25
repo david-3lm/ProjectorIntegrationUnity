@@ -23,7 +23,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public const int SizeOf = sizeof (float) + sizeof (float);
+        public const int SizeOf = sizeof(float) + sizeof(float);
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static implicit operator Point(Point2f self)
         {
-            return new Point((int) self.X, (int) self.Y);
+            return new Point((int)self.X, (int)self.Y);
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace OpenCvSharp
 #endif
         public static Point2f operator *(Point2f pt, double scale)
         {
-            return new Point2f((float) (pt.X*scale), (float) (pt.Y*scale));
+            return new Point2f((float)(pt.X * scale), (float)(pt.Y * scale));
         }
 
         #endregion
@@ -357,7 +357,7 @@ namespace OpenCvSharp
 #endif
         public static double DotProduct(Point2f p1, Point2f p2)
         {
-            return p1.X*p2.X + p1.Y*p2.Y;
+            return p1.X * p2.X + p1.Y * p2.Y;
         }
 
 #if LANG_JP
@@ -395,7 +395,7 @@ namespace OpenCvSharp
 #endif
         public static double CrossProduct(Point2f p1, Point2f p2)
         {
-            return p1.X*p2.Y - p2.X*p1.Y;
+            return p1.X * p2.Y - p2.X * p1.Y;
         }
 
 #if LANG_JP

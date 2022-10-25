@@ -10,8 +10,8 @@ namespace OpenCvSharp
     /// </summary>
     public enum StereoSGBMMode
     {
-         SGBM = 0,
-         HH   = 1,
+        SGBM = 0,
+        HH = 1,
     }
 
 #if LANG_JP
@@ -63,7 +63,7 @@ namespace OpenCvSharp
             IntPtr ptrObj = NativeMethods.calib3d_StereoSGBM_create(
                 minDisparity, numDisparities, blockSize,
                 p1, p2, disp12MaxDiff, preFilterCap, uniquenessRatio,
-                speckleWindowSize, speckleRange, (int) mode);
+                speckleWindowSize, speckleRange, (int)mode);
             return new StereoSGBM(ptrObj);
         }
 
@@ -91,7 +91,7 @@ namespace OpenCvSharp
                 try
                 {
                     if (disposing)
-                    {                        
+                    {
                     }
                     if (IsEnabledDispose)
                     {

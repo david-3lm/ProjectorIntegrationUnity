@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
     // ReSharper disable InconsistentNaming
 
@@ -13,8 +11,8 @@ namespace OpenCvSharp
         /// <summary>
         /// Upright descriptors, not invariant to rotation
         /// </summary>
-        KAZEUpright = 2, 
-        
+        KAZEUpright = 2,
+
         /// <summary>
         /// 
         /// </summary>
@@ -23,7 +21,7 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        MLDBUpright = 4, 
+        MLDBUpright = 4,
 
         /// <summary>
         /// Upright descriptors, not invariant to rotation

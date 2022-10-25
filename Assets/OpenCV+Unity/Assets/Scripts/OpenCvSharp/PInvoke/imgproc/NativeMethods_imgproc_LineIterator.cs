@@ -19,7 +19,7 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void imgproc_LineIterator_operatorPP(IntPtr obj);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern Point imgproc_LineIterator_pos(IntPtr obj);
 
@@ -60,12 +60,12 @@ namespace OpenCvSharp
         public static extern int imgproc_LineIterator_plusDelta_get(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void imgproc_LineIterator_plusDelta_set(IntPtr obj, int val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int imgproc_LineIterator_minusStep_get(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void imgproc_LineIterator_minusStep_set(IntPtr obj, int val);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int imgproc_LineIterator_plusStep_get(IntPtr obj);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

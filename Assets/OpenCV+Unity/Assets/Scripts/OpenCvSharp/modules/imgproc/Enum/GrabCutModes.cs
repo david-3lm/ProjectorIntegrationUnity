@@ -12,7 +12,7 @@ namespace OpenCvSharp
     /// </summary>
 #endif
     [Flags]
-    public enum GrabCutModes 
+    public enum GrabCutModes
     {
 #if LANG_JP
         /// <summary>

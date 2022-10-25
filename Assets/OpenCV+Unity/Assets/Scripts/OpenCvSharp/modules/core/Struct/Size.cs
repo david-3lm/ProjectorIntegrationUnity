@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -47,7 +45,7 @@ namespace OpenCvSharp
         /// </summary>
         public static Size Zero
         {
-            get { return new Size();}
+            get { return new Size(); }
         }
 
         #region Operators

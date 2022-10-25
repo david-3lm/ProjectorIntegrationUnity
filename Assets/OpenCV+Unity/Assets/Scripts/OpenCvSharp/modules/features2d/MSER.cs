@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace OpenCvSharp
 {
-// ReSharper disable once InconsistentNaming
+    // ReSharper disable once InconsistentNaming
 
 #if LANG_JP
     /// <summary>
@@ -27,9 +24,9 @@ namespace OpenCvSharp
         /// Creates instance by raw pointer cv::MSER*
         /// </summary>
         internal MSER(Ptr<MSER> p)
-			: base(p.Get())
+            : base(p.Get())
         {
-			ptrObj = p;
+            ptrObj = p;
         }
 
 #if LANG_JP
@@ -60,14 +57,14 @@ namespace OpenCvSharp
         /// <param name="edgeBlurSize">the aperture size for edge blur</param>
 #endif
         public static MSER Create(
-            int delta = 5, 
-            int minArea = 60, 
-            int maxArea = 14400, 
-            double maxVariation = 0.25, 
-            double minDiversity = 0.2, 
-            int maxEvolution = 200, 
-            double areaThreshold = 1.01, 
-            double minMargin = 0.003, 
+            int delta = 5,
+            int minArea = 60,
+            int maxArea = 14400,
+            double maxVariation = 0.25,
+            double minDiversity = 0.2,
+            int maxEvolution = 200,
+            double areaThreshold = 1.01,
+            double minMargin = 0.003,
             int edgeBlurSize = 5)
         {
             IntPtr ptr = NativeMethods.features2d_MSER_create(delta, minArea, maxArea, maxVariation, minDiversity,
@@ -212,7 +209,7 @@ namespace OpenCvSharp
         {
             if (disposed)
                 throw new ObjectDisposedException(GetType().Name);
-            if (image == null) 
+            if (image == null)
                 throw new ArgumentNullException("nameof(image)");
             image.ThrowIfDisposed();
 

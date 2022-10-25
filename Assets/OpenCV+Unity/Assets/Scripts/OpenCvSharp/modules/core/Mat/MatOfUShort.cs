@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -451,14 +451,14 @@ namespace OpenCvSharp
         }
 
         #endregion
-        
+
         #region Indexer
         /// <summary>
         /// Matrix indexer
         /// </summary>
         public sealed unsafe class Indexer : MatIndexer<ushort>
         {
-            private readonly byte *ptr;
+            private readonly byte* ptr;
 
             internal Indexer(Mat parent)
                 : base(parent)
@@ -548,7 +548,7 @@ namespace OpenCvSharp
         /// Gets a type-specific indexer. The indexer has getters/setters to access each matrix element.
         /// </summary>
         /// <returns></returns>
-        public override MatIndexer<ushort> GetIndexer() 
+        public override MatIndexer<ushort> GetIndexer()
         {
             return new Indexer(this);
         }

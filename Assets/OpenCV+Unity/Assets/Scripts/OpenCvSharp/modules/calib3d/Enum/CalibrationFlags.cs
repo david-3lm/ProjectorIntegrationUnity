@@ -74,7 +74,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         FixFocalLength = 0x00010,
-       
+
 #if LANG_JP
 		/// <summary>
 		/// 0 番目の歪み係数（k1）が固定される．
@@ -151,7 +151,7 @@ namespace OpenCvSharp
         /// </summary>
 #endif
         FixK6 = 0x02000,
-        
+
 #if LANG_JP
 		/// <summary>
 		/// 係数 k4, k5, k6 を有効にします．
@@ -206,5 +206,5 @@ namespace OpenCvSharp
     }
 }
 
-		
+
 

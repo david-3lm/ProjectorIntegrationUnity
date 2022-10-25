@@ -17,12 +17,12 @@ namespace OpenCvSharp
             float[] radiusList, int radiusListLength, int[] numberList, int numberListLength,
             float dMax, float dMin,
             int[] indexChange, int indexChangeLength);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void features2d_Ptr_BRISK_delete(IntPtr ptr);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr features2d_Ptr_BRISK_get(IntPtr ptr);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr features2d_BRISK_info(IntPtr obj);
     }

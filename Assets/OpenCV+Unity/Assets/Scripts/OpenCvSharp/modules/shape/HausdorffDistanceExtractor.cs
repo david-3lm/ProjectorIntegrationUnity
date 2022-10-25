@@ -86,11 +86,11 @@ namespace OpenCvSharp
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Flag indicating which norm is used to compute the Hausdorff distance (NORM_L1, NORM_L2).
         /// </summary>
-        public DistanceTypes DistanceFlag 
+        public DistanceTypes DistanceFlag
         {
             get
             {
@@ -109,7 +109,7 @@ namespace OpenCvSharp
         /// <summary>
         /// fractional value (between 0 and 1).
         /// </summary>
-        public float RankProportion 
+        public float RankProportion
         {
             get
             {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Emitter : MonoBehaviour
@@ -27,7 +25,7 @@ public class Emitter : MonoBehaviour
             particle.SetActive(false);
             pool[i] = particle;
         }
-    } 
+    }
 
     // Update is called once per frame
     private void Spawn()
@@ -37,12 +35,12 @@ public class Emitter : MonoBehaviour
             if (!particle.activeSelf)
             {
                 particle.transform.position = transform.TransformPoint(Random.insideUnitSphere * 0.5f);
-                particle.transform.localScale= Random.Range(sizeRange.x, sizeRange.y)* Vector3.one;
+                particle.transform.localScale = Random.Range(sizeRange.x, sizeRange.y) * Vector3.one;
                 particle.SetActive(true);
                 break;
             }
         }
         Invoke("Spawn", spawnRate);
-        
+
     }
 }

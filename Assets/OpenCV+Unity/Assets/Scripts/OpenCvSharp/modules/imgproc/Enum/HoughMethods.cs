@@ -10,7 +10,7 @@ namespace OpenCvSharp
     /// Variants of a Hough transform
     /// </summary>
 #endif
-	public enum HoughMethods : int
+    public enum HoughMethods : int
     {
         /*  */
         /// <summary>
@@ -39,6 +39,6 @@ namespace OpenCvSharp
         /// <summary>
         /// basically *21HT*, described in @cite Yuen90
         /// </summary>
-        Gradient = 3 
-	}
+        Gradient = 3
+    }
 }

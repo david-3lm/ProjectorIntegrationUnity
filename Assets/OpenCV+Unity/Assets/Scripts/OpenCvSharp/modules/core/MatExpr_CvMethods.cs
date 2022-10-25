@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace OpenCvSharp
+﻿namespace OpenCvSharp
 {
-    partial class MatExpr 
+    partial class MatExpr
     {
         /// <summary>
         /// Computes absolute value of each matrix element

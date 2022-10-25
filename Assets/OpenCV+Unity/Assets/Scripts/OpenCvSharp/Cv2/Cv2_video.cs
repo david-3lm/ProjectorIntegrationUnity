@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace OpenCvSharp
 {
@@ -78,7 +77,7 @@ namespace OpenCvSharp
             pyramid.ThrowIfNotReady();
 
             int result = NativeMethods.video_buildOpticalFlowPyramid1(
-                img.CvPtr, pyramid.CvPtr, winSize, maxLevel, withDerivatives ? 1 : 0, 
+                img.CvPtr, pyramid.CvPtr, winSize, maxLevel, withDerivatives ? 1 : 0,
                 (int)pyrBorder, (int)derivBorder, tryReuseInputImage ? 1 : 0);
             pyramid.Fix();
             return result;
@@ -117,7 +116,7 @@ namespace OpenCvSharp
             {
                 int result = NativeMethods.video_buildOpticalFlowPyramid2(
                     img.CvPtr, pyramidVec.CvPtr, winSize, maxLevel, withDerivatives ? 1 : 0,
-                    (int) pyrBorder, (int) derivBorder, tryReuseInputImage ? 1 : 0);
+                    (int)pyrBorder, (int)derivBorder, tryReuseInputImage ? 1 : 0);
                 pyramid = pyramidVec.ToArray();
                 return result;
             }
@@ -172,7 +171,7 @@ namespace OpenCvSharp
 
             NativeMethods.video_calcOpticalFlowPyrLK_InputArray(
                 prevImg.CvPtr, nextImg.CvPtr, prevPts.CvPtr, nextPts.CvPtr,
-                status.CvPtr, err.CvPtr, winSize0,maxLevel,
+                status.CvPtr, err.CvPtr, winSize0, maxLevel,
                 criteria0, (int)flags, minEigThreshold);
 
             nextPts.Fix();
@@ -224,7 +223,7 @@ namespace OpenCvSharp
             {
                 NativeMethods.video_calcOpticalFlowPyrLK_vector(
                     prevImg.CvPtr, nextImg.CvPtr, prevPts, prevPts.Length,
-                    nextPtsVec.CvPtr, statusVec.CvPtr, errVec.CvPtr, 
+                    nextPtsVec.CvPtr, statusVec.CvPtr, errVec.CvPtr,
                     winSize0, maxLevel, criteria0, (int)flags, minEigThreshold);
                 nextPts = nextPtsVec.ToArray();
                 status = statusVec.ToArray();
@@ -266,8 +265,8 @@ namespace OpenCvSharp
             next.ThrowIfDisposed();
             flow.ThrowIfNotReady();
 
-            NativeMethods.video_calcOpticalFlowFarneback(prev.CvPtr, next.CvPtr, 
-                flow.CvPtr, pyrScale, levels, winsize, iterations, polyN, polySigma, 
+            NativeMethods.video_calcOpticalFlowFarneback(prev.CvPtr, next.CvPtr,
+                flow.CvPtr, pyrScale, levels, winsize, iterations, polyN, polySigma,
                 (int)flags);
 
             flow.Fix();
@@ -296,7 +295,7 @@ namespace OpenCvSharp
                 src.CvPtr, dst.CvPtr, fullAffine ? 1 : 0);
             return new Mat(result);
         }
-        
+
         /// <summary>
         /// Implementation of the Zach, Pock and Bischof Dual TV-L1 Optical Flow method
         /// </summary>

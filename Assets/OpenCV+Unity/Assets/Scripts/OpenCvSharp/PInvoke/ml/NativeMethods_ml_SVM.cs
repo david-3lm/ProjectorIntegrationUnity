@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenCvSharp.ML;
+using System;
 using System.Runtime.InteropServices;
-using OpenCvSharp.ML;
 
 #pragma warning disable 1591
 

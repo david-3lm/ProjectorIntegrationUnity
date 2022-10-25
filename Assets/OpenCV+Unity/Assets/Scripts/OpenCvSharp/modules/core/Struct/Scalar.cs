@@ -186,7 +186,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public static explicit operator DMatch(Scalar self)
         {
-            return new DMatch((int) self.Val0, (int) self.Val1, (int) self.Val2, (float) self.Val3);
+            return new DMatch((int)self.Val0, (int)self.Val1, (int)self.Val2, (float)self.Val3);
         }
 
         /// <summary>
@@ -432,8 +432,8 @@ namespace OpenCvSharp
         /// <returns></returns>
         public Scalar Mul(Scalar it, double scale)
         {
-            return new Scalar(Val0*it.Val0*scale, Val1*it.Val1*scale,
-                Val2*it.Val2*scale, Val3*it.Val3*scale);
+            return new Scalar(Val0 * it.Val0 * scale, Val1 * it.Val1 * scale,
+                Val2 * it.Val2 * scale, Val3 * it.Val3 * scale);
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using OpenCvSharp.Util;
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using OpenCvSharp.Util;
 
 namespace OpenCvSharp
 {
@@ -468,7 +466,7 @@ namespace OpenCvSharp
             internal Indexer(Mat parent)
                 : base(parent)
             {
-                this.ptr = (byte*) parent.Data.ToPointer();
+                this.ptr = (byte*)parent.Data.ToPointer();
             }
 
             /// <summary>
@@ -478,8 +476,8 @@ namespace OpenCvSharp
             /// <returns>A value to the specified array element.</returns>
             public override int this[int i0]
             {
-                get { return *(int*) (ptr + (steps[0]*i0)); }
-                set { *(int*) (ptr + (steps[0]*i0)) = value; }
+                get { return *(int*)(ptr + (steps[0] * i0)); }
+                set { *(int*)(ptr + (steps[0] * i0)) = value; }
             }
 
             /// <summary>
@@ -490,8 +488,8 @@ namespace OpenCvSharp
             /// <returns>A value to the specified array element.</returns>
             public override int this[int i0, int i1]
             {
-                get { return *(int*) (ptr + (steps[0]*i0) + (steps[1]*i1)); }
-                set { *(int*) (ptr + (steps[0]*i0) + (steps[1]*i1)) = value; }
+                get { return *(int*)(ptr + (steps[0] * i0) + (steps[1] * i1)); }
+                set { *(int*)(ptr + (steps[0] * i0) + (steps[1] * i1)) = value; }
             }
 
             /// <summary>
@@ -503,8 +501,8 @@ namespace OpenCvSharp
             /// <returns>A value to the specified array element.</returns>
             public override int this[int i0, int i1, int i2]
             {
-                get { return *(int*) (ptr + (steps[0]*i0) + (steps[1]*i1) + (steps[2]*i2)); }
-                set { *(int*) (ptr + (steps[0]*i0) + (steps[1]*i1) + (steps[2]*i2)) = value; }
+                get { return *(int*)(ptr + (steps[0] * i0) + (steps[1] * i1) + (steps[2] * i2)); }
+                set { *(int*)(ptr + (steps[0] * i0) + (steps[1] * i1) + (steps[2] * i2)) = value; }
             }
 
             /// <summary>
@@ -519,18 +517,18 @@ namespace OpenCvSharp
                     long offset = 0;
                     for (int i = 0; i < idx.Length; i++)
                     {
-                        offset += steps[i]*idx[i];
+                        offset += steps[i] * idx[i];
                     }
-                    return *(int*) (ptr + offset);
+                    return *(int*)(ptr + offset);
                 }
                 set
                 {
                     long offset = 0;
                     for (int i = 0; i < idx.Length; i++)
                     {
-                        offset += steps[i]*idx[i];
+                        offset += steps[i] * idx[i];
                     }
-                    *(int*) (ptr + offset) = value;
+                    *(int*)(ptr + offset) = value;
                 }
             }
         }
@@ -566,7 +564,7 @@ namespace OpenCvSharp
             if (arr.Length == 0)
                 throw new ArgumentException("arr.Length == 0");
 
-            int numElems = arr.Length/ThisChannels;
+            int numElems = arr.Length / ThisChannels;
             var mat = new MatOfInt(numElems, 1);
             mat.SetArray(0, 0, arr);
             return mat;
@@ -623,7 +621,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         public override int[] ToArray()
         {
-            long numOfElems = (long) Total();
+            long numOfElems = (long)Total();
             if (numOfElems == 0)
                 return new int[0];
             int[] arr = new int[numOfElems];

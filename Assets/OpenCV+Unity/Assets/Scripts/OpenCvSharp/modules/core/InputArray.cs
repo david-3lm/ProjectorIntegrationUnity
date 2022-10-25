@@ -9,16 +9,16 @@ namespace OpenCvSharp
     public class InputArray : DisposableCvObject
     {
         private bool disposed;
-//UFIX Warning
+        //UFIX Warning
 #pragma warning disable 0414
-		private object obj;
+        private object obj;
 #pragma warning restore 0414
 
 #pragma warning disable 1591
-// ReSharper disable InconsistentNaming
+        // ReSharper disable InconsistentNaming
         public const int KIND_SHIFT = 16;
         public const int KIND_MASK = ~(0x8000 << KIND_SHIFT | 0x4000 << KIND_SHIFT) - (1 << KIND_SHIFT) + 1;
-// ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
 #pragma warning restore 1591
 
         #region Init & Disposal
@@ -84,9 +84,9 @@ namespace OpenCvSharp
         {
             if (mat == null)
                 throw new ArgumentNullException("nameof(mat)");
-			var vec = new VectorOfMat(mat);
-			ptr = NativeMethods.core_InputArray_new_byVectorOfMat(vec.CvPtr);
-			obj = new object[] { mat, vec };
+            var vec = new VectorOfMat(mat);
+            ptr = NativeMethods.core_InputArray_new_byVectorOfMat(vec.CvPtr);
+            obj = new object[] { mat, vec };
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace OpenCvSharp
         /// <param name="array">Array object</param>
         /// <returns></returns>
         public static InputArray Create<T>(T[] array)
-            where T : struct 
+            where T : struct
         {
             MatType type = EstimateType(typeof(T));
             return Create(array, type);
@@ -314,7 +314,7 @@ namespace OpenCvSharp
         /// <param name="array">Array object</param>
         /// <returns></returns>
         public static InputArray Create<T>(T[,] array)
-            where T : struct 
+            where T : struct
         {
             MatType type = EstimateType(typeof(T));
             return Create(array, type);
@@ -348,7 +348,7 @@ namespace OpenCvSharp
         /// <returns></returns>
         private static MatType EstimateType(Type t)
         {
-            if(!t.IsValueType)
+            if (!t.IsValueType)
                 throw new ArgumentException();
 
             // Primitive types

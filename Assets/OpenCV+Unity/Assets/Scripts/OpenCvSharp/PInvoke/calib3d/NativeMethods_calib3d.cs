@@ -73,7 +73,7 @@ namespace OpenCvSharp
                                                             double aspectRatio);
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void calib3d_solvePnP_InputArray(IntPtr selfectPoints, IntPtr imagePoints, IntPtr cameraMatrix, 
+        public static extern void calib3d_solvePnP_InputArray(IntPtr selfectPoints, IntPtr imagePoints, IntPtr cameraMatrix,
             IntPtr distCoeffs, IntPtr rvec, IntPtr tvec, int useExtrinsicGuess, int flags);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void calib3d_solvePnP_vector(Point3f[] objectPoints, int objectPointsLength,
@@ -89,7 +89,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void calib3d_solvePnPRansac_vector(Point3f[] objectPoints, int objectPointsLength,
             Point2f[] imagePoints, int imagePointsLength, IntPtr cameraMatrix, double[] distCoeffs, int distCoeffsLength,
-            [Out] double[] rvec, [Out] double[] tvec, int useExtrinsicGuess, int iterationsCount, float reprojectionError, 
+            [Out] double[] rvec, [Out] double[] tvec, int useExtrinsicGuess, int iterationsCount, float reprojectionError,
             double confidence, IntPtr inliers, int flags);
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -132,7 +132,7 @@ namespace OpenCvSharp
             IntPtr[] objectPoints, int objectPointsSize,
             IntPtr[] imagePoints, int imagePointsSize,
             Size imageSize,
-            IntPtr cameraMatrix,IntPtr distCoeffs,
+            IntPtr cameraMatrix, IntPtr distCoeffs,
             IntPtr rvecs, IntPtr tvecs,
             int flags, TermCriteria criteria);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -312,7 +312,7 @@ namespace OpenCvSharp
             Point2d[] points2, int points2Size,
             Point2d[] newPoints1, Point2d[] newPoints2);
 
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void calib3d_filterSpeckles(IntPtr img, double newVal, int maxSpeckleSize,
             double maxDiff, IntPtr buf);

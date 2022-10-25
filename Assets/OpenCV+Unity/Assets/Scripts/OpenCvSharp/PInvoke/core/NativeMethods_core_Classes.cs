@@ -10,24 +10,24 @@ namespace OpenCvSharp
     {
         #region Algorithm
 
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr core_Algorithm_new();
         //EX
-		//[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
-		//public static extern void core_Algorithm_delete(IntPtr self);
+        //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
+        //public static extern void core_Algorithm_delete(IntPtr self);
         //EX
-		//[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+        //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         //public static extern void core_Algorithm_name(IntPtr self, [MarshalAs(UnmanagedType.LPStr)] StringBuilder buf, int bufLength);
-        
+
         //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr core_Ptr_Algorithm_new(IntPtr rawPtr);
-		//EX
+        //EX
         //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern void core_Ptr_Algorithm_delete(IntPtr ptr);
         //EX
-		//[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
+        //[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         //public static extern IntPtr core_Ptr_Algorithm_get(IntPtr ptr);
 
         #endregion
@@ -64,13 +64,13 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int core_InputArray_kind(IntPtr ia);
 
-		[DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr core_OutputArray_getMat(IntPtr oa);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern Scalar core_OutputArray_getScalar(IntPtr oa);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_OutputArray_getVectorOfMat(IntPtr oa, IntPtr vector);
-        
+
         #endregion
 
         #region FileStorage
@@ -79,7 +79,7 @@ namespace OpenCvSharp
         public static extern IntPtr core_FileStorage_new1();
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr core_FileStorage_new2(
-            [MarshalAs(UnmanagedType.LPStr)] string source, 
+            [MarshalAs(UnmanagedType.LPStr)] string source,
             int flags, [MarshalAs(UnmanagedType.LPStr)] string encoding);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr core_FileStorage_newFromLegacy(IntPtr fs);
@@ -88,7 +88,7 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int core_FileStorage_open(
-            IntPtr obj, [MarshalAs(UnmanagedType.LPStr)] string filename, 
+            IntPtr obj, [MarshalAs(UnmanagedType.LPStr)] string filename,
             int flags, [MarshalAs(UnmanagedType.LPStr)] string encoding);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern int core_FileStorage_isOpened(IntPtr obj);
@@ -117,7 +117,7 @@ namespace OpenCvSharp
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_FileStorage_getDefaultObjectName(
-            [MarshalAs(UnmanagedType.LPStr)] string filename, 
+            [MarshalAs(UnmanagedType.LPStr)] string filename,
             [MarshalAs(UnmanagedType.LPStr)] StringBuilder buf, int bufLength);
 
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
@@ -151,7 +151,7 @@ namespace OpenCvSharp
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_FileStorage_write_vectorOfDMatch(
             IntPtr fs, [MarshalAs(UnmanagedType.LPStr)] string name, IntPtr value);
-        
+
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]
         public static extern void core_FileStorage_writeScalar_int(IntPtr fs, int value);
         [DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl)]

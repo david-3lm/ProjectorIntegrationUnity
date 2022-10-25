@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OpenCvSharp
 {
@@ -181,7 +179,7 @@ namespace OpenCvSharp
         {
             // 公式で
             double m = Vy / Vx;
-            double n = Y1 - m * X1; 
+            double n = Y1 - m * X1;
             return Math.Abs(y - m * x - n) / Math.Sqrt(1 + m * m);
         }
 
@@ -206,15 +204,15 @@ namespace OpenCvSharp
         {
             double t = (width + height);
             pt1 = new Point
-                {
-                    X = (int)Math.Round(X1 - Vx*t),
-                    Y = (int)Math.Round(Y1 - Vy * t)
-                };
+            {
+                X = (int)Math.Round(X1 - Vx * t),
+                Y = (int)Math.Round(Y1 - Vy * t)
+            };
             pt2 = new Point
-                {
-                    X = (int)Math.Round(X1 + Vx * t),
-                    Y = (int)Math.Round(Y1 + Vy * t)
-                };
+            {
+                X = (int)Math.Round(X1 + Vx * t),
+                Y = (int)Math.Round(Y1 + Vy * t)
+            };
         }
         #endregion
     }

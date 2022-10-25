@@ -72,7 +72,7 @@ namespace OpenCvSharp.XFeatures2D
                     }
 
                     // releases unmanaged resources
-                    
+
                     ptr = IntPtr.Zero;
                     disposed = true;
                 }
@@ -86,7 +86,7 @@ namespace OpenCvSharp.XFeatures2D
         #endregion
 
         #region Properties
-        
+
         /// <summary>
         /// Threshold for the keypoint detector. Only features, whose hessian is larger than hessianThreshold 
         /// are retained by the detector. Therefore, the larger the value, the less keypoints you will get. 
@@ -178,7 +178,7 @@ namespace OpenCvSharp.XFeatures2D
                 NativeMethods.xfeatures2d_SURF_setUpright(ptr, value ? 1 : 0);
             }
         }
-        
+
         #endregion
     }
 }

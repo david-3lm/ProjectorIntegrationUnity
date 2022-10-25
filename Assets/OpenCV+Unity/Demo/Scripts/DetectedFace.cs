@@ -1,13 +1,13 @@
 ﻿namespace OpenCvSharp.Demo
 {
-	using System;
-	using System.Collections.Generic;
-	using OpenCvSharp;
+    using OpenCvSharp;
+    using System;
+    using System.Collections.Generic;
 
-	/// <summary>
-	/// Detected object data
-	/// </summary>
-	class DetectedObject
+    /// <summary>
+    /// Detected object data
+    /// </summary>
+    class DetectedObject
     {
         PointsDataStabilizer marksStabilizer = null;
 

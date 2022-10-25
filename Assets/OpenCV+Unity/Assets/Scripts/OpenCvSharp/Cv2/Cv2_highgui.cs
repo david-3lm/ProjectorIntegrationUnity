@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenCvSharp.Util;
+﻿using OpenCvSharp.Util;
+using System;
 
 namespace OpenCvSharp
 {
@@ -29,7 +28,7 @@ namespace OpenCvSharp
                 throw new ArgumentNullException("nameof(winname)");
             try
             {
-                NativeMethods.highgui_namedWindow(winname, (int) flags);
+                NativeMethods.highgui_namedWindow(winname, (int)flags);
             }
             catch (BadImageFormatException ex)
             {
@@ -139,7 +138,7 @@ namespace OpenCvSharp
         {
             if (String.IsNullOrEmpty(winName))
                 throw new ArgumentNullException("nameof(winName)");
-            NativeMethods.highgui_setWindowProperty(winName, (int) propId, propValue);
+            NativeMethods.highgui_setWindowProperty(winName, (int)propId, propValue);
         }
 
         /// <summary>
@@ -149,7 +148,7 @@ namespace OpenCvSharp
         /// <param name="title"></param>
         public static void SetWindowTitle(string winname, string title)
         {
-            if (String.IsNullOrEmpty(winname)) 
+            if (String.IsNullOrEmpty(winname))
                 throw new ArgumentNullException("nameof(winname)");
             if (String.IsNullOrEmpty(title))
                 throw new ArgumentNullException("nameof(title)");
@@ -166,7 +165,7 @@ namespace OpenCvSharp
         {
             if (String.IsNullOrEmpty(winName))
                 throw new ArgumentNullException("nameof(winName)");
-            return NativeMethods.highgui_getWindowProperty(winName, (int) propId);
+            return NativeMethods.highgui_getWindowProperty(winName, (int)propId);
         }
 
 #if LANG_JP

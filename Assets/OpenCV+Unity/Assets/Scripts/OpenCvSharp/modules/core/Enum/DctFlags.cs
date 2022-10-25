@@ -12,7 +12,7 @@ namespace OpenCvSharp
     /// </summary>
 #endif
     [Flags]
-// ReSharper disable once InconsistentNaming
+    // ReSharper disable once InconsistentNaming
     public enum DctFlags
     {
         /// <summary>
