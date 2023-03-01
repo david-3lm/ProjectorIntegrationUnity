@@ -1,6 +1,8 @@
 using OpenCvSharp;
 using OpenCvSharp.Demo;
 using UnityEngine;
+using UnityEngine.Windows;
+using System.Threading;
 
 public class ContourFinder : WebCamera
 {
@@ -16,32 +18,75 @@ public class ContourFinder : WebCamera
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
+    double area;
+    Point[] points;
+    bool newIMGReady;
+    Thread t;
+    bool threadStarted=false;
+
+    [SerializeField]ColorMask mask;
+
+    private void Awake()
+    {
+        base.Awake();
+        t = new Thread(ThreadMethod);
+    }
+    private void ThreadMethod()
+    {
+        while (t.IsAlive)
+        {
+            ProcessContour();
+            newIMGReady = true;
+            //Thread.Sleep(1000);
+        }
+    }
+
+    public void ProcessContour()
+    {
+        foreach (Point[] contour in contours)
+        {
+            points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
+            area = Cv2.ContourArea(contour);
+
+
+            if (area > minArea)
+            {
+                bool validated = true;
+                foreach(Point p in points)
+                {
+                    if (p.X <= mask.minX || p.X >= mask.maxX || p.Y <= mask.minY || p.Y >= mask.maxY) validated= false;
+
+                }
+                
+                if(validated) drawContour(processedImg, new Scalar(127, 127, 127), 20, points);
+
+            }
+        }
+    }
     protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
     {
         img = OpenCvSharp.Unity.TextureToMat(input);
-
-        
-
         Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
         Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
         Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
 
-        collider2D.pathCount = 0;
-
-        foreach (Point[] contour in contours)
+        if (!threadStarted)
         {
-            Point[] points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
-            var area = Cv2.ContourArea(contour);
-
-            if (area > minArea)
-            {
-                drawContour(processedImg, new Scalar(127, 127, 127), 20, points);
-
-                collider2D.pathCount++;
-                collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
-            }
+            t.Start();
+            threadStarted = true;
         }
 
+        //ProcessContour();
+        if (newIMGReady)
+        {
+            
+            collider2D.pathCount =0;
+            
+            collider2D.pathCount++;
+            collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
+            newIMGReady= false;
+            Debug.Log(collider2D.pathCount);
+        }
         if (output == null)
             output = OpenCvSharp.Unity.MatToTexture(ShowProcessedImg ? processedImg : img);
         else

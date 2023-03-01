@@ -4,6 +4,7 @@ namespace OpenCvSharp.Demo
     using System;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.Windows;
 
     // Many ideas are taken from http://answers.unity3d.com/questions/773464/webcamtexture-correct-resolution-and-ratio.html#answer-1155328
 
@@ -20,8 +21,8 @@ namespace OpenCvSharp.Demo
         public GameObject Surface;
 
         private Nullable<WebCamDevice> webCamDevice = null;
-        private WebCamTexture webCamTexture = null;
-        private Texture2D renderedTexture = null;
+        protected WebCamTexture webCamTexture = null;
+        protected Texture2D renderedTexture = null;
 
         /// <summary>
         /// A kind of workaround for macOS issue: MacBook doesn't state it's webcam as frontal
@@ -32,6 +33,9 @@ namespace OpenCvSharp.Demo
         /// WebCam texture parameters to compensate rotations, flips etc.
         /// </summary>
         protected Unity.TextureConversionParams TextureParameters { get; private set; }
+
+        //IMG metodo get is playing
+        public Mat imgWebCam = null;
 
         /// <summary>
         /// Camera device name, full list can be taken from WebCamTextures.devices enumerator
@@ -135,7 +139,7 @@ namespace OpenCvSharp.Demo
         /// <summary>
         /// Updates web camera texture
         /// </summary>
-        private void Update()
+        protected void Update()
         {
             if (webCamTexture != null && webCamTexture.didUpdateThisFrame)
             {
@@ -143,10 +147,11 @@ namespace OpenCvSharp.Demo
                 ReadTextureConversionParameters();
 
                 // process texture with whatever method sub-class might have in mind
-                if (ProcessTexture(webCamTexture, ref renderedTexture))
-                {
+                //if (ProcessTexture(webCamTexture, ref renderedTexture))  
+                imgWebCam = OpenCvSharp.Unity.TextureToMat(webCamTexture);
+                
                     RenderFrame();
-                }
+                
             }
         }
 
