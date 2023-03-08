@@ -44,12 +44,14 @@ public class ColorMask : WebCamera
     {
         base.Awake();
         t = new Thread(new ThreadStart(ThreadMethod));
+        ProcessTexture(webCamTexture, ref renderedTexture);
+
 
     }
     private void Update()
     {
         base.Update();
-        ThreadMethod();
+        //ThreadMethod();
     }
     private void ThreadMethod()
     {
@@ -68,6 +70,12 @@ public class ColorMask : WebCamera
 
         //img = OpenCvSharp.Unity.TextureToMat(input);
         img = imgWebCam;
+
+        if (!threadStarted)
+        {
+            t.Start();
+            threadStarted = true;
+        }
 
         Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2HSV);
         InputArray lowerBound = new InputArray(lower);

@@ -24,13 +24,14 @@ public class ContourFinder : WebCamera
     Thread t;
     bool threadStarted=false;
 
-    [SerializeField]ColorMask mask;
+   // [SerializeField]ColorMask mask;
 
     private void Awake()
     {
         base.Awake();
         t = new Thread(ThreadMethod);
     }
+
     private void ThreadMethod()
     {
         while (t.IsAlive)
@@ -38,6 +39,7 @@ public class ContourFinder : WebCamera
             ProcessContour();
             newIMGReady = true;
             //Thread.Sleep(1000);
+            Debug.Log("hilo");
         }
     }
 
@@ -54,7 +56,7 @@ public class ContourFinder : WebCamera
                 bool validated = true;
                 foreach(Point p in points)
                 {
-                    if (p.X <= mask.minX || p.X >= mask.maxX || p.Y <= mask.minY || p.Y >= mask.maxY) validated= false;
+                   // if (p.X <= mask.minX || p.X >= mask.maxX || p.Y <= mask.minY || p.Y >= mask.maxY) validated= false;
 
                 }
                 

@@ -147,10 +147,11 @@ namespace OpenCvSharp.Demo
                 ReadTextureConversionParameters();
 
                 // process texture with whatever method sub-class might have in mind
-                //if (ProcessTexture(webCamTexture, ref renderedTexture))  
-                imgWebCam = OpenCvSharp.Unity.TextureToMat(webCamTexture);
-                
+                if (ProcessTexture(webCamTexture, ref renderedTexture))
+                //imgWebCam = OpenCvSharp.Unity.TextureToMat(webCamTexture);
+                { 
                     RenderFrame();
+                }
                 
             }
         }
