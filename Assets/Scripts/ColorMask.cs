@@ -69,7 +69,7 @@ public class ColorMask : WebCamera
 
 
         //img = OpenCvSharp.Unity.TextureToMat(input);
-        img = imgWebCam;
+        //img = imgWebCam;
 
         if (!threadStarted)
         {

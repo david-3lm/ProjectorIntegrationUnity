@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Windows;
 using System.Threading;
 
-public class ContourFinder : WebCamera
+public class ContourFinder : MonoBehaviour
 {
     [SerializeField] private float threshold = 90f;
     [SerializeField] private bool ShowProcessedImg = true;
@@ -18,6 +18,8 @@ public class ContourFinder : WebCamera
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
+    public WebCam webCam;
+
     double area;
     Point[] points;
     bool newIMGReady;
@@ -28,14 +30,26 @@ public class ContourFinder : WebCamera
 
     private void Awake()
     {
-        base.Awake();
+
         t = new Thread(ThreadMethod);
+        ProcessTexture();
+    }
+    private void Update()
+    {
+        
+        ProcessTexture();
+        
     }
 
+    private void OnDestroy()
+    {
+        t.Abort();
+    }
     private void ThreadMethod()
     {
         while (t.IsAlive)
         {
+            //webCam.CallProcessTexture();
             ProcessContour();
             newIMGReady = true;
             //Thread.Sleep(1000);
@@ -45,6 +59,7 @@ public class ContourFinder : WebCamera
 
     public void ProcessContour()
     {
+        if (contours == null || webCam.imgHilo) return;
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
@@ -60,40 +75,47 @@ public class ContourFinder : WebCamera
 
                 }
                 
-                if(validated) drawContour(processedImg, new Scalar(127, 127, 127), 20, points);
+                //if(validated) 
+                    drawContour(processedImg, new Scalar(127, 127, 127), 20, points);
+
 
             }
         }
-    }
-    protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
-    {
-        img = OpenCvSharp.Unity.TextureToMat(input);
-        Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
-        Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
-        Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
+        webCam.imgHilo = true;
 
+
+    }
+    protected void ProcessTexture()
+    {
+        img = webCam.imgWebCam;
         if (!threadStarted)
         {
             t.Start();
             threadStarted = true;
         }
-
-        //ProcessContour();
-        if (newIMGReady)
+        if (img != null)
         {
-            
-            collider2D.pathCount =0;
-            
-            collider2D.pathCount++;
-            collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
-            newIMGReady= false;
-            Debug.Log(collider2D.pathCount);
+
+
+            Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
+            Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
+            Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
+
+
+
+            //ProcessContour();
+            if (newIMGReady)
+            {
+
+                collider2D.pathCount = 0;
+
+                collider2D.pathCount++;
+                collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
+                newIMGReady = false;
+                Debug.Log(collider2D.pathCount);
+            }
+            webCam.setImgProcessed(processedImg);
         }
-        if (output == null)
-            output = OpenCvSharp.Unity.MatToTexture(ShowProcessedImg ? processedImg : img);
-        else
-            OpenCvSharp.Unity.MatToTexture(ShowProcessedImg ? processedImg : img, output);
-        return true;
     }
     private Vector2[] PointsToVector2(Point[] points)
     {

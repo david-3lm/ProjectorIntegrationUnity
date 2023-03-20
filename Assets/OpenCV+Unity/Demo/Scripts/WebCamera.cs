@@ -22,7 +22,7 @@ namespace OpenCvSharp.Demo
 
         private Nullable<WebCamDevice> webCamDevice = null;
         protected WebCamTexture webCamTexture = null;
-        protected Texture2D renderedTexture = null;
+        public Texture2D renderedTexture = null;
 
         /// <summary>
         /// A kind of workaround for macOS issue: MacBook doesn't state it's webcam as frontal
@@ -35,7 +35,7 @@ namespace OpenCvSharp.Demo
         protected Unity.TextureConversionParams TextureParameters { get; private set; }
 
         //IMG metodo get is playing
-        public Mat imgWebCam = null;
+        //public Mat imgWebCam = null;
 
         /// <summary>
         /// Camera device name, full list can be taken from WebCamTextures.devices enumerator
@@ -86,7 +86,7 @@ namespace OpenCvSharp.Demo
         /// This method scans source device params (flip, rotation, front-camera status etc.) and
         /// prepares TextureConversionParameters that will compensate all that stuff for OpenCV
         /// </summary>
-        private void ReadTextureConversionParameters()
+        protected void ReadTextureConversionParameters()
         {
             Unity.TextureConversionParams parameters = new Unity.TextureConversionParams();
 
@@ -168,7 +168,7 @@ namespace OpenCvSharp.Demo
         /// <summary>
         /// Renders frame onto the surface
         /// </summary>
-        private void RenderFrame()
+        protected void RenderFrame()
         {
             if (renderedTexture != null)
             {

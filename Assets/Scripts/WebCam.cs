@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using OpenCvSharp;
+using OpenCvSharp.Demo;
+
+public class WebCam : WebCamera
+{
+    public Mat imgWebCam = null;
+    public bool imgHilo = false;
+    private Mat imgProcessed = null;
+    protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
+    {
+        imgWebCam = OpenCvSharp.Unity.TextureToMat(input);
+        if (imgHilo)
+        {
+            output = OpenCvSharp.Unity.MatToTexture(imgProcessed, output);
+            Debug.Log("hola");
+            imgHilo = false;
+        }
+        else
+        {
+            if (output == null)
+                output = OpenCvSharp.Unity.MatToTexture(imgWebCam);
+            else
+                OpenCvSharp.Unity.MatToTexture(imgWebCam, output);
+        }
+        return true;
+    }
+    public void setImgProcessed(Mat img)
+    {
+        imgProcessed = img;
+    }
+
+}

@@ -564,6 +564,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &726273115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726273116}
+  - component: {fileID: 726273117}
+  m_Layer: 0
+  m_Name: WebCamGO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726273116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726273115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 681.933, y: 610.81494, z: -640.0295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &726273117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726273115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f69325154cfd024492d87fe14343ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Surface: {fileID: 2093129443}
+  renderedTexture: {fileID: 0}
 --- !u!1 &803529983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,15 +1427,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2093129443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef3d886679850b4f9d5cf40f6d9219b, type: 3}
+  m_Script: {fileID: 11500000, guid: e0321ddd12b095c489a82c3cef8f7e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Surface: {fileID: 2093129443}
+  threshold: 90
   ShowProcessedImg: 1
   CurveAccuracy: 10
   minArea: 5000
   collider2D: {fileID: 2086451334}
-  minX: 0
-  minY: 0
-  maxX: 0
-  maxY: 0
+  webCam: {fileID: 726273117}
