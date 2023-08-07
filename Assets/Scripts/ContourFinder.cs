@@ -5,6 +5,9 @@ using UnityEngine.Windows;
 using System.Threading;
 using UnityEditor.EditorTools;
 using UnityEditor;
+using System.Linq;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class ContourFinder : MonoBehaviour
 {
@@ -31,10 +34,16 @@ public class ContourFinder : MonoBehaviour
 
     double area;
     Point[] points;
+
     bool newIMGReady =false;
     Thread t;
     bool threadStarted=false;
-    Semaphore semaphore;
+    Camera cam;
+
+    //Limit Check
+    List<Point> validatedPoints;
+    int minX,maxX,minY,maxY;
+
 
     // [SerializeField]ColorMask mask;
     Mat lower, upper;
@@ -47,8 +56,31 @@ public class ContourFinder : MonoBehaviour
         double[,] u = { { 100, 255, 255 } };
         lower = new Mat(3, 1, MatType.CV_64F, d);
         upper = new Mat(3, 1, MatType.CV_64F, u);
+        cam = Camera.main;
 
-        semaphore = new Semaphore(1,1);
+
+        //Adjust the limits
+        validatedPoints = new List<Point>();
+
+        minX =Limits.Instance.valuesX.Min();
+        minY =Limits.Instance.valuesY.Min();
+        maxX =Limits.Instance.valuesX.Max();
+        maxY =Limits.Instance.valuesY.Max();
+
+        //float valueX = Mathf.InverseLerp(0,1920,minX);
+        //float valueY = Mathf.InverseLerp(0, 1080, minY);
+
+
+        //Debug.Log(minX);
+        //Debug.Log(valueX);
+
+        //if(collider2D.TryGetComponent<RectTransform>(out var rectTransform))
+        //{
+        //    rectTransform.pivot = new Vector2(valueX,valueY);
+        //    Debug.Log("ey");
+        //}
+
+
         t = new Thread(ThreadMethod);
         if (maskByColor)
         {
@@ -105,12 +137,17 @@ public class ContourFinder : MonoBehaviour
                 bool validated = true;
                 foreach(Point p in points)
                 {
-                   // if (p.X <= mask.minX || p.X >= mask.maxX || p.Y <= mask.minY || p.Y >= mask.maxY) validated= false;
+                    //Check if the point is inside the limits
+                    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
+                        validated = false;
+                    else
+                        validatedPoints.Add(p);
 
                 }
 
-                //if(validated) 
-                drawContour(mat, new Scalar(127, 127, 127), 20, points);
+                if(validated) 
+                    drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
+                
 
 
             }
@@ -147,9 +184,10 @@ public class ContourFinder : MonoBehaviour
                 //collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
                 //newIMGReady = false;
                 //Debug.Log(collider2D.pathCount);
-                if (points != null)
+                if (validatedPoints != null)
                 {
-                    drawCollider(collider2D, points);
+                    drawCollider(collider2D, validatedPoints.ToArray());
+                    validatedPoints.Clear();
                 }
             }
             webCam.setImgProcessed(processedImg);
@@ -202,7 +240,9 @@ public class ContourFinder : MonoBehaviour
         vectorList = new Vector2[points.Length];
         for (int i = 0; i < points.Length; i++)
         {
+            
             vectorList[i] = new Vector2(points[i].X, points[i].Y);
+            vectorList[i]=cam.ScreenToWorldPoint(vectorList[i]);
         }
         return vectorList;
     }
@@ -211,6 +251,7 @@ public class ContourFinder : MonoBehaviour
         for (int i = 1; i < points.Length; i++)
         {
             Cv2.Line(image, points[i - 1], points[i], color, thickness);
+            
         }
         Cv2.Line(image, points[points.Length - 1], points[0], color, thickness);
     }
@@ -224,6 +265,7 @@ public class ContourFinder : MonoBehaviour
         {
             collider2D.pathCount = 0;
             collider2D.pathCount++;
+            
             collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
             aux.pathCount = 0;
         }
