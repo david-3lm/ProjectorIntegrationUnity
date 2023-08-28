@@ -8,6 +8,7 @@ using UnityEditor;
 using System.Linq;
 using Unity.VisualScripting;
 using System.Collections.Generic;
+using System;
 
 public class ContourFinder : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class ContourFinder : MonoBehaviour
     private Mat img;
     private Mat processedImg = new Mat();
     private Point[][] contours;
+    private List<Point> centers;
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
@@ -137,16 +139,33 @@ public class ContourFinder : MonoBehaviour
                 bool validated = true;
                 foreach(Point p in points)
                 {
-                    //Check if the point is inside the limits
-                    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
-                        validated = false;
-                    else
-                        validatedPoints.Add(p);
+                    ////Check if the point is inside the limits
+                    //if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
+                    //{
+                    //    validated = false;
+                    //    ClampPoint(p, minX, maxX, minY, maxY);
+                    //}
 
+
+
+                    //validatedPoints.Add(p);
+
+
+                    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
+                    {
+                        validated = false;
+                        
+                    }
                 }
 
-                if(validated) 
-                    drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
+                if (validated)
+                {
+
+                    //drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
+                    //drawContour(mat, new Scalar(127, 127, 127), 20,points);
+                    drawCenters(mat, new Scalar(127, 127, 127), 20,centers);
+                    
+                } 
                 
 
 
@@ -156,6 +175,14 @@ public class ContourFinder : MonoBehaviour
 
 
     }
+
+
+    private void ClampPoint(Point p, int minX, int maxX, int minY, int maxY)
+    {
+        p.X=Mathf.Clamp(p.X, minX, maxX);
+        p.Y=Mathf.Clamp(p.Y, minY, maxY);
+    }
+
     protected void ProcessTexture()
     {
         img = webCam.imgWebCam;
@@ -169,10 +196,12 @@ public class ContourFinder : MonoBehaviour
 
 
             Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
+            Cv2.GaussianBlur(processedImg, processedImg, new Size(5,5), 0);
             Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
             Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
 
-
+            ComputeCenter(processedImg, contours, out centers);
+            
 
             //ProcessContour();
             if (newIMGReady)
@@ -184,13 +213,38 @@ public class ContourFinder : MonoBehaviour
                 //collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
                 //newIMGReady = false;
                 //Debug.Log(collider2D.pathCount);
-                if (validatedPoints != null)
+
+
+
+
+                //if (validatedPoints != null)
+                //{
+                //    drawCollider(collider2D, validatedPoints.ToArray());
+                //    validatedPoints.Clear();
+                //}
+                if (points != null)
                 {
-                    drawCollider(collider2D, validatedPoints.ToArray());
-                    validatedPoints.Clear();
+                    drawCollider(collider2D, points);
+                    //validatedPoints.Clear();
                 }
             }
             webCam.setImgProcessed(processedImg);
+        }
+    }
+
+    private void ComputeCenter(Mat processedImg, Point[][] contours, out List<Point> centers)
+    {
+        Moments m;
+
+        centers = new List<Point>();
+        foreach (var cont in contours)
+        {
+            double area= Cv2.ContourArea(cont);
+            if(area > minArea) {
+            m=Cv2.Moments(cont);
+            Point c = new(m.M10 / m.M00,m.M01/m.M00);
+            centers.Add(c);
+           }
         }
     }
 
@@ -255,6 +309,17 @@ public class ContourFinder : MonoBehaviour
         }
         Cv2.Line(image, points[points.Length - 1], points[0], color, thickness);
     }
+
+    private void drawCenters(Mat image, Scalar color, int thickness, List<Point> centers)
+    {
+        for (int i = 1; i < centers.Count; i++)
+        {
+            Cv2.Circle(image, centers[i],6,color,thickness);
+
+        }
+        centers.Clear();
+    }
+
 
     private void drawCollider(PolygonCollider2D collider2D, Point[] points)
     {

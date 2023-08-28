@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0321ddd12b095c489a82c3cef8f7e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 90
+  threshold: 200
   ShowProcessedImg: 1
   CurveAccuracy: 10
   minArea: 500
