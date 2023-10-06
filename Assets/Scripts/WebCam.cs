@@ -15,7 +15,6 @@ public class WebCam : WebCamera
         if (imgHilo)
         {
             output = OpenCvSharp.Unity.MatToTexture(imgProcessed, output);
-            Debug.Log("hola");
             imgHilo = false;
         }
         else

@@ -28,6 +28,7 @@ public class ContourFinder : MonoBehaviour
     private Mat processedImg = new Mat();
     private Point[][] contours;
     private List<Point> centers;
+    private List<Point> centersAux;
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
@@ -50,6 +51,8 @@ public class ContourFinder : MonoBehaviour
     // [SerializeField]ColorMask mask;
     Mat lower, upper;
 
+    //Interactor 
+    [SerializeField] GameObject interactor;
 
 
     private void Awake()
@@ -59,6 +62,9 @@ public class ContourFinder : MonoBehaviour
         lower = new Mat(3, 1, MatType.CV_64F, d);
         upper = new Mat(3, 1, MatType.CV_64F, u);
         cam = Camera.main;
+
+        centers = new List<Point>();
+        centersAux = new List<Point>();
 
 
         //Adjust the limits
@@ -129,6 +135,7 @@ public class ContourFinder : MonoBehaviour
     {
         if (contours == null || webCam.imgHilo) return;
         Mat mat = processedImg;
+        /*
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
@@ -137,6 +144,8 @@ public class ContourFinder : MonoBehaviour
             if (area > minArea)
             {
                 bool validated = true;
+         
+
                 foreach(Point p in points)
                 {
                     ////Check if the point is inside the limits
@@ -150,27 +159,54 @@ public class ContourFinder : MonoBehaviour
 
                     //validatedPoints.Add(p);
 
-
-                    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
-                    {
-                        validated = false;
-                        
-                    }
                 }
 
-                if (validated)
-                {
+                //Validate the centers
+                //foreach(Point p in centers)
+                //{
 
-                    //drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
-                    //drawContour(mat, new Scalar(127, 127, 127), 20,points);
-                    drawCenters(mat, new Scalar(127, 127, 127), 20,centers);
+                //    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
+                //    {
+                //        validated = false;
+
+                //    }
+                //}
+                //if (validated)
+                //{
+
+                //    //drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
+                //    //drawContour(mat, new Scalar(127, 127, 127), 20,points);
+                //    drawCenters(mat, new Scalar(127, 127, 127), 20,centers);
                     
-                } 
+                //} 
                 
 
+        
+            }
 
+        }
+        */
+
+        if (centers.Count < 1) return;
+        //Validate the centers
+        List<Point> centerAux = new List<Point>();
+        centerAux.AddRange(centers);
+        List<Point> validatedCenters = new List<Point>();
+        foreach (Point p in centerAux)
+        {
+            bool isInside = true;
+            if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
+            {
+                isInside = false;
+            }
+            if(isInside)
+            {
+                validatedCenters.Add(p);
+                Debug.Log(p.X+" "+ p.Y);
             }
         }
+
+        drawCenters(mat, new Scalar(127, 127, 127), 20, validatedCenters);
         webCam.imgHilo = true;
 
 
@@ -227,25 +263,34 @@ public class ContourFinder : MonoBehaviour
                     drawCollider(collider2D, points);
                     //validatedPoints.Clear();
                 }
+                if (centers.Count > 0)
+                {
+                    SetColliders(interactor, centers);
+                }
             }
             webCam.setImgProcessed(processedImg);
         }
     }
 
-    private void ComputeCenter(Mat processedImg, Point[][] contours, out List<Point> centers)
+    private void ComputeCenter(Mat processedImg, Point[][] contours, out List<Point> centersList)
     {
         Moments m;
-
-        centers = new List<Point>();
+        centersList = centers;
+        centersList.Clear();
         foreach (var cont in contours)
         {
             double area= Cv2.ContourArea(cont);
-            if(area > minArea) {
-            m=Cv2.Moments(cont);
-            Point c = new(m.M10 / m.M00,m.M01/m.M00);
-            centers.Add(c);
-           }
+            if (area > minArea)
+            {
+                m = Cv2.Moments(cont);
+                Point c = new(m.M10 / m.M00, m.M01 / m.M00);
+                if (!centersAux.Contains(c))
+                {
+                    centersList.Add(c);
+                }
+            }
         }
+        
     }
 
     protected void ProcessTextureByColor()
@@ -284,11 +329,16 @@ public class ContourFinder : MonoBehaviour
                 if (points != null)
                 {
                     drawCollider(collider2D, points);
+                    
                 }
+
             }
             webCam.setImgProcessed(processedImg);
         }
     }
+
+
+
     private Vector2[] PointsToVector2(Point[] points)
     {
         vectorList = new Vector2[points.Length];
@@ -315,8 +365,9 @@ public class ContourFinder : MonoBehaviour
         for (int i = 1; i < centers.Count; i++)
         {
             Cv2.Circle(image, centers[i],6,color,thickness);
-
         }
+        centersAux.Clear();
+        centersAux = centers;
         centers.Clear();
     }
 
@@ -335,5 +386,12 @@ public class ContourFinder : MonoBehaviour
             aux.pathCount = 0;
         }
         newIMGReady = false;
+    }
+
+    private void SetColliders(GameObject interactor, List<Point> centers)
+    {
+        
+        Vector2 aux = cam.ScreenToWorldPoint(new Vector3(centers[0].X, centers[0].Y, 0));
+        interactor.transform.position =aux;
     }
 }
