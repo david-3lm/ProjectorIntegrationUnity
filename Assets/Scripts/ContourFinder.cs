@@ -53,6 +53,7 @@ public class ContourFinder : MonoBehaviour
 
     //Interactor 
     [SerializeField] GameObject interactor;
+    private List<GameObject> interactorPool = new List<GameObject>();
 
 
     private void Awake()
@@ -74,6 +75,11 @@ public class ContourFinder : MonoBehaviour
         minY =Limits.Instance.valuesY.Min();
         maxX =Limits.Instance.valuesX.Max();
         maxY =Limits.Instance.valuesY.Max();
+        
+        for (int i = 0;i <50; i++)
+        {
+            interactorPool.Add(Instantiate(interactor,new Vector3(1000,1000,0),Quaternion.identity));
+        }
 
         //float valueX = Mathf.InverseLerp(0,1920,minX);
         //float valueY = Mathf.InverseLerp(0, 1080, minY);
@@ -388,10 +394,26 @@ public class ContourFinder : MonoBehaviour
         newIMGReady = false;
     }
 
+    //Take collider and set it to the position of the centers
     private void SetColliders(GameObject interactor, List<Point> centers)
     {
-        
-        Vector2 aux = cam.ScreenToWorldPoint(new Vector3(centers[0].X, centers[0].Y, 0));
-        interactor.transform.position =aux;
+        RestartCollider();
+        for (int i = 0; i < centers.Count; i++)
+        {
+            if (i >= interactorPool.Count) break;
+            Vector2 aux = cam.ScreenToWorldPoint(new Vector3(centers[i].X, (centers[i].Y), 0));
+            aux.y = -aux.y;
+            interactorPool[i].transform.position =aux;
+
+        }
+    }
+
+    private void RestartCollider()
+    {
+        foreach(GameObject go in interactorPool)
+        {
+            go.transform.position = new Vector3(1000, 1000, 0);
+
+        }
     }
 }
