@@ -225,6 +225,8 @@ public class ContourFinder : MonoBehaviour
         p.Y=Mathf.Clamp(p.Y, minY, maxY);
     }
 
+    
+
     protected void ProcessTexture()
     {
         img = webCam.imgWebCam;
@@ -243,7 +245,9 @@ public class ContourFinder : MonoBehaviour
             Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
 
             ComputeCenter(processedImg, contours, out centers);
-            
+
+            //Comprobacion de color
+            GetColorAt(processedImg, 0, 0);
 
             //ProcessContour();
             if (newIMGReady)
@@ -415,5 +419,12 @@ public class ContourFinder : MonoBehaviour
             go.transform.position = new Vector3(1000, 1000, 0);
 
         }
+    }
+
+    private void GetColorAt(Mat img, int X, int Y)
+    {
+
+        Vec3b color = img.At<Vec3b>(X, Y);
+        Debug.Log(color[0] + " , " + color[1] + ", " + color[2]);
     }
 }
