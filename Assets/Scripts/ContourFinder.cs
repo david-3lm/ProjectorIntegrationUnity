@@ -76,10 +76,15 @@ public class ContourFinder : MonoBehaviour
         maxX =Limits.Instance.valuesX.Max();
         maxY =Limits.Instance.valuesY.Max();
         
-        for (int i = 0;i <50; i++)
-        {
-            interactorPool.Add(Instantiate(interactor,new Vector3(1000,1000,0),Quaternion.identity));
-        }
+        //INTERACTOR POOL
+
+        //for (int i = 0;i <50; i++)
+        //{
+        //    interactorPool.Add(Instantiate(interactor,new Vector3(1000,1000,0),Quaternion.identity));
+        //}
+
+        ////////////////
+        
 
         //float valueX = Mathf.InverseLerp(0,1920,minX);
         //float valueY = Mathf.InverseLerp(0, 1080, minY);
@@ -208,7 +213,6 @@ public class ContourFinder : MonoBehaviour
             if(isInside)
             {
                 validatedCenters.Add(p);
-                Debug.Log(p.X+" "+ p.Y);
             }
         }
 
@@ -247,7 +251,6 @@ public class ContourFinder : MonoBehaviour
             ComputeCenter(processedImg, contours, out centers);
 
             //Comprobacion de color
-            GetColorAt(processedImg, 0, 0);
 
             //ProcessContour();
             if (newIMGReady)
@@ -421,10 +424,11 @@ public class ContourFinder : MonoBehaviour
         }
     }
 
-    private void GetColorAt(Mat img, int X, int Y)
+    public Vector3Int GetColorAt(int X, int Y)
     {
 
-        Vec3b color = img.At<Vec3b>(X, Y);
-        Debug.Log(color[0] + " , " + color[1] + ", " + color[2]);
+        Vec3b color = processedImg.At<Vec3b>(Y,X);
+
+        return new Vector3Int(color[0], color[1]);
     }
 }
