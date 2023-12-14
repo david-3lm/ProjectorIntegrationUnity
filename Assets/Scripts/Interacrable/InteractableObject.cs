@@ -1,6 +1,7 @@
 using OpenCvSharp;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
@@ -18,15 +19,26 @@ public class InteractableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         PositionToCam();
-        col = cf.GetColorAt((int)camPos.x, (int)camPos.y);
-        Debug.Log(col.ToString());
+        col = cf.GetColorAt(camPos.x, camPos.y);
+
+        //If the intereactor is found in the position of the object:
+        if (col.x == 0)
+            InteractionEvent();
     }
 
     private void PositionToCam()
     {
         camPos = Camera.main.WorldToScreenPoint(transform.position);
-        Debug.Log("Pos= "+ transform.position.x + " "+ transform.position.y);
-        Debug.Log("PosCam= "+ camPos.x + " "+ camPos.y);
+
+        //Change reference point
+        camPos.y = 1080 - camPos.y;
+        Debug.Log("PosCam= " + camPos.x + " " + camPos.y);
+    }
+
+    public virtual void InteractionEvent()
+    {
+        Debug.Log("Ey");
     }
 }
