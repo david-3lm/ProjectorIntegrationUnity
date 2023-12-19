@@ -427,15 +427,19 @@ public class ContourFinder : MonoBehaviour
     public Vector3Int GetColorAt(float X, float Y)
     {
         int iX, iY;
-        //Y += minY;
-        //X += minX;
+
         //We supouse 1920x1080
+
+        /*
+         * 
+         * ideal => lerp = X / SIZE_WIDTH;
+         * ideal => lerp = Y / SIZE_HEIGHT;
+         * 
+         */
         float lerpX = X / 1920;
         float lerpY = Y / 1080;
-        Debug.Log("LErp = " + lerpX);
         iX = (int) Mathf.Lerp(minX, maxX, lerpX);
         iY = (int) Mathf.Lerp(minY, maxY, lerpY);
-        Debug.Log("Color to get at= " + iX + " " + iY);
         Vec3b color = processedImg.At<Vec3b>(iY, iX);
 
         return new Vector3Int(color[0], color[1]);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IColorChanger : InteractableObject
+public class IPosChanger : InteractableObject
 {
     Transform t;
     private void Awake()
