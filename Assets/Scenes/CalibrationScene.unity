@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1535460957}
   - component: {fileID: 1535460956}
   m_Layer: 5
-  m_Name: COLOR (1)
+  m_Name: GreenBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -903,7 +903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000062013045}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 294.9464, y: 224.75208}
   m_Pivot: {x: 1, y: -0.00000006519258}
 --- !u!114 &1535460956
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 1620494713}
   - component: {fileID: 1620494712}
   m_Layer: 5
-  m_Name: COLOR
+  m_Name: GreenTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -976,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000060280785, y: -1}
+  m_AnchoredPosition: {x: 0.000061035156, y: -1}
   m_SizeDelta: {x: 277.79004, y: 237.90833}
   m_Pivot: {x: -0.00000002514571, y: 1}
 --- !u!114 &1620494712
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 1922301235}
   - component: {fileID: 1922301234}
   m_Layer: 5
-  m_Name: COLOR (2)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18867922, g: 0.18244925, b: 0.18244925, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
