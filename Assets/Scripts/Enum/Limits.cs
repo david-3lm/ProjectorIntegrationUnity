@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 public class Limits : MonoBehaviour
@@ -32,5 +33,12 @@ public class Limits : MonoBehaviour
     {
         valuesX.Add(x);
         valuesY.Add(y);
+    }
+    public void GetLimts(out int minX, out int maxX, out int minY, out int maxY)
+    {
+        minX = Instance.valuesX.Min();
+        minY = Instance.valuesY.Min();
+        maxX = Instance.valuesX.Max();
+        maxY = Instance.valuesY.Max();
     }
 }

@@ -11,71 +11,58 @@ using System.Linq;
 
 public class ColorMask2 : WebCam
 {
+    //Variables used for the camera
     private Mat img;
     private Mat processedImg = new Mat();
     [SerializeField] private bool ShowProcessedImg = true;
     [SerializeField] private float CurveAccuracy = 10f;
     [SerializeField] private float minArea = 5000f;
-    [SerializeField] private PolygonCollider2D collider2D;
 
-
+    //Variables for color mask
     static double[,] d = { { 50, 100, 100 } };
     static double[,] u = { { 100, 255, 255 } };
     Mat lower = new Mat(3, 1, MatType.CV_64F, d);
     Mat upper = new Mat(3, 1, MatType.CV_64F, u);
+    InputArray lowerBound;
+    InputArray upperBound;
+
 
     //CONTOURS
     double area;
     Point[] points;
     private Point[][] contours;
-    Thread t;
-    bool newIMGReady;
-    bool threadStarted = false;
-    private Vector2[] vectorList;
     private HierarchyIndex[] hierarchy;
 
-    //LIMITS
+    //Limits used to, get the boundings of the screen
     public int minX, minY, maxX, maxY;
-
-
-    //webcam
 
 
     void Awake()
     {
         base.Awake();
-        t = new Thread(new ThreadStart(ThreadMethod));
+        lowerBound = new InputArray(lower);
+        upperBound = new InputArray(upper);
     }
+
     private void Update()
     {
         base.Update();
-        ThreadMethod();
-    }
-    private void ThreadMethod()
-    {
-        //while (t.IsAlive)
-        //{
         ProcessTexture(webCamTexture, ref renderedTexture);
-        print("update");
-        ProcessContour();
-        newIMGReady = true;
-
-        // }
     }
+
+    ///<summary>
+    ///Get the image from the camera, converts it to a texture, and uses that tesxture to mask a color and find the contours in the image.
+    ///</summary>
     protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
     {
-
-
         img = OpenCvSharp.Unity.TextureToMat(input);
-        //img = imgWebCam;
 
         Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2HSV);
-        InputArray lowerBound = new InputArray(lower);
-        InputArray upperBound = new InputArray(upper);
         Cv2.InRange(processedImg, lowerBound, upperBound, processedImg);
         Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
         ProcessContour();
         GetLimits();
+
         if (output == null)
             output = OpenCvSharp.Unity.MatToTexture(ShowProcessedImg ? processedImg : img);
         else
@@ -83,24 +70,15 @@ public class ColorMask2 : WebCam
         return true;
     }
 
-    // Start is called before the first frame update
-    private Vector2[] PointsToVector2(Point[] points)
-    {
-        vectorList = new Vector2[points.Length];
-        for (int i = 0; i < points.Length; i++)
-        {
-            vectorList[i] = new Vector2(points[i].X, points[i].Y);
-        }
-        return vectorList;
-    }
-
+    ///<summary>
+    ///Gets the contours and with that information draws the objects with an specific area.
+    ///</summary>
     public void ProcessContour()
     {
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
             area = Cv2.ContourArea(contour);
-
 
             if (area > minArea)
             {
@@ -109,6 +87,9 @@ public class ColorMask2 : WebCam
             }
         }
     }
+    ///<summary>
+    ///Gets the contours with specific area and draaws them for visualization
+    ///</summary>
     private void DrawContour(Mat image, Scalar color, int thickness, Point[] points)
     {
         for (int i = 1; i < points.Length; i++)
@@ -118,16 +99,16 @@ public class ColorMask2 : WebCam
         Cv2.Line(image, points[points.Length - 1], points[0], color, thickness);
     }
 
+    ///<summary>
+    ///Gets the limits from the contours and saves the values in a Singleton called limits.
+    ///</summary>
     public void GetLimits()
     {
-
         Limits.Instance.InitializeLists();
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
             area = Cv2.ContourArea(contour);
-
-
             if (area > minArea)
             {
                 foreach (var p in points)
@@ -140,12 +121,7 @@ public class ColorMask2 : WebCam
         }
         if (Limits.Instance.valuesX.Count > 0)
         {
-
-            minX = Limits.Instance.valuesX.Min();
-            minY = Limits.Instance.valuesY.Min();
-            maxX = Limits.Instance.valuesX.Max();
-            maxY = Limits.Instance.valuesY.Max();
+            Limits.Instance.GetLimts(out minX, out maxX, out minY, out maxY);
         }
-
     }
 }
