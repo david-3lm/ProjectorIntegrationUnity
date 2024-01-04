@@ -1,13 +1,6 @@
 using OpenCvSharp;
-using OpenCvSharp.Demo;
 using UnityEngine;
-using UnityEngine.Windows;
-using System.Threading;
-using System.Diagnostics;
-using static ArucoUnity.Plugin.Std;
-using static UnityEngine.UIElements.VisualElement;
-using System.Collections.Generic;
-using System.Linq;
+
 
 public class ColorMask2 : WebCam
 {

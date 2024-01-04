@@ -1,14 +1,8 @@
 using OpenCvSharp;
-using OpenCvSharp.Demo;
 using UnityEngine;
-using UnityEngine.Windows;
 using System.Threading;
-using UnityEditor.EditorTools;
-using UnityEditor;
 using System.Linq;
-using Unity.VisualScripting;
 using System.Collections.Generic;
-using System;
 
 public class ContourFinder : MonoBehaviour
 {
@@ -17,12 +11,6 @@ public class ContourFinder : MonoBehaviour
     [SerializeField] private bool ShowProcessedImg = true;
     [SerializeField] private float CurveAccuracy = 10f;
     [SerializeField] private float minArea = 5000f;
-    [SerializeField] private PolygonCollider2D collider2D;
-    [SerializeField] private PolygonCollider2D aux = new PolygonCollider2D();
-    [Header("Color Mask")]
-    [SerializeField] private Color color = Color.green;
-
-    [SerializeField] private bool maskByColor = false;
 
     private Mat img;
     private Mat processedImg = new Mat();
@@ -35,33 +23,15 @@ public class ContourFinder : MonoBehaviour
     [Header("Camera")]
     public WebCam webCam;
 
-    double area;
-    Point[] points;
-
-    bool newIMGReady =false;
     Thread t;
     bool threadStarted=false;
     Camera cam;
 
     //Limit Check
-    List<Point> validatedPoints;
     int minX,maxX,minY,maxY;
-
-
-    // [SerializeField]ColorMask mask;
-    Mat lower, upper;
-
-    //Interactor 
-    [SerializeField] GameObject interactor;
-    private List<GameObject> interactorPool = new List<GameObject>();
-
 
     private void Awake()
     {
-        double[,] d = { { 50, 100, 100 } };
-        double[,] u = { { 100, 255, 255 } };
-        lower = new Mat(3, 1, MatType.CV_64F, d);
-        upper = new Mat(3, 1, MatType.CV_64F, u);
         cam = Camera.main;
 
         centers = new List<Point>();
@@ -69,134 +39,38 @@ public class ContourFinder : MonoBehaviour
 
 
         //Adjust the limits
-        validatedPoints = new List<Point>();
 
         minX =Limits.Instance.valuesX.Min();
         minY =Limits.Instance.valuesY.Min();
         maxX =Limits.Instance.valuesX.Max();
         maxY =Limits.Instance.valuesY.Max();
-        
-        //INTERACTOR POOL
-
-        //for (int i = 0;i <50; i++)
-        //{
-        //    interactorPool.Add(Instantiate(interactor,new Vector3(1000,1000,0),Quaternion.identity));
-        //}
-
-        ////////////////
-        
-
-        //float valueX = Mathf.InverseLerp(0,1920,minX);
-        //float valueY = Mathf.InverseLerp(0, 1080, minY);
-
-
-        //Debug.Log(minX);
-        //Debug.Log(valueX);
-
-        //if(collider2D.TryGetComponent<RectTransform>(out var rectTransform))
-        //{
-        //    rectTransform.pivot = new Vector2(valueX,valueY);
-        //    Debug.Log("ey");
-        //}
-
 
         t = new Thread(ThreadMethod);
-        if (maskByColor)
-        {
-            ProcessTextureByColor();
-        }
-        else
-        {
-            ProcessTexture();
-        }
+        //ProcessTexture();
     }
     private void Update()
     {
-        if (maskByColor)
-        {
-            ProcessTextureByColor();
-        }
-        else
-        {
-            ProcessTexture();
-        }
-        
+        ProcessTexture();       
     }
     private void OnApplicationQuit()
     {
         t.Interrupt();
     }
+    /// <summary>
+    /// Method executed by a thread that calls ValidateCenters
+    /// </summary>
     private void ThreadMethod()
     {
-
         while (t.IsAlive)
-        {
-            //webCam.CallProcessTexture();
-
-
-            ProcessContour();
-            //Thread.Sleep(1000);
-            newIMGReady = true;
-
-
-        }
+            ValidateCenters();
     }
-
-    public void ProcessContour()
+    /// <summary>
+    /// Gets the a list of detected centers and validates them inside the limits
+    /// </summary>
+    public void ValidateCenters()
     {
         if (contours == null || webCam.imgHilo) return;
         Mat mat = processedImg;
-        /*
-        foreach (Point[] contour in contours)
-        {
-            points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
-            area = Cv2.ContourArea(contour);
-
-            if (area > minArea)
-            {
-                bool validated = true;
-         
-
-                foreach(Point p in points)
-                {
-                    ////Check if the point is inside the limits
-                    //if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
-                    //{
-                    //    validated = false;
-                    //    ClampPoint(p, minX, maxX, minY, maxY);
-                    //}
-
-
-
-                    //validatedPoints.Add(p);
-
-                }
-
-                //Validate the centers
-                //foreach(Point p in centers)
-                //{
-
-                //    if (p.X <= minX || p.X >= maxX || p.Y <= minY || p.Y >= maxY)
-                //    {
-                //        validated = false;
-
-                //    }
-                //}
-                //if (validated)
-                //{
-
-                //    //drawContour(mat, new Scalar(127, 127, 127), 20, validatedPoints.ToArray());
-                //    //drawContour(mat, new Scalar(127, 127, 127), 20,points);
-                //    drawCenters(mat, new Scalar(127, 127, 127), 20,centers);
-                    
-                //} 
-                
-
-        
-            }
-
-        }
-        */
 
         if (centers.Count < 1) return;
         //Validate the centers
@@ -216,10 +90,8 @@ public class ContourFinder : MonoBehaviour
             }
         }
 
-        drawCenters(mat, new Scalar(127, 127, 127), 20, validatedCenters);
+        DrawCenters(mat, new Scalar(127, 127, 127), 20, validatedCenters);
         webCam.imgHilo = true;
-
-
     }
 
 
@@ -228,9 +100,9 @@ public class ContourFinder : MonoBehaviour
         p.X=Mathf.Clamp(p.X, minX, maxX);
         p.Y=Mathf.Clamp(p.Y, minY, maxY);
     }
-
-    
-
+    /// <summary>
+    /// Gets the image from the camera and calculates the centers (inside the game) of the interactors in the real world.
+    /// </summary>
     protected void ProcessTexture()
     {
         img = webCam.imgWebCam;
@@ -250,41 +122,15 @@ public class ContourFinder : MonoBehaviour
 
             ComputeCenter(processedImg, contours, out centers);
 
-            //Comprobacion de color
-
-            //ProcessContour();
-            if (newIMGReady)
-            {
-
-                //collider2D.pathCount = 0;
-
-                //collider2D.pathCount++;
-                //collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
-                //newIMGReady = false;
-                //Debug.Log(collider2D.pathCount);
-
-
-
-
-                //if (validatedPoints != null)
-                //{
-                //    drawCollider(collider2D, validatedPoints.ToArray());
-                //    validatedPoints.Clear();
-                //}
-                if (points != null)
-                {
-                    drawCollider(collider2D, points);
-                    //validatedPoints.Clear();
-                }
-                if (centers.Count > 0)
-                {
-                    SetColliders(interactor, centers);
-                }
-            }
             webCam.setImgProcessed(processedImg);
         }
     }
-
+    /// <summary>
+    /// Gets the list of contours returned by OpenCV and returns a list of centers.
+    /// </summary>
+    /// <param name="processedImg"></param>
+    /// <param name="contours">Contours of the objects detected by OpenCV</param>
+    /// <param name="centersList">The list of centers</param>
     private void ComputeCenter(Mat processedImg, Point[][] contours, out List<Point> centersList)
     {
         Moments m;
@@ -306,52 +152,6 @@ public class ContourFinder : MonoBehaviour
         
     }
 
-    protected void ProcessTextureByColor()
-    {
-        img = webCam.imgWebCam;
-        if (!threadStarted)
-        {
-            t.Start();
-            threadStarted = true;
-        }
-        if (img != null)
-        {
-            //float h, s, v;
-            //Color.RGBToHSV(color, out h, out s, out v);
-
-
-            Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2HSV);
-            InputArray lowerBound = new InputArray(lower);
-            InputArray upperBound = new InputArray(upper);
-            Cv2.InRange(processedImg, lowerBound, upperBound, processedImg);
-            
-            Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
-
-
-
-            //ProcessContour();
-            if (newIMGReady)
-            {
-
-                //collider2D.pathCount = 0;
-
-                //collider2D.pathCount++;
-                //collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
-                //newIMGReady = false;
-                //Debug.Log(collider2D.pathCount);
-                if (points != null)
-                {
-                    drawCollider(collider2D, points);
-                    
-                }
-
-            }
-            webCam.setImgProcessed(processedImg);
-        }
-    }
-
-
-
     private Vector2[] PointsToVector2(Point[] points)
     {
         vectorList = new Vector2[points.Length];
@@ -363,17 +163,7 @@ public class ContourFinder : MonoBehaviour
         }
         return vectorList;
     }
-    private void drawContour(Mat image, Scalar color, int thickness, Point[] points)
-    {
-        for (int i = 1; i < points.Length; i++)
-        {
-            Cv2.Line(image, points[i - 1], points[i], color, thickness);
-            
-        }
-        Cv2.Line(image, points[points.Length - 1], points[0], color, thickness);
-    }
-
-    private void drawCenters(Mat image, Scalar color, int thickness, List<Point> centers)
+    private void DrawCenters(Mat image, Scalar color, int thickness, List<Point> centers)
     {
         for (int i = 1; i < centers.Count; i++)
         {
@@ -383,61 +173,19 @@ public class ContourFinder : MonoBehaviour
         centersAux = centers;
         centers.Clear();
     }
-
-
-    private void drawCollider(PolygonCollider2D collider2D, Point[] points)
-    {
-
-        aux.pathCount++;
-        aux.SetPath(aux.pathCount - 1, PointsToVector2(points));
-        if (aux.GetPath(aux.pathCount - 1).Length >= 50)
-        {
-            collider2D.pathCount = 0;
-            collider2D.pathCount++;
-            
-            collider2D.SetPath(collider2D.pathCount - 1, PointsToVector2(points));
-            aux.pathCount = 0;
-        }
-        newIMGReady = false;
-    }
-
-    //Take collider and set it to the position of the centers
-    private void SetColliders(GameObject interactor, List<Point> centers)
-    {
-        RestartCollider();
-        for (int i = 0; i < centers.Count; i++)
-        {
-            if (i >= interactorPool.Count) break;
-            Vector2 aux = cam.ScreenToWorldPoint(new Vector3(centers[i].X, (centers[i].Y), 0));
-            aux.y = -aux.y;
-            interactorPool[i].transform.position =aux;
-
-        }
-    }
-
-    private void RestartCollider()
-    {
-        foreach(GameObject go in interactorPool)
-        {
-            go.transform.position = new Vector3(1000, 1000, 0);
-
-        }
-    }
-
+    /// <summary>
+    /// Function that gets the color at a certain coord in the camera. If black there is an object.
+    /// </summary>
+    /// <param name="X">Coord X in the camera</param>
+    /// <param name="Y">Coord Y in the camera</param>
+    /// <returns></returns>
     public Vector3Int GetColorAt(float X, float Y)
     {
         int iX, iY;
 
-        //We supouse 1920x1080
-
-        /*
-         * 
-         * ideal => lerp = X / SIZE_WIDTH;
-         * ideal => lerp = Y / SIZE_HEIGHT;
-         * 
-         */
-        float lerpX = X / 1920;
-        float lerpY = Y / 1080;
+        //Lerp to change screen coords to projection coords using Limits.
+        float lerpX = X / Screen.width;
+        float lerpY = Y / Screen.height;
         iX = (int) Mathf.Lerp(minX, maxX, lerpX);
         iY = (int) Mathf.Lerp(minY, maxY, lerpY);
         Vec3b color = processedImg.At<Vec3b>(iY, iX);
