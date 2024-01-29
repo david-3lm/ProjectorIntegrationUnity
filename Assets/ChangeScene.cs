@@ -7,10 +7,16 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     [SerializeField] WebCam webCam;
+    [SerializeField] string nameScene;
+
+    private void Awake()
+    {
+        webCam = GameObject.FindGameObjectWithTag("Image").GetComponent<WebCam>();
+    }
     public void Changer()
     {
         
-        Destroy(webCam );
-        SceneManager.LoadScene("SampleScene");
+        Destroy(webCam);
+        SceneManager.LoadScene(nameScene); 
     }
 }

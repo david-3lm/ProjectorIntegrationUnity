@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d741950b488d242409b3bde6409106d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webCam: {fileID: 1840922245}
+  webCam: {fileID: 0}
+  nameScene: StarConnection
 --- !u!1 &530138409
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,9 +765,9 @@ Canvas:
   m_GameObject: {fileID: 1482879076}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1027158915}
+  m_PlaneDistance: 9.2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -836,7 +837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 294.9464, y: 224.75208}
   m_Pivot: {x: 1, y: -0.00000006519258}
 --- !u!114 &1535460956
@@ -852,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.007843138, g: 0.6039216, b: 0.023826122, a: 1}
+  m_Color: {r: 0, g: 0.6039216, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -909,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -1}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 277.79004, y: 237.90833}
   m_Pivot: {x: -0.00000002514571, y: 1}
 --- !u!114 &1620494712
@@ -961,7 +962,7 @@ GameObject:
   - component: {fileID: 1840922245}
   m_Layer: 5
   m_Name: RawImage
-  m_TagString: Untagged
+  m_TagString: Image
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1037,12 +1038,12 @@ MonoBehaviour:
   renderedTexture: {fileID: 0}
   imgHilo: 0
   ShowProcessedImg: 1
-  CurveAccuracy: 10
-  minArea: 5000
+  CurveAccuracy: 50
+  minArea: 10000
   minX: 0
   minY: 0
-  maxX: 2337
-  maxY: 2104
+  maxX: 0
+  maxY: 0
 --- !u!1 &1922301232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18867922, g: 0.18244925, b: 0.18244925, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

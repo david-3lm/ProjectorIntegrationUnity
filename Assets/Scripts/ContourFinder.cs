@@ -39,7 +39,6 @@ public class ContourFinder : MonoBehaviour
 
 
         //Adjust the limits
-
         minX =Limits.Instance.valuesX.Min();
         minY =Limits.Instance.valuesY.Min();
         maxX =Limits.Instance.valuesX.Max();
