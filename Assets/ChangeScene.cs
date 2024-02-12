@@ -14,9 +14,14 @@ public class ChangeScene : MonoBehaviour
         webCam = GameObject.FindGameObjectWithTag("Image").GetComponent<WebCam>();
     }
     public void Changer()
-    {
-        
+    { 
         Destroy(webCam);
         SceneManager.LoadScene(nameScene); 
+    }
+    public void ChangerToCalib(GameObject contourFinder)
+    {
+        Destroy(contourFinder);
+        Destroy(webCam);
+        SceneManager.LoadScene(nameScene);
     }
 }

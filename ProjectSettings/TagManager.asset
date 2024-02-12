@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Image
+  - Error
   layers:
   - Default
   - TransparentFX

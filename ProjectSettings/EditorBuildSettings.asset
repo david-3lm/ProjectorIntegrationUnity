@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StarConnection.unity
     guid: 107783bdaacc5934a9a2bc25d4894d3c
+  - enabled: 1
+    path: Assets/Scenes/prueba.unity
+    guid: 635aa329f48ced4468aedf67a67d5095
   m_configObjects: {}

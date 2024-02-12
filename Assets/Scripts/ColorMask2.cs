@@ -25,6 +25,7 @@ public class ColorMask2 : WebCam
     Point[] points;
     private Point[][] contours;
     private HierarchyIndex[] hierarchy;
+    int countContours;
 
     //Limits used to, get the boundings of the screen
     public int minX, minY, maxX, maxY;
@@ -71,7 +72,7 @@ public class ColorMask2 : WebCam
     ///</summary>
     public void ProcessContour()
     {
-        Debug.Log(contours.Length);
+        countContours = 0;
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
@@ -81,8 +82,10 @@ public class ColorMask2 : WebCam
             {
                 DrawContour(processedImg, new Scalar(127, 127, 127), 20, points);
                 GetLimits();
+                countContours++;
             }
         }
+        Debug.Log(countContours);
     }
     ///<summary>
     ///Gets the contours with specific area and draaws them for visualization

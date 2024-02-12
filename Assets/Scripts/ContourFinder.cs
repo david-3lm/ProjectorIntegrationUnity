@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Threading;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ContourFinder : MonoBehaviour
 {
@@ -30,8 +31,15 @@ public class ContourFinder : MonoBehaviour
     //Limit Check
     int minX,maxX,minY,maxY;
 
+    [SerializeField] ChangeScene changerScene;
+
     private void Awake()
     {
+        if (!Limits.Instance)
+        {
+            changerScene.ChangerToCalib(this.gameObject);
+            return;
+        }
         cam = Camera.main;
 
         centers = new List<Point>();
@@ -191,4 +199,5 @@ public class ContourFinder : MonoBehaviour
 
         return new Vector3Int(color[0], color[1]);
     }
+
 }
