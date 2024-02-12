@@ -4,8 +4,9 @@ using System.Threading;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class ContourFinder : MonoBehaviour
+public class ContourFinder : WebCam
 {
     [Header("Contour Attributes")]
     [SerializeField] private float threshold = 90f;
@@ -21,8 +22,8 @@ public class ContourFinder : MonoBehaviour
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
-    [Header("Camera")]
-    public WebCam webCam;
+    //[Header("Camera")]
+    //public WebCam webCam;
 
     Thread t;
     bool threadStarted=false;
@@ -37,9 +38,10 @@ public class ContourFinder : MonoBehaviour
     {
         if (!Limits.Instance)
         {
-            changerScene.ChangerToCalib(this.gameObject);
-            return;
+            changerScene.Changer();
+            return; 
         }
+        base.Awake();
         cam = Camera.main;
 
         centers = new List<Point>();
@@ -57,6 +59,7 @@ public class ContourFinder : MonoBehaviour
     }
     private void Update()
     {
+        base.Update();
         ProcessTexture();       
     }
     private void OnApplicationQuit()
@@ -76,7 +79,7 @@ public class ContourFinder : MonoBehaviour
     /// </summary>
     public void ValidateCenters()
     {
-        if (contours == null || webCam.imgHilo) return;
+        if (contours == null || imgHilo) return;
         Mat mat = processedImg;
 
         if (centers.Count < 1) return;
@@ -98,9 +101,26 @@ public class ContourFinder : MonoBehaviour
         }
 
         DrawCenters(mat, new Scalar(127, 127, 127), 20, validatedCenters);
-        webCam.imgHilo = true;
+        imgHilo = true;
     }
 
+    protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
+    {
+        imgWebCam = OpenCvSharp.Unity.TextureToMat(input);
+        if (imgHilo)
+        {
+            output = OpenCvSharp.Unity.MatToTexture(imgProcessed, output);
+            imgHilo = false;
+        }
+        else
+        {
+            if (output == null)
+                output = OpenCvSharp.Unity.MatToTexture(imgWebCam);
+            else
+                OpenCvSharp.Unity.MatToTexture(imgWebCam, output);
+        }
+        return true;
+    }
 
     private void ClampPoint(Point p, int minX, int maxX, int minY, int maxY)
     {
@@ -112,7 +132,7 @@ public class ContourFinder : MonoBehaviour
     /// </summary>
     protected void ProcessTexture()
     {
-        img = webCam.imgWebCam;
+        img = imgWebCam;
         if (!threadStarted)
         {
             t.Start();
@@ -129,7 +149,7 @@ public class ContourFinder : MonoBehaviour
 
             ComputeCenter(processedImg, contours, out centers);
 
-            webCam.setImgProcessed(processedImg);
+            SetImgProcessed(processedImg);
         }
     }
     /// <summary>

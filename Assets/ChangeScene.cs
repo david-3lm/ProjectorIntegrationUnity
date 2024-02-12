@@ -18,10 +18,4 @@ public class ChangeScene : MonoBehaviour
         Destroy(webCam);
         SceneManager.LoadScene(nameScene); 
     }
-    public void ChangerToCalib(GameObject contourFinder)
-    {
-        Destroy(contourFinder);
-        Destroy(webCam);
-        SceneManager.LoadScene(nameScene);
-    }
 }

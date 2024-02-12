@@ -225,13 +225,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
-      propertyPath: canvasError
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: changerScene
       value: 
       objectReference: {fileID: 423573742}
+    - target: {fileID: 8356354003159740520, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8356354003194440516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: m_Pivot.x
       value: 0

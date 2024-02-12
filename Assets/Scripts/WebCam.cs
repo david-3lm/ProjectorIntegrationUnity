@@ -8,7 +8,7 @@ public class WebCam : WebCamera
 {
     public Mat imgWebCam = null;
     public bool imgHilo = false;
-    private Mat imgProcessed = null;
+    public Mat imgProcessed = null;
     protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
     {
         imgWebCam = OpenCvSharp.Unity.TextureToMat(input);
@@ -26,7 +26,7 @@ public class WebCam : WebCamera
         }
         return true;
     }
-    public void setImgProcessed(Mat img)
+    public void SetImgProcessed(Mat img)
     {
         imgProcessed = img;
     }
