@@ -12,7 +12,9 @@ public class Star : InteractableObject
     }
     public override void InteractionEvent()
     {
+        if (activated)
+            return;
         activated = true;
-        transform.localScale *= 1.25f;
+        transform.localScale *= 10f;
     }
 }

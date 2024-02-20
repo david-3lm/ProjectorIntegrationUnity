@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webCam: {fileID: 0}
-  nameScene: StarConnection
+  nameScene: Menu
 --- !u!1 &530138409
 GameObject:
   m_ObjectHideFlags: 0

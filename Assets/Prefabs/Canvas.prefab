@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8356354003159740521}
   - component: {fileID: 8356354003159740520}
   - component: {fileID: 8356354003159740516}
+  - component: {fileID: 2120252515}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Image
@@ -93,7 +94,21 @@ MonoBehaviour:
   ShowProcessedImg: 1
   CurveAccuracy: 10
   minArea: 500
-  changerScene: {fileID: 0}
+  changerScene: {fileID: 2120252515}
+--- !u!114 &2120252515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356354003159740525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d741950b488d242409b3bde6409106d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webCam: {fileID: 0}
+  nameScene: CalibrationScene
 --- !u!1 &8356354003194440520
 GameObject:
   m_ObjectHideFlags: 0

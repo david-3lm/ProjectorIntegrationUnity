@@ -9,10 +9,10 @@ using UnityEngine.EventSystems;
 public class ContourFinder : WebCam
 {
     [Header("Contour Attributes")]
-    [SerializeField] private float threshold = 90f;
+    [SerializeField] private float threshold = 100f;
     [SerializeField] private bool ShowProcessedImg = true;
     [SerializeField] private float CurveAccuracy = 10f;
-    [SerializeField] private float minArea = 5000f;
+    [SerializeField] private float minArea = 10000f;
 
     private Mat img;
     private Mat processedImg = new Mat();
@@ -30,6 +30,7 @@ public class ContourFinder : WebCam
     //Limit Check
     int minX,maxX,minY,maxY;
 
+    [Header("Object used to go to calibration scene")]
     [SerializeField] ChangeScene changerScene;
 
     private void Awake()
@@ -153,6 +154,7 @@ public class ContourFinder : WebCam
     public Vector3Int GetColorAt(float X, float Y)
     {
         int iX, iY;
+        bool inside = false;
 
         //Lerp to change screen coords to projection coords using Limits.
         float lerpX = X / Screen.width;
@@ -160,8 +162,28 @@ public class ContourFinder : WebCam
         iX = (int) Mathf.Lerp(minX, maxX, lerpX);
         iY = (int) Mathf.Lerp(minY, maxY, lerpY);
         Vec3b color = processedImg.At<Vec3b>(iY, iX);
-
-        return new Vector3Int(color[0], color[1]);
+        if (color[0] == 0) 
+            inside = CheckPointInContour(iX,iY);
+        if (inside)
+            return new Vector3Int(color[0], color[1]);
+        return new Vector3Int(255, 255);
     }
 
+    /// <summary>
+    /// Function that checks if the point is inside a contour, to avoid functionallity not desired
+    /// </summary>
+    /// <param name="X">Coord X</param>
+    /// <param name="Y">Coord Y</param>
+    /// <returns></returns>
+    private bool CheckPointInContour(int X, int Y)
+    {
+        bool inside = false;
+
+        foreach (var c in contours)
+        {
+            if (Cv2.PointPolygonTest(c, new Point2f(X, Y), false) >= 0)
+                inside = (Cv2.ContourArea(c) >= minArea);
+        }
+        return (inside);
+    }
 }
