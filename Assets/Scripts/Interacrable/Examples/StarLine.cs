@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StarLine : MonoBehaviour
 {
-    [SerializeField] Star star1;
-    [SerializeField] Star star2;
+    [SerializeField] public Star star1;
+    [SerializeField] public Star star2;
 
     LineRenderer line;
 
@@ -20,7 +20,11 @@ public class StarLine : MonoBehaviour
     private void Update()
     {
         if (star1.activated && star2.activated)
+        {
             line.enabled = true;
+            line.SetPosition(0, star1.GetComponent<Transform>().position);
+            line.SetPosition(1, star2.GetComponent<Transform>().position);
+        }
         else if (line.enabled)
             line.enabled = false;
     }

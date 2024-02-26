@@ -140,7 +140,7 @@ public class ContourFinder : WebCam
         for (int i = 0; i < points.Length; i++)
         {
             vectorList[i] = new Vector2(points[i].X, points[i].Y);
-            vectorList[i]=cam.ScreenToWorldPoint(vectorList[i]);
+            vectorList[i] = cam.ScreenToWorldPoint(vectorList[i]);
         }
         return vectorList;
     }

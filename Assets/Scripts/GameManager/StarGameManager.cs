@@ -5,36 +5,37 @@ using UnityEngine.UI;
 
 public class StarGameManager : MonoBehaviour
 {
-    [SerializeField] List<Star> stars;
+    [SerializeField] List<Constellation> constellations;
+    [SerializeField] Constellation activeConstellation;
     [SerializeField] GameObject button;
+    [SerializeField] Transform startPos;
 
     private void Start()
     {
-        button.SetActive(false);
+        StartGame();
     }
     // Update is called once per frame
     void Update()
     {
-        if (AllStars())
+        if (activeConstellation.AllStars())
             button.SetActive(true);
     }
 
-    private bool AllStars()
+    private Constellation GetConstellation()
     {
-        foreach (Star star in stars)
-        {
-            if (!star.activated)
-                return false;
-        }
-        return true;
+        return constellations[Random.Range(0, constellations.Count)];
     }
+
+    private void StartGame()
+    {
+        button.SetActive(false);
+        activeConstellation = Instantiate(GetConstellation(), startPos);
+    }
+
     public void RestartGame()
     {
-        foreach(Star star in stars)
-        {
-            star.transform.localScale /= 10f;
-            star.activated = false;
-        }
-        button.SetActive(false);
+        activeConstellation.RestartGame();
+        StartGame();
     }
+
 }

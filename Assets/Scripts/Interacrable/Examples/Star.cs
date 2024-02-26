@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Star : InteractableObject
@@ -10,11 +11,12 @@ public class Star : InteractableObject
     {
         activated = false;
     }
+
     public override void InteractionEvent()
     {
         if (activated)
             return;
         activated = true;
-        transform.localScale *= 10f;
+        transform.localScale *= 5f;
     }
 }
