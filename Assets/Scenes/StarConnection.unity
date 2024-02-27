@@ -567,6 +567,7 @@ MonoBehaviour:
   - {fileID: 6560550586264558844, guid: 27a0542cd7b1624419a23e8d323bd06a, type: 3}
   - {fileID: 6560550586264558844, guid: a5c018b860200ad4c868ae1340ac3786, type: 3}
   - {fileID: 6560550586264558844, guid: 4c5caecaa56d3904d848f3d1b8dba9a2, type: 3}
+  - {fileID: 6560550586264558844, guid: 7f5e9865996bfe043bdd8fd2808ce25f, type: 3}
   activeConstellation: {fileID: 0}
   button: {fileID: 795247851}
   startPos: {fileID: 579047777}

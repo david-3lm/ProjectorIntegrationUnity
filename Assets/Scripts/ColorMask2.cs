@@ -1,5 +1,7 @@
 using OpenCvSharp;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 
 public class ColorMask2 : WebCam
@@ -29,6 +31,8 @@ public class ColorMask2 : WebCam
 
     //Limits used to, get the boundings of the screen
     public int minX, minY, maxX, maxY;
+    int timeWithLimits = 0;
+    [SerializeField] Button sceneChanger;
 
 
     void Awake()
@@ -81,11 +85,11 @@ public class ColorMask2 : WebCam
             if (area > minArea)
             {
                 DrawContour(processedImg, new Scalar(127, 127, 127), 20, points);
-                GetLimits();
                 countContours++;
+                GetLimits();
             }
         }
-        Debug.Log(countContours);
+        TimeCallibration();
     }
     ///<summary>
     ///Gets the contours with specific area and draaws them for visualization
@@ -112,6 +116,26 @@ public class ColorMask2 : WebCam
         if (Limits.Instance.valuesX.Count > 0)
         {
             Limits.Instance.GetLimts(out minX, out maxX, out minY, out maxY);
+        }
+    }
+
+    private void TimeCallibration()
+    {
+        Debug.Log(timeWithLimits);
+
+        if (countContours == 2)
+        {
+            timeWithLimits++;
+            if (timeWithLimits > 5)
+            {
+                webCamTexture.Stop();
+                webCamTexture = null;
+                FindObjectOfType<ChangeScene>().Changer();
+            }
+        }
+        else
+        {
+            timeWithLimits = 0;
         }
     }
 }

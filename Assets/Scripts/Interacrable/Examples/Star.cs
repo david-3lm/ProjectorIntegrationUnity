@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Star : InteractableObject
 {
@@ -17,6 +18,26 @@ public class Star : InteractableObject
         if (activated)
             return;
         activated = true;
-        transform.localScale *= 5f;
+        StartCoroutine("Anim");
+        GetComponent<ParticleSystem>().Play();
+    }
+
+    IEnumerator Anim()
+    {
+        int i = 1;
+        Vector3 sum = transform.localScale;
+        while (i < 8)
+        {
+            transform.localScale += sum;
+            yield return new WaitForSeconds(0.001f);
+            i++;
+        }
+        while (i > 4)
+        {
+            transform.localScale -= sum;
+            yield return new WaitForSeconds(0.001f);
+            i--;
+        }
+        yield return null;
     }
 }
