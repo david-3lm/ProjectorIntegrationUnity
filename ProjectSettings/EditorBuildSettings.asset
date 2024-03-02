@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StarConnection.unity
     guid: 107783bdaacc5934a9a2bc25d4894d3c
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: ae65af6b744856e489224db258da4b7f
+  - enabled: 1
+    path: Assets/Scenes/MoleSpotter.unity
+    guid: 13083153085d5ec47994003a1f52ffc5
   m_configObjects: {}

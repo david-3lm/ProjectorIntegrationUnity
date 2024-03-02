@@ -5,8 +5,9 @@ using System.Drawing;
 using UnityEditor.UI;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public abstract class InteractableObject : MonoBehaviour
 {
+    #region Variables
     private ContourFinder cf;
     private Vector3 camPos;
     Vector3Int col;
@@ -17,8 +18,9 @@ public class InteractableObject : MonoBehaviour
     public bool button = false;
     bool entered = false;
     //END TESTING
+    #endregion
 
-
+    #region Abstract
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +60,8 @@ public class InteractableObject : MonoBehaviour
         //Change reference point
         camPos.y = 1080 - camPos.y;
     }
+    #endregion
 
-    public virtual void InteractionEvent()
-    {
-        Debug.Log("Ey");
-    }
+    public abstract void InteractionEvent();
 
 }
