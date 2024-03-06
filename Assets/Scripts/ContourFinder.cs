@@ -30,6 +30,9 @@ public class ContourFinder : WebCam
     //Limit Check
     int minX,maxX,minY,maxY;
 
+    [Header("Interactor")]
+    [SerializeField]Interactor interactor;
+
     [Header("Object used to go to calibration scene")]
     [SerializeField] ChangeScene changerScene;
 
@@ -50,6 +53,9 @@ public class ContourFinder : WebCam
         maxY =Limits.Instance.valuesY.Max();
 
         t = new Thread(ThreadMethod);
+
+        if (!interactor)
+            interactor = FindObjectOfType<Interactor>();
         //ProcessTexture();
     }
     private void Update()

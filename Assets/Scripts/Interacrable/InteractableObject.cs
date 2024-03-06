@@ -5,6 +5,7 @@ using System.Drawing;
 using UnityEditor.UI;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public abstract class InteractableObject : MonoBehaviour
 {
     #region Variables
@@ -31,7 +32,7 @@ public abstract class InteractableObject : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-
+        /*
         PositionToCam();
         col = cf.GetColorAt(camPos.x, camPos.y);
         if (cooldown > 0)
@@ -50,7 +51,7 @@ public abstract class InteractableObject : MonoBehaviour
             entered = true;
             InteractionEvent();
         }
-        entered = button;
+        entered = button;*/
     }
 
     private void PositionToCam()
@@ -64,4 +65,8 @@ public abstract class InteractableObject : MonoBehaviour
 
     public abstract void InteractionEvent();
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        InteractionEvent();
+    }
 }
