@@ -20,12 +20,15 @@ public class ContourFinder : WebCam
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
-    //[Header("Camera")]
-    //public WebCam webCam;
 
     Thread t;
     bool threadStarted=false;
     Camera cam;
+
+    List<Point> centers;
+    List<Point> centersAux;
+    Point interactorCenter;
+    Point c = new Point();
 
     //Limit Check
     int minX,maxX,minY,maxY;
@@ -45,6 +48,9 @@ public class ContourFinder : WebCam
         }
         base.Awake();
         cam = Camera.main;
+
+        centers = new List<Point>();
+        centersAux = new List<Point>();
 
         //Adjust the limits
         minX =Limits.Instance.valuesX.Min();
@@ -128,17 +134,39 @@ public class ContourFinder : WebCam
             Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
             Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
 
-
+            interactorCenter = ComputeCenter(contours);
+            Cv2.Circle(processedImg, interactorCenter, 6, new Scalar(50,10), 10);
             SetImgProcessed(processedImg);
 
         }
     }
+
     /// <summary>
     /// Gets the list of contours returned by OpenCV and returns a list of centers.
     /// </summary>
     /// <param name="processedImg"></param>
     /// <param name="contours">Contours of the objects detected by OpenCV</param>
     /// <param name="centersList">The list of centers</param>
+    private Point ComputeCenter(Point[][] contours)
+    {
+        Moments m;
+        double biggestArea = minArea;
+
+        for (int i = 1; i < contours.Length; i++)
+        {
+            double area = Cv2.ContourArea(contours[i]);
+            if (area > minArea && area > biggestArea)
+            {
+                area = biggestArea;
+                m = Cv2.Moments(contours[i]);
+                c = new(m.M10 / m.M00, m.M01 / m.M00);
+
+            }
+        }
+        Debug.Log("X: " + c.X + " Y: " + c.Y);
+        return c;
+    }
+
 
     private Vector2[] PointsToVector2(Point[] points)
     {
@@ -159,22 +187,34 @@ public class ContourFinder : WebCam
     /// <returns></returns>
     public Vector3Int GetColorAt(float X, float Y)
     {
-        int iX, iY;
         bool inside = false;
 
         //Lerp to change screen coords to projection coords using Limits.
-        float lerpX = X / Screen.width;
-        float lerpY = Y / Screen.height;
-        iX = (int) Mathf.Lerp(minX, maxX, lerpX);
-        iY = (int) Mathf.Lerp(minY, maxY, lerpY);
-        Vec3b color = processedImg.At<Vec3b>(iY, iX);
+        LerpVirtToCam(ref X, ref Y);
+        Vec3b color = processedImg.At<Vec3b>((int)Y, (int)X);
         if (color[0] == 0) 
-            inside = CheckPointInContour(iX,iY);
+            inside = CheckPointInContour((int)X,(int)Y);
         if (inside)
             return new Vector3Int(color[0], color[1]);
         return new Vector3Int(255, 255);
     }
 
+    public void LerpVirtToCam(ref float X, ref float Y)
+    {
+        float lerpX = X / Screen.width;
+        float lerpY = Y / Screen.height;
+        X = (int)Mathf.Lerp(minX, maxX, lerpX);
+        Y = (int)Mathf.Lerp(minY, maxY, 1 - lerpY);
+    }
+
+    public void LerpCamToVirtual(ref float X, ref float Y)
+    {
+        float proportionX = (X - minX) / (maxX - minX);
+        float proportionY = (Y - minY) / (maxY - minY);
+
+        X = proportionX * Screen.width;
+        Y = (1 - proportionY) * Screen.height;
+    }
     /// <summary>
     /// Function that checks if the point is inside a contour, to avoid functionallity not desired
     /// </summary>
@@ -191,5 +231,14 @@ public class ContourFinder : WebCam
                 inside = (Cv2.ContourArea(c) >= minArea);
         }
         return (inside);
+    }
+
+    public void GetCenterData(ref Vector3 pos, ref float size)
+    {
+        Vector2 vec2 = new Vector2(interactorCenter.X, interactorCenter.Y);
+        LerpCamToVirtual(ref vec2.x, ref vec2.y);
+        //Vector2 vec2 = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        pos = new Vector3(cam.ScreenToWorldPoint(vec2).x, cam.ScreenToWorldPoint(vec2).y, -9);
+        size = 0.5f;
     }
 }

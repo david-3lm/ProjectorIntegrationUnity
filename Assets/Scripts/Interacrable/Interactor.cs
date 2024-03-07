@@ -8,6 +8,9 @@ public class Interactor : MonoBehaviour
     [SerializeField]ContourFinder finder;
     CircleCollider2D col;
 
+    Vector3 pos;
+    float size;
+
     private void Awake()
     {
         if (!finder)
@@ -23,9 +26,9 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        finder.GetCenterData(ref pos, ref size);
         transform.position = new Vector3(pos.x, pos.y, -9);
-        col.radius = 0.2f;
+        col.radius = size;
         //transform.position = finder.interactorPos;
     }
 
