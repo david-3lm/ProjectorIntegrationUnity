@@ -680,10 +680,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
-      propertyPath: minArea
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 8356354003194440516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -772,10 +768,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1693550299}
-    - target: {fileID: 8356354003194440519, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8356354003194440520, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -789,10 +781,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 837765637, guid: 4d5ce566f5fe7e94789286be4e15243c, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2208340365819210332, guid: 4d5ce566f5fe7e94789286be4e15243c, type: 3}
       propertyPath: m_Name
       value: Interactor

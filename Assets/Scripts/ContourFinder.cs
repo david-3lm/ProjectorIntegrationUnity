@@ -34,7 +34,9 @@ public class ContourFinder : WebCam
     int minX,maxX,minY,maxY;
 
     [Header("Interactor")]
+    [SerializeField] bool DebugMode = false;
     [SerializeField]Interactor interactor;
+    [SerializeField] float distanceInteractables = 1f;
 
     [Header("Object used to go to calibration scene")]
     [SerializeField] ChangeScene changerScene;
@@ -157,13 +159,16 @@ public class ContourFinder : WebCam
             double area = Cv2.ContourArea(contours[i]);
             if (area > minArea && area > biggestArea)
             {
-                area = biggestArea;
+                biggestArea = area;
                 m = Cv2.Moments(contours[i]);
-                c = new(m.M10 / m.M00, m.M01 / m.M00);
-
+                double X =  m.M10 / m.M00;
+                double Y = m.M01 / m.M00;
+                //Checks if the contour is filled
+                if (processedImg.At<Vec3b>((int)Y, (int)X)[0] == 0)
+                    c = new(X, Y);
             }
         }
-        Debug.Log("X: " + c.X + " Y: " + c.Y);
+        //Debug.Log("X: " + c.X + " Y: " + c.Y);
         return c;
     }
 
@@ -235,10 +240,19 @@ public class ContourFinder : WebCam
 
     public void GetCenterData(ref Vector3 pos, ref float size)
     {
-        Vector2 vec2 = new Vector2(interactorCenter.X, interactorCenter.Y);
-        LerpCamToVirtual(ref vec2.x, ref vec2.y);
-        //Vector2 vec2 = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        pos = new Vector3(cam.ScreenToWorldPoint(vec2).x, cam.ScreenToWorldPoint(vec2).y, -9);
+        Vector2 vec2;
+        if (!DebugMode)
+        {
+            vec2 = new Vector2(interactorCenter.X, interactorCenter.Y);
+            LerpCamToVirtual(ref vec2.x, ref vec2.y);
+        }
+
+        //pos = new Vector3(cam.ScreenToWorldPoint(vec2).x, cam.ScreenToWorldPoint(vec2).y, -9);
+        //////////////////////DEBUG WITH MOUSE////////////////////////////////
+        else
+            vec2 = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        pos = cam.ScreenToWorldPoint(vec2) + (cam.transform.forward * distanceInteractables);
+        Debug.Log("vec2: " + vec2.x+ " , " + vec2.y + "\npos" + pos.x + " , " + pos.y);
         size = 0.5f;
     }
 }

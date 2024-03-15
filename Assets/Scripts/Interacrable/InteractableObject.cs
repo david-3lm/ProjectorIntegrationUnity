@@ -5,7 +5,7 @@ using System.Drawing;
 using UnityEditor.UI;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(SphereCollider))]
 public abstract class InteractableObject : MonoBehaviour
 {
     #region Variables
@@ -65,7 +65,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     public abstract void InteractionEvent();
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         InteractionEvent();
     }

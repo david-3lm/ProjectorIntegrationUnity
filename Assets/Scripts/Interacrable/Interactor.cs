@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(SphereCollider))]
 public class Interactor : MonoBehaviour
 {
     [SerializeField]ContourFinder finder;
-    CircleCollider2D col;
+    SphereCollider col;
 
     Vector3 pos;
     float size;
@@ -15,7 +15,7 @@ public class Interactor : MonoBehaviour
     {
         if (!finder)
             finder = FindObjectOfType<ContourFinder>();
-        col = GetComponent<CircleCollider2D>();
+        col = GetComponent<SphereCollider>();
     }
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,8 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         finder.GetCenterData(ref pos, ref size);
-        transform.position = new Vector3(pos.x, pos.y, -9);
+        //transform.position = new Vector3(pos.x, pos.y, -9);
+        transform.position = pos;
         col.radius = size;
         //transform.position = finder.interactorPos;
     }
