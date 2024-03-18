@@ -93,8 +93,10 @@ MonoBehaviour:
   threshold: 240
   ShowProcessedImg: 1
   CurveAccuracy: 10
-  minArea: 10000
+  minArea: 9000
+  DebugMode: 0
   interactor: {fileID: 0}
+  distanceInteractables: 1
   changerScene: {fileID: 2120252515}
 --- !u!114 &2120252515
 MonoBehaviour:

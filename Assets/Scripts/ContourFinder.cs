@@ -165,7 +165,9 @@ public class ContourFinder : WebCam
                 double Y = m.M01 / m.M00;
                 //Checks if the contour is filled
                 if (processedImg.At<Vec3b>((int)Y, (int)X)[0] == 0)
+                {
                     c = new(X, Y);
+                }
             }
         }
         //Debug.Log("X: " + c.X + " Y: " + c.Y);
@@ -251,8 +253,8 @@ public class ContourFinder : WebCam
         //////////////////////DEBUG WITH MOUSE////////////////////////////////
         else
             vec2 = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
         pos = cam.ScreenToWorldPoint(vec2) + (cam.transform.forward * distanceInteractables);
-        Debug.Log("vec2: " + vec2.x+ " , " + vec2.y + "\npos" + pos.x + " , " + pos.y);
-        size = 0.5f;
+        size = 0.7f;
     }
 }
