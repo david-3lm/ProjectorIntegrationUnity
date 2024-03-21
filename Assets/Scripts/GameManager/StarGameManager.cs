@@ -9,8 +9,6 @@ public class StarGameManager : MonoBehaviour
 {
     [SerializeField] List<Constellation> constellations;
     [SerializeField] Constellation activeConstellation;
-    [SerializeField] GameObject button;
-    [SerializeField] Transform startPos;
     [SerializeField] TextMeshProUGUI text;
     Camera cam;
     bool camMoving = false;
@@ -61,7 +59,6 @@ public class StarGameManager : MonoBehaviour
 
     private void StartGame()
     {
-        button.SetActive(false);
         activeConstellation = constellations[0];
         MoveCameraToConstellation();
     }

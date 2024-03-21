@@ -1,17 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class MoleGameManager : MonoBehaviour
 {
     [SerializeField] GameObject molePrefab;
     [SerializeField] List<Transform> positions;
+    [SerializeField] UnityEngine.UI.Slider slider;
+    [SerializeField] TextMeshProUGUI pointsUI;
+    [SerializeField] TextMeshProUGUI gameOverPointsUI;
+    [SerializeField] GameObject GameOverUI;
     float MAX_TIME = 30f;
     float COOLDOWN = 3f;
     bool gameOver;
-    float count = 0;
+    float count = 2;
     GameObject mole;
-
+    float points = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +30,40 @@ public class MoleGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameOver) 
+        {
+            if (!GameOverUI.activeInHierarchy)
+            {
+                GameOverUI.SetActive(true);
+                gameOverPointsUI.text = ((int)points).ToString();
+            }
+            return;
+        }
+
+        slider.value = 1 - (Time.timeSinceLevelLoad / MAX_TIME);
 
         if (Time.timeSinceLevelLoadAsDouble > MAX_TIME)
         { gameOver = true; return; }
-
-        print(count);
+        pointsUI.text = ((int)points).ToString();
         count += Time.deltaTime;
         if (count >= COOLDOWN)
         {
-            mole = Instantiate(molePrefab);
-            mole.transform.position = positions[Random.Range(0, positions.Count)].position;
-            
-            count = 0;
+            SpawnMole();
         }
+    }
+
+    public void MoleSpotted(float time)
+    {
+        points += 100 / time;
+        if(!gameOver)
+            SpawnMole();
+    }
+
+    public void SpawnMole()
+    {
+        mole = Instantiate(molePrefab);
+        mole.transform.position = positions[Random.Range(0, positions.Count)].position;
+
+        count = 0;
     }
 }

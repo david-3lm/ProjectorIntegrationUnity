@@ -13,7 +13,7 @@ public class ColorMask2 : WebCam
     [SerializeField] private float CurveAccuracy = 10f;
     [SerializeField] private float minArea = 5000f;
 
-    //Variables for color mask
+    //Variables for color mask in HSV lower and upper bound 0-50 red 50-100 green
     static double[,] d = { { 50, 100, 100 } };
     static double[,] u = { { 100, 255, 255 } };
     Mat lower = new Mat(3, 1, MatType.CV_64F, d);

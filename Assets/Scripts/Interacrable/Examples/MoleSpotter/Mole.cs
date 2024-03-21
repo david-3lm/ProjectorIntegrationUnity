@@ -1,23 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mole : InteractableObject
 {
     bool activated;
     float timeAlive;
+    MoleGameManager gameManager;
+
     private void Awake()
     {
         activated = false;
-        timeAlive = 0;
+        gameManager = FindObjectOfType<MoleGameManager>();
     }
 
+    private void Update()
+    {
+        timeAlive += Time.deltaTime;
+    }
     public override void InteractionEvent()
     {
         activated = true;
         StartCoroutine("AnimDeath");
     }
 
+    private void OnDestroy()
+    {
+        gameManager.MoleSpotted(timeAlive);
+    }
 
     IEnumerator AnimDeath()
     {
