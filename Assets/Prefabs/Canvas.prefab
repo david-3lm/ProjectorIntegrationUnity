@@ -94,7 +94,7 @@ MonoBehaviour:
   ShowProcessedImg: 1
   CurveAccuracy: 10
   minArea: 9000
-  DebugMode: 0
+  DebugMode: 1
   interactor: {fileID: 0}
   distanceInteractables: 1
   changerScene: {fileID: 2120252515}
