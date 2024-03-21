@@ -13,6 +13,7 @@ public class StarGameManager : MonoBehaviour
     [SerializeField] Transform startPos;
     [SerializeField] TextMeshProUGUI text;
     Camera cam;
+    bool camMoving = false;
     int idx = 0;
 
     private void Start()
@@ -27,10 +28,26 @@ public class StarGameManager : MonoBehaviour
             GoNextConstellation();
     }
 
-    private void GoNextConstellation()
+    public void GoNextConstellation()
     {
+        if (camMoving) return;
         idx++;
+        if (idx >= constellations.Count)
+            idx = 0;
         if (idx < constellations.Count)
+        {
+            activeConstellation = constellations[idx];
+            MoveCameraToConstellation();
+        }
+    }
+
+    public void GoPreviousConstellation()
+    {
+        if (camMoving) return;
+        idx--;
+        if (idx < 0)
+            idx = constellations.Count - 1;
+        if (idx > 0)
         {
             activeConstellation = constellations[idx];
             MoveCameraToConstellation();
@@ -62,6 +79,7 @@ public class StarGameManager : MonoBehaviour
 
     IEnumerator MoveCameToConstellation()
     {
+        camMoving = true;
         Quaternion startRotation = cam.transform.rotation;
         Quaternion endRotation = Quaternion.LookRotation(activeConstellation.transform.position - cam.transform.position);
 
@@ -78,6 +96,6 @@ public class StarGameManager : MonoBehaviour
         }
 
         cam.transform.rotation = endRotation;
+        camMoving = false;
     }
-
 }

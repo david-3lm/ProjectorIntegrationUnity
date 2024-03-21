@@ -1218,6 +1218,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
+      propertyPath: DebugMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: distanceInteractables
       value: 1
       objectReference: {fileID: 0}
