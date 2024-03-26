@@ -10,6 +10,7 @@ public class StarGameManager : MonoBehaviour
     [SerializeField] List<Constellation> constellations;
     [SerializeField] Constellation activeConstellation;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] RectTransform compass;
     Camera cam;
     bool camMoving = false;
     int idx = 0;
@@ -76,9 +77,15 @@ public class StarGameManager : MonoBehaviour
 
     IEnumerator MoveCameToConstellation()
     {
-        camMoving = true;
+        camMoving = true; 
         Quaternion startRotation = cam.transform.rotation;
         Quaternion endRotation = Quaternion.LookRotation(activeConstellation.transform.position - cam.transform.position);
+
+        float targetCompassAngle = 0f;
+        targetCompassAngle = -endRotation.eulerAngles.y;
+
+        Quaternion startCompassRotation = compass.transform.localRotation;
+        Quaternion targetCompassRotation = Quaternion.AngleAxis(targetCompassAngle, Vector3.back);
 
         float animationDuration = 1f;
         float timeElapsed = 0;
@@ -86,6 +93,8 @@ public class StarGameManager : MonoBehaviour
         while (timeElapsed < animationDuration)
         {
             cam.transform.rotation = Quaternion.Lerp(startRotation, endRotation, timeElapsed / animationDuration);
+            compass.transform.localRotation = Quaternion.Lerp(startCompassRotation, targetCompassRotation, timeElapsed / animationDuration);
+            
             timeElapsed += Time.deltaTime;
             string formattedText = string.Format("Az: {0:00}°<br>Alt: {1:00}°", cam.transform.rotation.eulerAngles.y, cam.transform.rotation.eulerAngles.x);
             text.text = formattedText;
@@ -93,6 +102,8 @@ public class StarGameManager : MonoBehaviour
         }
 
         cam.transform.rotation = endRotation;
+
+        compass.transform.localRotation = targetCompassRotation;
         camMoving = false;
     }
 }
