@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Star : InteractableObject
+public class Star : InteractiveObject
 {
     public bool activated;
 

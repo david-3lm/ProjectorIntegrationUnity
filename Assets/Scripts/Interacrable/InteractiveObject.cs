@@ -6,7 +6,7 @@ using UnityEditor.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public abstract class InteractableObject : MonoBehaviour
+public abstract class InteractiveObject : MonoBehaviour
 {
     #region Variables
     private ContourFinder cf;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Mole : InteractableObject
+public class Mole : InteractiveObject
 {
     bool activated;
     float timeAlive;

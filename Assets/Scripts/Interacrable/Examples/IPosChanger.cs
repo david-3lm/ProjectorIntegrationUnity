@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPosChanger : InteractableObject
+public class IPosChanger : InteractiveObject
 {
     public override void InteractionEvent()
     {
