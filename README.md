@@ -34,9 +34,9 @@ It uses the Unity Collision and Trigger events to develop its functionality.
 
 - **Interactor:** this class gets the information from *ContourFinder* and the center of the biggest black spot in the image as the position of this collider. This object is an empty GameObject with a Collider2D and its Rigidbody2D that moves around the scene.
 
-- **InteractableObject:** this abstract class consist of an abstract method called InteractionEvent that will be called inside OnTriggerEnter2D. **Every object that wants to have some interaction should inherit from this class and be part of a GameObject with a Collider2D attached.**
+- **InteractiveObject:** this abstract class consist of an abstract method called InteractionEvent that will be called inside OnTriggerEnter2D. **Every object that wants to have some interaction should inherit from this class and be part of a GameObject with a Collider2D attached.**
 
-- *InteractableButton:* this class inherits from InteractableObject and develops a behavior of a classic Button. Uses InteractionEvent to invoke an OnClick() Event.
+- *InteractiveButton:* this class inherits from InteractiveObject and develops a behavior of a classic Button. Uses InteractionEvent to invoke an OnClick() Event.
 
 ## Authors
 
