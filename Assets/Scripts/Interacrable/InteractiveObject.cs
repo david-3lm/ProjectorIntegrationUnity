@@ -15,10 +15,6 @@ public abstract class InteractiveObject : MonoBehaviour
     private float cooldown = 1f;
     protected Transform objTransform;
 
-    //TESTING
-    public bool button = false;
-    bool entered = false;
-    //END TESTING
     #endregion
 
     #region Abstract
