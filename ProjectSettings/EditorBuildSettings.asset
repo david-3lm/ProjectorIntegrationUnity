@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MoleSpotter.unity
     guid: 13083153085d5ec47994003a1f52ffc5
   - enabled: 1
-    path: Assets/Scenes/TrainRun.unity
+    path: Assets/Scenes/FruitCollector.unity
     guid: 115051bfdd3cb9942b0a3c21b3441e52
+  - enabled: 1
+    path: Assets/Scenes/GhostlyHouse.unity
+    guid: 9294ea9d5437ca348957a5b8006cb5ad
   m_configObjects: {}

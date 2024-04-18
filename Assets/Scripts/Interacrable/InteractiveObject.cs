@@ -5,7 +5,7 @@ using System.Drawing;
 using UnityEditor.UI;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Collider))]
 public abstract class InteractiveObject : MonoBehaviour
 {
     #region Variables
