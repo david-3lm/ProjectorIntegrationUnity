@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class ContourFinder : WebCam
 {
     [Header("Contour Attributes")]
-    [SerializeField] private float threshold = 100f;
+    [SerializeField] private float threshold = 240f;
     [SerializeField] private bool ShowProcessedImg = true;
     [SerializeField] private float CurveAccuracy = 10f;
     [SerializeField] private float minArea = 10000f;

@@ -1,6 +1,7 @@
 using OpenCvSharp;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 
 public class Calibration : WebCam
@@ -9,10 +10,10 @@ public class Calibration : WebCam
     private Mat img;
     private Mat processedImg = new Mat();
     [SerializeField] private bool ShowProcessedImg = true;
-    [SerializeField] private float CurveAccuracy = 10f;
-    [SerializeField] private float minArea = 5000f;
+    [SerializeField] private float CurveAccuracy = 50f;
+    [SerializeField] private float minArea = 10000f;
 
-    //Variables for color mask
+    //Variables for color mask in HSV lower and upper bound 0-50 red 50-100 green
     static double[,] d = { { 50, 100, 100 } };
     static double[,] u = { { 100, 255, 255 } };
     Mat lower = new Mat(3, 1, MatType.CV_64F, d);
@@ -26,9 +27,12 @@ public class Calibration : WebCam
     Point[] points;
     private Point[][] contours;
     private HierarchyIndex[] hierarchy;
+    int countContours;
 
     //Limits used to, get the boundings of the screen
     public int minX, minY, maxX, maxY;
+    int timeWithLimits = 0;
+    [SerializeField] Button sceneChanger;
 
 
     void Awake()
@@ -38,6 +42,10 @@ public class Calibration : WebCam
         upperBound = new InputArray(upper);
     }
 
+    void Start()
+    {
+        Limits.Instance.InitializeLists();
+    }
     private void Update()
     {
         base.Update();
@@ -51,13 +59,10 @@ public class Calibration : WebCam
     {
         img = OpenCvSharp.Unity.TextureToMat(input);
 
-        Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
-        Cv2.GaussianBlur(processedImg, processedImg, new Size(5, 5), 0);
-        Cv2.Threshold(processedImg, processedImg, 90f, 255, ThresholdTypes.BinaryInv);
+        Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2HSV);
+        Cv2.InRange(processedImg, lowerBound, upperBound, processedImg);
         Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
         ProcessContour();
-        GetLimits();
-
 
         if (output == null)
             output = OpenCvSharp.Unity.MatToTexture(ShowProcessedImg ? processedImg : img);
@@ -71,32 +76,20 @@ public class Calibration : WebCam
     ///</summary>
     public void ProcessContour()
     {
+        countContours = 0;
         foreach (Point[] contour in contours)
         {
             points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
             area = Cv2.ContourArea(contour);
 
-            switch (points.Length)
-            {
-                case 3:
-                    Debug.Log("Triangle detected");
-                    break;
-                case 4:
-                    Debug.Log("Square detected");
-                    break;
-                case 6:
-                    Debug.Log("cUBO TORCIdO");
-                    break;
-                default:
-                    Debug.Log("Nothing detected");
-                    break;
-            }
             if (area > minArea)
             {
                 DrawContour(processedImg, new Scalar(127, 127, 127), 20, points);
-
+                countContours++;
+                GetLimits();
             }
         }
+        TimeCallibration();
     }
     ///<summary>
     ///Gets the contours with specific area and draaws them for visualization
@@ -115,24 +108,34 @@ public class Calibration : WebCam
     ///</summary>
     public void GetLimits()
     {
-        Limits.Instance.InitializeLists();
-        foreach (Point[] contour in contours)
+        foreach (var p in points)
         {
-            points = Cv2.ApproxPolyDP(contour, CurveAccuracy, true);
-            area = Cv2.ContourArea(contour);
-            if (area > minArea)
-            {
-                foreach (var p in points)
-                {
-
-                    Limits.Instance.AddValues(p.X, p.Y);
-                }
-
-            }
+            Limits.Instance.AddValues(p.X, p.Y);
         }
+
         if (Limits.Instance.valuesX.Count > 0)
         {
             Limits.Instance.GetLimts(out minX, out maxX, out minY, out maxY);
+        }
+    }
+
+    private void TimeCallibration()
+    {
+        Debug.Log(timeWithLimits);
+
+        if (countContours == 2)
+        {
+            timeWithLimits++;
+            if (timeWithLimits > 5)
+            {
+                webCamTexture.Stop();
+                webCamTexture = null;
+                FindObjectOfType<ChangeScene>().Changer();
+            }
+        }
+        else
+        {
+            timeWithLimits = 0;
         }
     }
 }
