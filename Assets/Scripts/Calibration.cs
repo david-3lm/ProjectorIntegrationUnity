@@ -2,10 +2,12 @@ using OpenCvSharp;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class Calibration : WebCam
 {
+    #region Variables
     //Variables used for the camera
     private Mat img;
     private Mat processedImg = new Mat();
@@ -32,10 +34,13 @@ public class Calibration : WebCam
     //Limits used to, get the boundings of the screen
     public int minX, minY, maxX, maxY;
     int timeWithLimits = 0;
-    [SerializeField] Button sceneChanger;
 
+    //String used to Change the scene after 5 seconds with the calibration done
+    [SerializeField] string nextSceneString;
 
-    void Awake()
+    #endregion
+
+    private new void Awake()
     {
         base.Awake();
         lowerBound = new InputArray(lower);
@@ -46,14 +51,14 @@ public class Calibration : WebCam
     {
         Limits.Instance.InitializeLists();
     }
-    private void Update()
+    private new void Update()
     {
         base.Update();
         ProcessTexture(webCamTexture, ref renderedTexture);
     }
 
     ///<summary>
-    ///Get the image from the camera, converts it to a texture, and uses that tesxture to mask a color and find the contours in the image.
+    ///Get the image from the camera, converts it to a texture, and uses that texture to mask a color and find the contours in the image.
     ///</summary>
     protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
     {
@@ -119,10 +124,9 @@ public class Calibration : WebCam
         }
     }
 
+    //After 5 seconds with the 2 squares detected, it changes scenes.
     private void TimeCallibration()
     {
-        Debug.Log(timeWithLimits);
-
         if (countContours == 2)
         {
             timeWithLimits++;
@@ -130,7 +134,7 @@ public class Calibration : WebCam
             {
                 webCamTexture.Stop();
                 webCamTexture = null;
-                FindObjectOfType<ChangeScene>().Changer();
+                SceneManager.LoadScene(nextSceneString);
             }
         }
         else

@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class Mole : InteractiveObject
 {
-    bool activated;
     float timeAlive;
     MoleGameManager gameManager;
 
     private void Awake()
     {
-        activated = false;
         gameManager = FindObjectOfType<MoleGameManager>();
     }
 
@@ -21,7 +19,6 @@ public class Mole : InteractiveObject
     }
     public override void InteractionEvent()
     {
-        activated = true;
         StartCoroutine("AnimDeath");
     }
 

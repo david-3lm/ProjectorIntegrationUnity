@@ -5,28 +5,30 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.Windows.WebCam;
 
 public class ContourFinder : WebCam
 {
+    #region Variables
+
     [Header("Contour Attributes")]
     [SerializeField] private float threshold = 240f;
-    [SerializeField] private bool ShowProcessedImg = true;
-    [SerializeField] private float CurveAccuracy = 10f;
     [SerializeField] private float minArea = 10000f;
 
+    //OpenCV Image variables
     private Mat img;
     private Mat processedImg = new Mat();
     private Point[][] contours;
     private HierarchyIndex[] hierarchy;
     private Vector2[] vectorList;
 
-
-    Thread t;
-    bool threadStarted=false;
     Camera cam;
 
-    List<Point> centers;
-    List<Point> centersAux;
+    //Thread variables
+    Thread t;
+    bool threadStarted=false;
+
+    //Centers variables
     Point interactorCenter;
     Point c = new Point();
 
@@ -34,25 +36,24 @@ public class ContourFinder : WebCam
     int minX,maxX,minY,maxY;
 
     [Header("Interactor")]
-    [SerializeField] bool DebugMode = false;
-    [SerializeField]Interactor interactor;
-    [SerializeField] float distanceInteractables = 1f;
+    [SerializeField] bool DebugMode = false; //True = use the interactor with MousePosition
+    [SerializeField] Interactor interactor;
+    [SerializeField] float distanceInteractables = 1f; 
 
     [Header("Object used to go to calibration scene")]
-    [SerializeField] ChangeScene changerScene;
+    [SerializeField] string CalibrationSceneName = "CalibrationScene";
 
-    private void Awake()
+    #endregion
+
+    private new void Awake()
     {
         if (!Limits.Instance)
         {
-            changerScene.Changer();
+            SceneManager.LoadScene(CalibrationSceneName);
             return; 
         }
         base.Awake();
         cam = Camera.main;
-
-        centers = new List<Point>();
-        centersAux = new List<Point>();
 
         //Adjust the limits
         minX =Limits.Instance.valuesX.Min();
@@ -64,27 +65,30 @@ public class ContourFinder : WebCam
 
         if (!interactor)
             interactor = FindObjectOfType<Interactor>();
-        //ProcessTexture();
     }
-    private void Update()
+    private new void Update()
     {
         base.Update();
         ProcessTexture();
     }
+
     private void OnApplicationQuit()
     {
         t.Interrupt();
     }
+
     /// <summary>
-    /// Method executed by a thread that calls ValidateCenters
+    /// Method executed by a thread that calls ValidateThread
     /// </summary>
     private void ThreadMethod()
     {
         while (t.IsAlive)
             ValidateThread();
     }
+
     /// <summary>
-    /// Gets the a list of detected centers and validates them inside the limits
+    /// Checks if the last image processing has ended and if it is detecting any contour.
+    /// If true, the next iteration can proceed
     /// </summary>
     public void ValidateThread()
     {
@@ -93,6 +97,13 @@ public class ContourFinder : WebCam
         imgHilo = true;
     }
 
+    /// <summary>
+    /// Override of the OpenCV class
+    /// Process current texture
+    /// </summary>
+    /// <param name="input">WebCam texture</param>
+    /// <param name="output">Processed texture</param>
+    /// <returns></returns>
     protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
     {
         imgWebCam = OpenCvSharp.Unity.TextureToMat(input);
@@ -111,13 +122,9 @@ public class ContourFinder : WebCam
         return true;
     }
 
-    private void ClampPoint(Point p, int minX, int maxX, int minY, int maxY)
-    {
-        p.X=Mathf.Clamp(p.X, minX, maxX);
-        p.Y=Mathf.Clamp(p.Y, minY, maxY);
-    }
     /// <summary>
-    /// Gets the image from the camera and calculates the centers (inside the game) of the interactors in the real world.
+    /// Gets the image and processes it with a B/W threshold.
+    /// finds the contour and the center of the biggest area.
     /// </summary>
     protected void ProcessTexture()
     {
@@ -129,26 +136,21 @@ public class ContourFinder : WebCam
         }
         if (img != null)
         {
-
-
             Cv2.CvtColor(img, processedImg, ColorConversionCodes.BGR2GRAY);
             Cv2.GaussianBlur(processedImg, processedImg, new Size(5,5), 0);
             Cv2.Threshold(processedImg, processedImg, threshold, 255, ThresholdTypes.BinaryInv);
             Cv2.FindContours(processedImg, out contours, out hierarchy, RetrievalModes.Tree, ContourApproximationModes.ApproxSimple, null);
 
             interactorCenter = ComputeCenter(contours);
-            Cv2.Circle(processedImg, interactorCenter, 6, new Scalar(50,10), 10);
             SetImgProcessed(processedImg);
-
         }
     }
 
     /// <summary>
-    /// Gets the list of contours returned by OpenCV and returns a list of centers.
+    /// Gets a list of contours and returns the center point of the biggest light area of the camera.
     /// </summary>
-    /// <param name="processedImg"></param>
-    /// <param name="contours">Contours of the objects detected by OpenCV</param>
-    /// <param name="centersList">The list of centers</param>
+    /// <param name="contours">List of contours</param>
+    /// <returns></returns>
     private Point ComputeCenter(Point[][] contours)
     {
         Moments m;
@@ -163,57 +165,22 @@ public class ContourFinder : WebCam
                 m = Cv2.Moments(contours[i]);
                 double X =  m.M10 / m.M00;
                 double Y = m.M01 / m.M00;
-                //Checks if the contour is filled
+
+                //Checks if the contour is filled to avoid some problems
                 if (processedImg.At<Vec3b>((int)Y, (int)X)[0] == 0)
                 {
                     c = new(X, Y);
                 }
             }
         }
-        //Debug.Log("X: " + c.X + " Y: " + c.Y);
         return c;
     }
 
-
-    private Vector2[] PointsToVector2(Point[] points)
-    {
-        vectorList = new Vector2[points.Length];
-        for (int i = 0; i < points.Length; i++)
-        {
-            vectorList[i] = new Vector2(points[i].X, points[i].Y);
-            vectorList[i] = cam.ScreenToWorldPoint(vectorList[i]);
-        }
-        return vectorList;
-    }
-
     /// <summary>
-    /// Function that gets the color at a certain coord in the camera. If black there is an object.
+    /// Lerps the position of the WebCam to the position in the virtual camera
     /// </summary>
-    /// <param name="X">Coord X in the camera</param>
-    /// <param name="Y">Coord Y in the camera</param>
-    /// <returns></returns>
-    public Vector3Int GetColorAt(float X, float Y)
-    {
-        bool inside = false;
-
-        //Lerp to change screen coords to projection coords using Limits.
-        LerpVirtToCam(ref X, ref Y);
-        Vec3b color = processedImg.At<Vec3b>((int)Y, (int)X);
-        if (color[0] == 0) 
-            inside = CheckPointInContour((int)X,(int)Y);
-        if (inside)
-            return new Vector3Int(color[0], color[1]);
-        return new Vector3Int(255, 255);
-    }
-
-    public void LerpVirtToCam(ref float X, ref float Y)
-    {
-        float lerpX = X / Screen.width;
-        float lerpY = Y / Screen.height;
-        X = (int)Mathf.Lerp(minX, maxX, lerpX);
-        Y = (int)Mathf.Lerp(minY, maxY, 1 - lerpY);
-    }
-
+    /// <param name="X">X position in WebCam</param>
+    /// <param name="Y">Y position in WebCam</param>
     public void LerpCamToVirtual(ref float X, ref float Y)
     {
         float proportionX = (X - minX) / (maxX - minX);
@@ -222,24 +189,13 @@ public class ContourFinder : WebCam
         X = proportionX * Screen.width;
         Y = (1 - proportionY) * Screen.height;
     }
+
     /// <summary>
-    /// Function that checks if the point is inside a contour, to avoid functionallity not desired
+    /// Returns the position transformed from webcam to virtual
+    /// It is called from Interactor to get size and position of the collider.
     /// </summary>
-    /// <param name="X">Coord X</param>
-    /// <param name="Y">Coord Y</param>
-    /// <returns></returns>
-    private bool CheckPointInContour(int X, int Y)
-    {
-        bool inside = false;
-
-        foreach (var c in contours)
-        {
-            if (Cv2.PointPolygonTest(c, new Point2f(X, Y), false) >= 0)
-                inside = (Cv2.ContourArea(c) >= minArea);
-        }
-        return (inside);
-    }
-
+    /// <param name="pos">Reference of a Vec3 where the position is saved</param>
+    /// <param name="size">Size of the collider</param>
     public void GetCenterData(ref Vector3 pos, ref float size)
     {
         Vector2 vec2;
@@ -248,8 +204,6 @@ public class ContourFinder : WebCam
             vec2 = new Vector2(interactorCenter.X, interactorCenter.Y);
             LerpCamToVirtual(ref vec2.x, ref vec2.y);
         }
-
-        //pos = new Vector3(cam.ScreenToWorldPoint(vec2).x, cam.ScreenToWorldPoint(vec2).y, -9);
         //////////////////////DEBUG WITH MOUSE////////////////////////////////
         else
             vec2 = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

@@ -26,15 +26,8 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        finder.GetCenterData(ref pos, ref size);
-        //transform.position = new Vector3(pos.x, pos.y, -9);
+        finder.GetCenterData(ref pos, ref size); //gets the position from the camera
         transform.position = pos;
         col.radius = size;
-        //transform.position = finder.interactorPos;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("Encontre algo");
     }
 }
