@@ -52,6 +52,7 @@ namespace ProjectorIntegration
         {
             Limits.Instance.InitializeLists();
         }
+
         private new void Update()
         {
             base.Update();
@@ -95,7 +96,7 @@ namespace ProjectorIntegration
                     GetLimits();
                 }
             }
-            TimeCallibration();
+            TimeCalibration();
         }
         ///<summary>
         ///Gets the contours with specific area and draaws them for visualization
@@ -126,7 +127,7 @@ namespace ProjectorIntegration
         }
 
         //After 5 seconds with the 2 squares detected, it changes scenes.
-        private void TimeCallibration()
+        private void TimeCalibration()
         {
             if (countContours == 2)
             {

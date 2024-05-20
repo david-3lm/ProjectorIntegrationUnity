@@ -9,21 +9,18 @@ EditorBuildSettings:
     path: Assets/ProjectorIntegration/Scenes/CalibrationScene.unity
     guid: 3c571661b5e996941a23f1b1077b06ee
   - enabled: 1
-    path: Assets/ProjectorIntegration/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/ProjectorIntegration/DemoScenes/StarConnection.unity
+    path: Assets/ProjectorIntegration/Demostrations/StarConnection.unity
     guid: 107783bdaacc5934a9a2bc25d4894d3c
   - enabled: 1
     path: Assets/ProjectorIntegration/Scenes/Menu.unity
     guid: ae65af6b744856e489224db258da4b7f
   - enabled: 1
-    path: Assets/ProjectorIntegration/DemoScenes/MoleSpotter.unity
+    path: Assets/ProjectorIntegration/Demostrations/MoleSpotter.unity
     guid: 13083153085d5ec47994003a1f52ffc5
   - enabled: 1
-    path: Assets/ProjectorIntegration/DemoScenes/FruitCollector.unity
+    path: Assets/ProjectorIntegration/Demostrations/FruitCollector.unity
     guid: 115051bfdd3cb9942b0a3c21b3441e52
   - enabled: 1
-    path: Assets/ProjectorIntegration/DemoScenes/GhostlyHouse.unity
+    path: Assets/ProjectorIntegration/Demostrations/GhostlyHouse.unity
     guid: 9294ea9d5437ca348957a5b8006cb5ad
   m_configObjects: {}
