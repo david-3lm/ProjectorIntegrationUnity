@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8356354003159740516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: DebugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8356354003194440516, guid: 7a2785a6ff190e44f9e466e462442123, type: 3}
       propertyPath: m_Pivot.x
